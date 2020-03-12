@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark flex-md-nowrap p-0 shadow fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark flex-md-nowrap p-0 shadow navbar-static-top">
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-      <a class="navbar-brand col-sm-3 col-md-3 " href="{{ url('/homepage') }}">Global Applied Ethics</a>
+      <a class="navbar-brand col-sm-3 col-md-3 " href="{{ route('root') }}">Global Applied Ethics</a>
   </div>
   <div class="mx-auto order-0">
       <ul class="navbar-nav ml-auto">
@@ -35,6 +35,9 @@
             document.getElementById('logout-form').submit();">
             Logout
         </a>
+         {{-- <a class="dropdown-item" href="{{route('users.edit')}}">
+            Edit Profile
+        </a> --}}
 
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             {{ csrf_field() }}
@@ -45,3 +48,4 @@
 </ul>
 </div>
 </nav>
+<br>

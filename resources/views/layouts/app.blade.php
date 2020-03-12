@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Global Applied Ethics</title>
+    <title>@yield('title', 'cgae')-Global Applied Ethics</title>
 
     <!-- Styles -->
     {{-- <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -22,11 +22,11 @@
 
 @include('layouts._header')
 
-<div class="container">
+{{-- <div class="container"> --}}
 
 @yield('content')
 
-</div>
+{{-- </div> --}}
 <!-- Scripts -->
 @section('script')
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
