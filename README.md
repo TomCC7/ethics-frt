@@ -1,78 +1,73 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# Ethics
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+This README is for new members of the [Ethics Project](https://cgae.sjtu.edu.cn/).
 
-## About Laravel
+[toc]
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Get involved
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Install Laravel
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+It's highly recommended to use [Laravel Homestead
+](https://laravel.com/docs/6.x/homestead) to develop the project. Homestead is an official, pre-packaged **virtual machine** that provides you a wonderful development environment without requiring you to install PHP, a web server, and any other server software on your local machine. It will make your life easier. A chinese version of installation guidance can be found [here](https://learnku.com/docs/laravel-development-environment/6.x).
 
-## Learning Laravel
+### Connect to the git server
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+We use a self-hosted git server set to accept connection via ssh. To connect to the server to fetch the code, you should email your ssh public key to Manuel, and he will give you access to the server. 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#### Generate and set up your ssh public key
 
-## Laravel Sponsors
+Use ssh-keygen for MacOS and Linux. Send the public key to Manuel, and put the private key in your .ssh folder. Then edit ~/.ssh/config to add these:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+    Host focs.ji.sjtu.edu.cn
+        IdentityFile /path/to/private.key
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+#### Connect to the server
 
-## Contributing
+Use  `git clone ssh://git@focs.ji.sjtu.edu.cn:2222/your-git`  to fetch the code. Currently there are two repos: `ethics-frt` for the frontend and `ethics-bck` for the backend.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Environment Setup - frontend
 
-## Code of Conduct
+#### Setting up Laravel
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Trying to serve the website directly will cause errors. This is because you haven't set up Laravel for this project yet.
 
-## Security Vulnerabilities
+#### Generate the vendor directory
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Make sure you are in the project root directory. Then use `composer install` to generate the vendor directory automatically.
 
-## License
+#### Generate an application key
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Make sure you are in the project root directory. Then use `php artisan key:generate` to generate a key, which will be displayed. Create a file named  `.env` , and add the following into it:
+
+    APP_KEY=(paste the key here)
+
+Use `php artisan config:cache` to make the changes take effect.
+
+>Do this every time you edit `.env`!
+
+#### Setting up the database
+
+Refer to `Google` to set up your own MySQL server. Other database servers should also be OK but I know nothing about them.
+
+>In Homestead, use `homestead` as username and `secret` as password.
+
+#### Launching the web server
+
+Now you can visit `127.0.0.1:8000` to look at the website, homestead has mapped the website automatically here.
+
+>Note: Admin account
+>>user: rolson@example.org
+>>password: 123456
+
+### Develop Procedure Regarding Front-End
+
+1. remember to pull from the git repo before some programming, may use `git stash`
+2. after push to the git repo, log on to the front-end server, `cd /var/www/new-server` to pull from the back-end, so that changes can be done to the website
+
+## Appendix
+
+### Frames used
+
+- `laravel/ui`
+- `barryvdh/laravel-debugbar`- a debugger for laravel
