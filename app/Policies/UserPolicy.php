@@ -1,5 +1,6 @@
 <?php
-
+//auto link to model User
+//detail info in App\Providers\AuthServiceProvider
 namespace App\Policies;
 
 use App\Models\User;

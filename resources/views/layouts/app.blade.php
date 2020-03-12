@@ -22,6 +22,8 @@
 
 @include('layouts._header')
 
+@include('shared._messages')
+@include('shared._errors')
 {{-- <div class="container"> --}}
 
 @yield('content')
