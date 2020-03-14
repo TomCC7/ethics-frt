@@ -3,7 +3,7 @@
 //detail info in App\Providers\AuthServiceProvider
 namespace App\Policies;
 
-use App\Models\User;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 
