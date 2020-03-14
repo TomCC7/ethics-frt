@@ -8,3 +8,16 @@
     * Add a helper to the app directory
     - add registration page
     - add edit page
+
+# DATE：20200314
+# AUTHOR： GRID
+# ABSTRACT： Create all models
+    * Move User to app
+    - add models Post, Cluster, Module, Answer
+
+# DATE：20200315
+# AUTHOR： CC
+# ABSTRACT: Add is_admin to User
+    * Add is_admin to user
+    - Create user seeder, set first user to be admin
+    - create admin_check in helpers, should be change to other places

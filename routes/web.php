@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::resource('users', 'UsersController');
+Route::resource('users', 'UsersController',['only' => ['show','edit','update','index','destroy']]);
 
 Route::get('/','PagesController@root')->name('root');
+

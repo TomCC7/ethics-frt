@@ -5,7 +5,7 @@ namespace App\Policies;
 
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-
+use Illuminate\Support\Facades\Auth;
 
 class UserPolicy
 {
@@ -24,5 +24,15 @@ class UserPolicy
     public function update(User $currentUser,User $user)
     {
         return $currentUser->id === $user->id;
+    }
+
+    public function index()
+    {
+        return check_admin();
+    }
+
+    public function show()
+    {
+        return check_admin();
     }
 }
