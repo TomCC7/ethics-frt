@@ -21,3 +21,4 @@ Route::resource('posts', 'PostsController',['only' => ['show','index','edit','up
 Route::get('/','PagesController@frontpage');
 
 Route::get('/cluster-list','ClusterController@list')->name('cluster-list');
+Route::get('/cluster/{clusterID}','PostsController@list')->name('post-list');
