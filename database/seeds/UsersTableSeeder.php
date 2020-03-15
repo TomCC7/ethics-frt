@@ -16,11 +16,11 @@ class UsersTableSeeder extends Seeder
         $user_array = $users->makeVisible(['password', 'remember_token'])->toArray();
         User::insert($user_array);
         $admin = User::First();
-        $admin->email = 'rolson@example.org';
+        $admin->email = 'admin@site';
         $admin->is_admin = true;
-        $admin->name = 'Clancy';
-        $admin->first_name = 'Clancy';
-        $admin->last_name = 'Rockwell';
+        $admin->name = 'Admin';
+        $admin->last_name = 'Admin';
+        $admin->password = Hash::make('admin');
         $admin->save();
     }
 }

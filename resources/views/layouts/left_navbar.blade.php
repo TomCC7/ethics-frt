@@ -9,22 +9,22 @@
     <ul id="sidebar-menu">
 
       @auth
-      <li> <a href="#">Dashboard</a> </li>
+      <li> <a href="/">Dashboard</a> </li>
       @endauth
 
       @can ('admin')
-      <li> <a href="#">Contents</a> </li>
+      <li> <a href="{{route('cluster-list')}}">Contents</a> </li>
       <li> <a href="#">Users</a> </li>
       <li> <a href="#">Answers</a> </li>
       @endcan
 
-      @cannot ('admin')
+      @auth @cannot('admin')
       <li> <a href="#">Posts</a> </li>
-      @endcan
+      @endcan @endauth
 
       @auth
       <li>
-        <a href="#">My Account</a>
+        <a href="#">Hello, <strong>{{ Auth::user()->name }}</strong> </a>
         <ul class="sidebar-dropdown">
           <li> <a href="{{ route('logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">Logout</a> </li>
@@ -38,10 +38,7 @@
 
       @guest
       <li>
-        <a href="{{route('login')}}">Login</a>
-        <ul class="sidebar-dropdown">
-          <li> <a href="{{route('register')}}">Register</a> </li>
-        </ul>
+        <p> Login to begin. </p>
       </li>
       @endguest
 

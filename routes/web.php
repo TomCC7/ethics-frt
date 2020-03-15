@@ -20,3 +20,4 @@ Route::resource('posts', 'PostsController',['only' => ['show','index','edit','up
 
 Route::get('/','PagesController@frontpage');
 
+Route::get('/cluster-list','ClusterController@list')->name('cluster-list');
