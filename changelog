@@ -20,4 +20,5 @@
 # ABSTRACT: Add is_admin to User
     * Add is_admin to user
     - Create user seeder, set first user to be admin
-    - create admin_check in helpers, should be change to other places
+    - Create admin_check in helpers, should be change to other places
+    - Create PostsController

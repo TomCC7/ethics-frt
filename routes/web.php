@@ -16,5 +16,7 @@ Auth::routes();
 
 Route::resource('users', 'UsersController',['only' => ['show','edit','update','index','destroy']]);
 
+Route::resource('posts', 'PostsController',['only' => ['show','index','edit','update','create','destroy','store']]);
+
 Route::get('/','PagesController@root')->name('root');
 

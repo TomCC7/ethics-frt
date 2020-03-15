@@ -15,9 +15,10 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->integer('cluster_id');
-            $table->timestamps();
+            $table->integer('cluster_id');
+            $table->string('title');
 			$table->integer('prerequisite')->nullable();
+            $table->timestamps();
         });
     }
 

@@ -16,7 +16,7 @@ class CreateClustersTable extends Migration
         Schema::create('clusters', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-			$table->string('name',20);
+			$table->string('name');
         });
     }
 
