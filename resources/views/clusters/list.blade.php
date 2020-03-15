@@ -19,7 +19,7 @@
     <ul id="cluster-list">
       @foreach($clusters as $cluster)
       <li> <a href=" {{
-            route('post-list',['cluster' => $cluster])
+            route('post-list',['clusterID' => $cluster->id])
             }}">
             {{$cluster->name}}
           </a> </li>
@@ -29,7 +29,7 @@
   </div>
 
   <div class="col">
-    @yield('post-list')
+    @include('posts.list')
   </div>
 
 </div>

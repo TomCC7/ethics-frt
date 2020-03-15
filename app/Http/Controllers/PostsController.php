@@ -14,10 +14,11 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
-    public function list($clusterList, $cluster)
+    public function list(int $clusterID)
     {
-        $posts = $cluster::posts();
-        return view('posts.list', compact('posts'));
+        $clusters = Cluster::all();
+        $posts = Cluster::find($clusterID)->posts;
+        return view('clusters.list', compact('posts', 'clusters'));
     }
 
     public function create(Post $post)
