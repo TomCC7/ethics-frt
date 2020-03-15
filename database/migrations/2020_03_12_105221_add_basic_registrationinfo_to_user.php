@@ -14,7 +14,7 @@ class AddBasicRegistrationinfoToUser extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('first_name');
+            $table->string('first_name')->nullable();
             $table->string('last_name');
             $table->string('section_number');
             $table->string('semester');

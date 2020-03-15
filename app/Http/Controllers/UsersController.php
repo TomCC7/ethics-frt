@@ -4,12 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class UsersController extends Controller
 {
-    public function show()
+    public function __construct()
     {
-        return view('users.show');
+        $this->middleware('auth');
+    }
+    public function show(User $user)
+    {
+        Gate::authorize('admin');
+        return view('users.show', compact('user'));
+    }
+
+    public function index()
+    {
+        Gate::authorize('admin');
+        $users = User::all();
+        return view('users.index', compact('users'));
     }
 
     public function edit(User $user)

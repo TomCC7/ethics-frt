@@ -12,23 +12,28 @@
       <li> <a href="#">Dashboard</a> </li>
       @endauth
 
-      @auth ('admin')
+      @can ('admin')
       <li> <a href="#">Contents</a> </li>
       <li> <a href="#">Users</a> </li>
       <li> <a href="#">Answers</a> </li>
-      @endauth
+      @endcan
 
-      @auth ('user')
+      @cannot ('admin')
       <li> <a href="#">Posts</a> </li>
-      @endauth
+      @endcan
 
       @auth
       <li>
         <a href="#">My Account</a>
         <ul class="sidebar-dropdown">
-          <li> <a href="{{route('logout')}}">Logout</a> </li>
+          <li> <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">Logout</a> </li>
         </ul>
       </li>
+
+      <form id="logout-form" action="{{ route('logout') }}" method="POST"
+        style="display: none;">{{ csrf_field() }}</form>
+
       @endauth
 
       @guest
