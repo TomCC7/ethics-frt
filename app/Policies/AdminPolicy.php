@@ -1,13 +1,11 @@
 <?php
-//auto link to model User
-//detail info in App\Providers\AuthServiceProvider
+
 namespace App\Policies;
 
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Auth;
 
-class UserPolicy
+class AdminPolicy
 {
     use HandlesAuthorization;
 
@@ -21,8 +19,8 @@ class UserPolicy
         //
     }
 
-    public function update(User $currentUser,User $user)
+    public function admin(User $currentUser)
     {
-        return $currentUser->id === $user->id;
+        return $currentUser->is_admin;
     }
 }
