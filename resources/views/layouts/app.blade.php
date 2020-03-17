@@ -22,14 +22,19 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-2 sidenav">
+    <div class="col-2" id="sidenav">
       @include('layouts.left_navbar')
 
       @include('shared._messages')
       @include('shared._errors')
     </div>
     <div class="col">
+      <div class="row" id='pageHeader'>
+        <h1>@yield('pageHeader')</h1>
+      </div>
+      <div class="row" id="pageContentWrapper">
       @yield('content')
+      </div>
     </div>
   </div>
 </div>

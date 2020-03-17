@@ -17,8 +17,9 @@ class PostsController extends Controller
     public function list(int $clusterID)
     {
         $clusters = Cluster::all();
-        $posts = Cluster::find($clusterID)->posts;
-        return view('clusters.list', compact('posts', 'clusters'));
+        $currentCluster = Cluster::find($clusterID);
+        return view('clusters.list', compact('clusters', 'currentCluster'));
+            //Browse posts in a subview of the cluster list
     }
 
     public function create(Post $post)
