@@ -22,3 +22,12 @@
     - Create user seeder, set first user to be admin
     - Create admin_check in helpers, should be change to other places
     - Create PostsController
+
+# DATE：20200317
+# AUTHOR： CC
+# ABSTRACT:
+    - Add user index page
+    - Add show post page
+    - Create text module with show and create page
+    - introduce an editor
+    - upload image enabled

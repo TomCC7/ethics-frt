@@ -1,14 +1,25 @@
 @can('admin')
-  <div id="post-toolbar">
-    <a href="#"> Create a new post </a>
-    <a href="#"> Delete this cluster </a>
-  </div>
+<div id="post-toolbar">
+  <a href="{{route('posts.create')}}"> Create a new post </a>
+  <a href="#"> Delete this cluster </a>
+</div>
 @endcan
 
 <div id="post-list">
-  <ul id="post-list">
-    @foreach($currentCluster->posts as $post)
-    <li class="post-list-item"> <a href="#"> {{$post->title}} </a> </li>
-    @endforeach
-  </ul>
+  <table id="post-list">
+    <tbody>
+      @foreach($currentCluster->posts as $post)
+      <tr>
+        <td class="post-list-item"> <a href="{{route('posts.show',$post->id)}}"> {{$post->title}} </a> </td>
+        <td>
+          <form method="POST" action="{{route('posts.destroy',$post->id)}}">
+            @csrf
+            @method('DELETE')
+            <button>Delete</button>
+          </form>
+        </td>
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
 </div>

@@ -3,19 +3,19 @@
 {{-- If id is set, then the post has been created --}}
 @section('title',$post->id ? "EditPost" : "CreatePost")
 
+@section('pageHeader')
+  @if($post->id)
+  Edit Post
+  @else
+  Create Post
+  @endif
+@endsection
 @section('content')
 
 <div class="container">
   <div class="col-md-10 offset-md-1">
     <div class="card ">
 
-      <h2 class="">
-        @if($post->id)
-        Edit Post
-        @else
-        Create Post
-        @endif
-      </h2>
 
       @if ($post->id)
       <form method="POST" action={{route('posts.update',$post->id)}}>
@@ -29,7 +29,8 @@
             <label for='title' class="col-md-4 col-form-label text-md-right">
               Title
             </label>
-            <input name='title' type='text' value="{{ old('title', $post->title ) }}">
+            <input name='title' type='text' value="{{ old('title', $post->title ) }}"
+              placeholder='Please fill in the title'>
           </div>
 
           <div class="form-group">
@@ -45,16 +46,24 @@
             </select>
           </div>
 
+          {{-- content --}}
+          @include('posts._modules')
+
+          {{-- submit button --}}
           <div class="form-group row mb-0">
             <div class="col-md-6 offset-md-4">
-                <button type="submit" class="btn btn-primary">
-                    {{$post->id ? 'Store' : 'Create'}}
-                </button>
+              <button type="submit" class="btn btn-primary">
+                {{$post->id ? 'Store' : 'Create'}}
+              </button>
             </div>
-        </div>
+          </div>
 
         </form>
     </div>
   </div>
 </div>
 @endsection
+
+
+
+

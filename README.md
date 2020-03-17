@@ -71,3 +71,4 @@ Now you can visit `127.0.0.1:8000` to look at the website, homestead has mapped 
 
 - `laravel/ui`
 - `barryvdh/laravel-debugbar`- a debugger for laravel
+- `league/html-to-markdown` - convert html to markdown

@@ -17,8 +17,9 @@ Auth::routes();
 Route::resource('users', 'UsersController',['only' => ['show','edit','update','index','destroy']]);
 
 Route::resource('posts', 'PostsController',['only' => ['show','index','edit','update','create','destroy','store']]);
+Route::post('/posts/upload_image','PostsController@uploadImage')->name('posts.upload_image');
 
-Route::get('/','PagesController@frontpage');
+Route::get('/','PagesController@frontpage')->name('frontpage');
 
 Route::get('/contents','ClusterController@list')->name('cluster-list');
-Route::get('/contents/cluster-{clusterID}','PostsController@list')->name('post-list');
+Route::get('/contents/clusters/{clusterID}','PostsController@list')->name('post-list');

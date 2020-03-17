@@ -13,6 +13,7 @@ class UsersController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function show(User $user)
     {
         Gate::authorize('admin');
@@ -22,7 +23,7 @@ class UsersController extends Controller
     public function index()
     {
         Gate::authorize('admin');
-        $users = User::all();
+        $users = User::paginate(20);// paginate
         return view('users.index', compact('users'));
     }
 

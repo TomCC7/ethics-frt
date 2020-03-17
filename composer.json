@@ -12,6 +12,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^2.0",
+        "league/html-to-markdown": "^4.9",
         "mews/captcha": "~3.0"
     },
     "require-dev": {

@@ -14,7 +14,7 @@
 
       @can ('admin')
       <li> <a href="{{route('cluster-list')}}">Contents</a> </li>
-      <li> <a href="#">Users</a> </li>
+      <li> <a href="{{route('users.index')}}">Users</a> </li>
       @endcan
 
       @auth @cannot('admin')
