@@ -19,17 +19,9 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
-    public function show(Post $post)
+    public function show(Cluster $cluster, Post $post)
     {
         return view('posts.show', compact('post'));
-    }
-
-    public function list(int $clusterID)
-    {
-        $clusters = Cluster::all();
-        $currentCluster = Cluster::find($clusterID);
-        return view('clusters.list', compact('clusters', 'currentCluster'));
-            //Browse posts in a subview of the cluster list
     }
 
     public function create(Post $post)
@@ -44,15 +36,18 @@ class PostsController extends Controller
         return view('posts.create_edit', compact('post', 'clusters')); //share one view
     }
 
-
     public function store(PostRequest $request)
     {
-        $post=Post::create([
+        $post = Post::create([
             'cluster_id' => $request->cluster_id,
             'title' => $request->title,
         ]);
-        Module::createByType('text',$request,$post->id);
-        return redirect()->route('posts.show',$post->id)->with('success','Post created successfully!');
+        Module::createByType('text', $request, $post->id);
+        return redirect()->route('posts.show', [
+            'cluster' => $post->cluster->slug,
+            'post' => $post->slug,
+        ])
+            ->with('success', 'Post created successfully!');
     }
 
     public function update(Post $post, Request $request)
@@ -62,14 +57,13 @@ class PostsController extends Controller
     public function destroy(Post $post)
     {
         // delete the modules of the post
-        $post->modules->each(function($module)
-        {
+        $post->modules->each(function ($module) {
             $module->delete();
         });
         // delete the post itself
         $post->delete();
 
-        return back()->with('success','post has been deleted!');
+        return back()->with('success', 'post has been deleted!');
     }
 
     public function uploadImage(Request $request, ImageUploadHandler $uploader)

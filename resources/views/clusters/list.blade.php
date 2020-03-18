@@ -3,42 +3,43 @@
 @section('title', 'Cluster List')
 
 @section('pageHeader')
-  Contents
-  @isset($currentCluster)
-  > {{$currentCluster->name}}
-  @endisset
+Contents
+@isset($currentCluster)
+> {{$currentCluster->name}}
+@endisset
 @endsection
 
 @section('content')
 
-  <div class="col-2"> <!-- Show cluster list on the left -->
+<div class="col-2">
+  <!-- Show cluster list on the left -->
 
-    @can('admin') <!-- Only admins can edit clusters -->
-    <div class="row" id="cluster-toolbar">
-      <a class="col" href="#">Create a new cluster</a>
-      <a class="col" href="#">Placeholder</a>
-    </div>
-    @endcan
+  @can('admin')
+  <!-- Only admins can edit clusters -->
+  <div class="row" id="cluster-toolbar">
+    <a class="col" href="#">Create a new cluster</a>
+    <a class="col" href="#">Placeholder</a>
+  </div>
+  @endcan
 
-    <div class="row">
-      <ul id="cluster-list">
+  <div class="row">
+    <ul id="cluster-list">
       @foreach($clusters as $cluster)
-        <li> <a href=" {{
-              route('post-list',['clusterID' => $cluster->id])
-              }}">
-              {{$cluster->name}}
-            </a>
-        </li>
+      <li> <a href="{{route('clusters.show',$cluster->slug)}}">
+          {{$cluster->name}}
+        </a>
+      </li>
       @endforeach
-      </ul>
-    </div>
-
+    </ul>
   </div>
 
-  @isset($currentCluster) <!-- Showing the posts in a cluster -->
-  <div class="col">
-    @include('posts.list')
-  </div>
-  @endisset
+</div>
+
+@isset($currentCluster)
+<!-- Showing the posts in a cluster -->
+<div class="col">
+  @include('posts.list')
+</div>
+@endisset
 
 @endsection

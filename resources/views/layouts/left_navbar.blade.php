@@ -13,7 +13,7 @@
       @endauth
 
       @can ('admin')
-      <li> <a href="{{route('cluster-list')}}">Contents</a> </li>
+      <li> <a href="{{route('clusters.index')}}">Contents</a> </li>
       <li> <a href="{{route('users.index')}}">Users</a> </li>
       @endcan
 

@@ -10,9 +10,9 @@
     <tbody>
       @foreach($currentCluster->posts as $post)
       <tr>
-        <td class="post-list-item"> <a href="{{route('posts.show',$post->id)}}"> {{$post->title}} </a> </td>
+        <td class="post-list-item"> <a href="{{route('posts.show',[$currentCluster->slug,$post->slug])}}"> {{$post->title}} </a> </td>
         <td>
-          <form method="POST" action="{{route('posts.destroy',$post->id)}}">
+          <form method="POST" action="{{route('posts.destroy',$post->slug)}}">
             @csrf
             @method('DELETE')
             <button>Delete</button>

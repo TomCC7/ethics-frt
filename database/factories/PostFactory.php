@@ -6,7 +6,9 @@ use App\Content\Post;
 use Faker\Generator as Faker;
 
 $factory->define(Post::class, function (Faker $faker) {
+    $sentence=$faker->sentence;
     return [
-        'title' => $faker->sentence,
+        'title' => $sentence,
+        'slug' => NametoSlug($sentence),
     ];
 });

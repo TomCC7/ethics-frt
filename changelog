@@ -36,3 +36,4 @@
 # AUTHOR： CC
 # ABSTRACT:
     * add a create method of module
+    - change the url of clusters and posts to their slug
