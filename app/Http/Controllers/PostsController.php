@@ -10,6 +10,7 @@ use App\Handlers\MarkdownHandler;
 use App\Handlers\ImageUploadHandler;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostRequest;
+use App\User;
 
 class PostsController extends Controller
 {
@@ -50,9 +51,7 @@ class PostsController extends Controller
             'cluster_id' => $request->cluster_id,
             'title' => $request->title,
         ]);
-        $content=json_encode(['body' => $request->body]);
-        // This will fill the post_id with the id of $post
-        $post->modules()->create(['type' => 'text','content' => $content]);
+        Module::createByType('text',$request,$post->id);
         return redirect()->route('posts.show',$post->id)->with('success','Post created successfully!');
     }
 

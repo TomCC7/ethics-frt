@@ -25,9 +25,14 @@
 
 # DATE：20200317
 # AUTHOR： CC
-# ABSTRACT:
+# ABSTRACT: Text module
     - Add user index page
     - Add show post page
     - Create text module with show and create page
     - introduce an editor
     - upload image enabled
+
+# DATE：20200318
+# AUTHOR： CC
+# ABSTRACT:
+    * add a create method of module

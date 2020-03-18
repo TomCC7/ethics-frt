@@ -23,3 +23,4 @@ Route::get('/','PagesController@frontpage')->name('frontpage');
 
 Route::get('/contents','ClusterController@list')->name('cluster-list');
 Route::get('/contents/clusters/{clusterID}','PostsController@list')->name('post-list');
+

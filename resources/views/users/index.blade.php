@@ -22,9 +22,11 @@ Users
       </tr>
     </thead>
     <tbody>
-      @foreach ($users as $user)
-      @include('users._info')
-      @endforeach
+      @each('users._info', $users, 'user')
+      {{-- equivalent to: --}}
+      {{-- @foreach ($users as $user) --}}
+      {{-- @include('users._info') --}}
+      {{-- @endforeach --}}
     </tbody>
   </table>
   {{-- paginate --}}

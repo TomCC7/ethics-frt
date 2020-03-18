@@ -4,11 +4,11 @@
 @section('title',$post->id ? "EditPost" : "CreatePost")
 
 @section('pageHeader')
-  @if($post->id)
-  Edit Post
-  @else
-  Create Post
-  @endif
+@if($post->id)
+Edit Post
+@else
+Create Post
+@endif
 @endsection
 @section('content')
 
@@ -16,14 +16,15 @@
   <div class="col-md-10 offset-md-1">
     <div class="card ">
 
-
+      {{-- determine which form to use --}}
       @if ($post->id)
       <form method="POST" action={{route('posts.update',$post->id)}}>
         @method('PATCH')
-        @else
-        <form method="POST" action={{route('posts.store')}}>
-          @endif
-          @csrf
+      @else
+      <form method="POST" action={{route('posts.store')}}>
+        @endif
+
+        @csrf
 
           <div class="form-group">
             <label for='title' class="col-md-4 col-form-label text-md-right">
@@ -63,7 +64,3 @@
   </div>
 </div>
 @endsection
-
-
-
-
