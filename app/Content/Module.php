@@ -16,11 +16,14 @@ class Module extends Model
     /**
      * The attribute of different types of modules
      *
-     * @const array
+     * @static so that can be called by static functions
+     * @var array
      */
-    protected const Attribute = [
+    protected static $attribute = [
         'text' => ['body'],
-        'choice' => ['...']
+        'single-choice' => ['question', 'choices', 'correct_answer'],
+        'multiple-choice' => ['question', 'choices', 'correct_answer', 'min', 'max'],
+        'filling' => ['question', 'short'],
     ];
 
     /**
@@ -50,14 +53,7 @@ class Module extends Model
      */
     public function getContent()
     {
-        //switch the type of the module
-        switch ($this->type) {
-            case 'text':
-                return $this->getText();
-                break;
-
-                defualt: break;
-        }
+        return json_decode($this->content);
     }
 
     /**
@@ -70,7 +66,7 @@ class Module extends Model
     {
         switch ($type) {
             case 'text':
-                return Module::createText($request, $post_id);
+                return self::createText($request, $post_id);
                 break;
 
             default:
@@ -79,13 +75,21 @@ class Module extends Model
     }
 
     /**
-     * Get the content of a module of type "text"
+     * Distributes creating tasks based on the type of the module
      *
-     * @return string
+     * @static
+     * @return App\Content\Module
      */
-    protected function getText()
+    public static function updateByType($type, $request, $post_id)
     {
-        return json_decode($this->content)->body;
+        switch ($type) {
+            case 'text':
+                return self::updateText($request, $post_id);
+                break;
+
+            default:
+                break;
+        }
     }
 
     /**
@@ -96,8 +100,8 @@ class Module extends Model
      */
     protected static function createText($request, $post_id)
     {
-        $content = json_encode($request->only(Module::Attribute['text']));
-        $module = Module::create([
+        $content = json_encode($request->only(self::$attribute['text'])); // can't call $this because there's no instance for static method
+        $module = self::create([
             'type' => 'text',
             'content' => $content,
         ]);

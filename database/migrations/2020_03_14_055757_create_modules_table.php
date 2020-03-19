@@ -17,7 +17,7 @@ class CreateModulesTable extends Migration
             $table->bigIncrements('id');
 			$table->integer('post_id')->default(0);
             $table->timestamps();
-			$table->string('type',20);
+			$table->string('type');
 			$table->json('content');
         });
     }

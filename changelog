@@ -34,6 +34,9 @@
 
 # DATE：20200318
 # AUTHOR： CC
-# ABSTRACT:
     * add a create method of module
     - change the url of clusters and posts to their slug
+
+# DATE：20200319
+# AUTHOR： CC
+    - add more module types: single-choice, multiple-choice, filling

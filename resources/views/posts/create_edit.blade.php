@@ -30,7 +30,7 @@ Create Post
             <label for='title' class="col-md-4 col-form-label text-md-right">
               Title
             </label>
-            <input name='title' type='text' value="{{ old('title', $post->title ) }}"
+            <input name='title' id='title' type='text' value="{{ old('title', $post->title ) }}"
               placeholder='Please fill in the title'>
           </div>
 
@@ -38,7 +38,8 @@ Create Post
             <label for="cluster_id" class="col-md-4 col-form-label text-md-right">
               Cluster
             </label>
-            <select name="cluster_id" class="form-control">
+            <select name="cluster_id" id="cluster_id" class="form-control">
+              <option value="" hidden disabled {{ $post->id ? '' : 'selected' }}>Please choose a cluster</option>
               @foreach ($clusters as $cluster)
               <option value='{{$cluster->id}}' {{$post->cluster_id == $cluster->id ? 'selected' : ''}}>
                 {{$cluster->name}}
@@ -48,7 +49,7 @@ Create Post
           </div>
 
           {{-- content --}}
-          @include('posts._modules')
+          @include('modules._create_edit')
 
           {{-- submit button --}}
           <div class="form-group row mb-0">

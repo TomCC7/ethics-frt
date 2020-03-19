@@ -1,16 +1,16 @@
 {{-- Create or Edit a module --}}
 {{-- Included by posts.create_edit --}}
 
-@if (!$post->id){{-- if no id, it's creating --}}
+@if (!$post->id) {{-- if no id, it's creating --}}
 <label for="editor" class="col-md-4 col-form-label text-md-right">
   Create a content:
 </label>
 <div class="form-group">
-  <textarea name="body" class="form-control" id="editor" rows="6" placeholder="Please fill in the content"
-    required></textarea>
+<textarea name="body" class="form-control" id="editor" rows="6" placeholder="Please fill in the content"
+    required>{{ old('body')}}</textarea>
 </div>
 
-@else
+@else {{-- Editing --}}
 
 @foreach ($post->modules as $module)
 
@@ -19,7 +19,7 @@
 </label>
 <div class="form-group">
   <textarea name="body-{{$loop->index}}" class="form-control" id="editor" rows="6"
-    placeholder="Please fill in the content" required>{{ old('body', $module->getContent())}}</textarea>
+    placeholder="Please fill in the content" required>{{ old('editor', $module->getContent())}}</textarea>
 </div>
 
 @endforeach

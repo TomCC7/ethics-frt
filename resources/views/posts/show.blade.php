@@ -7,8 +7,9 @@
 
 @section('content')
 
-@foreach ($post->modules as $module)
-@include('modules._show')
-@endforeach
-
+<form method="POST" action="{{route('answers.store')}}">
+  @csrf
+  @each('modules._show', $post->modules, 'module', 'modules._show._empty')
+  <button type="submit">Submit answer</button>
+</form>
 @endsection
