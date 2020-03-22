@@ -40,3 +40,8 @@
 # DATE：20200319
 # AUTHOR： CC
     - add more module types: single-choice, multiple-choice, filling
+
+# DATE：20200322
+# AUTHOR： CC
+    - add module create method: single-choice, multiple-choice, filling(need to improve request)
+

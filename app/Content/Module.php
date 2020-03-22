@@ -22,7 +22,7 @@ class Module extends Model
     protected static $attribute = [
         'text' => ['body'],
         'single-choice' => ['question', 'choices', 'correct_answer'],
-        'multiple-choice' => ['question', 'choices', 'correct_answer', 'min', 'max'],
+        'multiple-choice' => ['question', 'choices', 'choice-num', 'correct_answer', 'min', 'max'],
         'filling' => ['question', 'short'],
     ];
 
@@ -62,14 +62,22 @@ class Module extends Model
      * @static
      * @return App\Content\Module
      */
-    public static function createByType($type, $request, $post_id)
+    public static function createByType($request)
     {
-        switch ($type) {
+        switch ($request->type) {
             case 'text':
-                return self::createText($request, $post_id);
+                return self::createText($request);
                 break;
-
+            case 'filling':
+                return self::createFilling($request);
+                break;
+            case 'single-choice':
+                // no break, will execute the next case
+            case 'multiple-choice':
+                return self::createChoice($request);
+                break;
             default:
+                return null;
                 break;
         }
     }
@@ -98,14 +106,53 @@ class Module extends Model
      * @static
      * @return App\Content\Module
      */
-    protected static function createText($request, $post_id)
+    protected static function createText($request)
     {
         $content = json_encode($request->only(self::$attribute['text'])); // can't call $this because there's no instance for static method
         $module = self::create([
             'type' => 'text',
             'content' => $content,
         ]);
-        $module->post_id = $post_id;
+        $module->post_id = $request->post_id;
+        $module->save();
+        return $module;
+    }
+
+    /**
+     * Create Module of type "filling"
+     *
+     * @static
+     * @return App\Content\Module
+     */
+    protected static function createFilling($request)
+    {
+        $content = $request->only(self::$attribute['filling']); // can't call $this because there's no instance for static method
+        $content['short'] = boolval($content['short']);
+        $content = json_encode($content);
+        $module = self::create([
+            'type' => 'filling',
+            'content' => $content,
+        ]);
+        $module->post_id = $request->post_id;
+        $module->save();
+        return $module;
+    }
+
+    /**
+     * Create Module of type "choice"
+     *
+     * @static
+     * @return App\Content\Module
+     */
+    protected static function createChoice($request)
+    {
+        $content = $request->only(self::$attribute[$request->type]);
+        $content = json_encode($content);
+        $module = self::create([
+            'type' => $request->type,
+            'content' => $content,
+        ]);
+        $module->post_id = $request->post_id;
         $module->save();
         return $module;
     }

@@ -1,7 +1,7 @@
 {{-- Create or Edit a module --}}
 {{-- Included by posts.create_edit --}}
 
-@if (!$post->id) {{-- if no id, it's creating --}}
+{{-- @if (!$post->id) if no id, it's creating --}}
 <label for="editor" class="col-md-4 col-form-label text-md-right">
   Create a content:
 </label>
@@ -10,20 +10,20 @@
     required>{{ old('body')}}</textarea>
 </div>
 
-@else {{-- Editing --}}
+{{-- @else Editing --}}
 
-@foreach ($post->modules as $module)
+{{-- @foreach ($post->modules as $module) --}}
 
-<label for="editor" class="col-md-4 col-form-label text-md-right">
-  Content {{$loop->iteration}}:{{--count the loop from 1--}}
-</label>
-<div class="form-group">
-  <textarea name="body-{{$loop->index}}" class="form-control" id="editor" rows="6"
-    placeholder="Please fill in the content" required>{{ old('editor', $module->getContent())}}</textarea>
-</div>
+{{-- <label for="editor" class="col-md-4 col-form-label text-md-right"> --}}
+  {{-- Content {{$loop->iteration}}:count the loop from 1 --}}
+{{-- </label> --}}
+{{-- <div class="form-group"> --}}
+  {{-- <textarea name="body-{{$loop->index}}" class="form-control" id="editor" rows="6" --}}
+    {{-- placeholder="Please fill in the content" required>{{ old('editor', $module->getContent())}}</textarea> --}}
+{{-- </div> --}}
 
-@endforeach
-@endif
+{{-- @endforeach --}}
+{{-- @endif --}}
 
 @section('styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">

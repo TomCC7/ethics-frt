@@ -21,6 +21,7 @@ class PostsController extends Controller
 
     public function show(Cluster $cluster, Post $post)
     {
+        // $clusters=Cluster::All();
         return view('posts.show', compact('post'));
     }
 
