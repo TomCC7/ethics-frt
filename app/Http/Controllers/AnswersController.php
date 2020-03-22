@@ -4,11 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Collected\Answer;
+use App\Content\Cluster;
+use App\Content\Post;
 use App\Content\Module;
 use Illuminate\Support\Facades\Auth;
 
 class AnswersController extends Controller
 {
+    /**
+     *
+     * Store the answers of the modules
+     */
     public function store(Request $request)
     {
         // dd($request);
@@ -31,5 +37,24 @@ class AnswersController extends Controller
             $answer->save();
         }
         return back()->with('success', "You've submitted your answer!");
+    }
+
+    /**
+     *
+     * Show the answer list
+     */
+    public function index()
+    {
+        $clusters=Cluster::All();
+        return view('answers.index',compact('clusters'));
+    }
+
+    /**
+     * Show the answers of a given post
+     */
+    public function show(Cluster $cluster,Post $post)
+    {
+        $modules=$post->modules()->question()->with('post','answers')->get();
+        return view('answers.show',compact('post','modules'));
     }
 }

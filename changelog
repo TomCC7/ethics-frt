@@ -45,3 +45,4 @@
 # AUTHOR： CC
     - add module create method: single-choice, multiple-choice, filling(need to improve request)
     - add post submit function(need to improve request)
+    - add index and show pages of the answers

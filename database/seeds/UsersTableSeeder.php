@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
         $admin->is_admin = true;
         $admin->name = 'Admin';
         $admin->last_name = 'Admin';
-        $admin->password = Hash::make('admin');
+        $admin->password = bcrypt('admin');
         $admin->save();
     }
 }

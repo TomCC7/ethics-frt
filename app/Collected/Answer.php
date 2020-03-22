@@ -16,5 +16,10 @@ class Answer extends Model
 
 	public function module() {
 		return $this->belongsTo('App\Content\Module');
-	}
+    }
+
+    public function getContent()
+    {
+        return json_decode($this->content);
+    }
 }

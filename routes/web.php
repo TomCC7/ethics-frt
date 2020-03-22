@@ -27,6 +27,7 @@ Route::get('/', 'PagesController@frontpage')->name('frontpage');
 Route::get('/contents', 'ClusterController@index')->name('clusters.index');
 Route::get('/contents/{currentCluster}', 'ClusterController@show')->name('clusters.show');
 // AnswersController
-Route::resource('/answers', 'AnswersController', ['only' => ['store']]);
+Route::resource('/answers', 'AnswersController', ['only' => ['store','index']]);
+Route::get('/answers/{cluster}/{post}','AnswersController@show')->name('answers.show');
 // ModulesController
 Route::resource('/modules', 'ModulesController', ['only' => ['store', 'edit', 'update']]);

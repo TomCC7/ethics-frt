@@ -26,6 +26,7 @@ class Module extends Model
         'filling' => ['question', 'short'],
     ];
 
+    /** Relationships with other models @return relation */
     /**
      * The relationship with post
      *
@@ -155,5 +156,23 @@ class Module extends Model
         $module->post_id = $request->post_id;
         $module->save();
         return $module;
+    }
+
+    /**
+     * return a scope where modules are questions
+     * @return Facade\Ignition\QueryRecorder\Query
+     */
+    public function scopeQuestion($query)
+    {
+        return $query->where('type','!=','text');
+    }
+
+    /**
+     * return a scope of given type
+     * @return Facade\Ignition\QueryRecorder\Query
+     */
+    public function scopeOfType($query,$type)
+    {
+        return $query->where('type',$type);
     }
 }

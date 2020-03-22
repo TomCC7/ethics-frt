@@ -3,7 +3,7 @@
   <nav id="sidebar">
 
     <div id="sidebar-header">
-       <p> <strong> {{config('app.name')}} </strong> </p>
+      <p> <strong> {{config('app.name')}} </strong> </p>
     </div>
 
     <ul id="sidebar-menu">
@@ -15,6 +15,7 @@
       @can ('admin')
       <li> <a href="{{route('clusters.index')}}">Contents</a> </li>
       <li> <a href="{{route('users.index')}}">Users</a> </li>
+      <li> <a href="{{route('answers.index')}}">Answers</a></li>
       @endcan
 
       @auth @cannot('admin')
@@ -30,8 +31,8 @@
         </ul>
       </li>
 
-      <form id="logout-form" action="{{ route('logout') }}" method="POST"
-        style="display: none;">{{ csrf_field() }}</form>
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}
+      </form>
 
       @endauth
 
