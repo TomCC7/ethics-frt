@@ -43,7 +43,6 @@ class PostsController extends Controller
             'cluster_id' => $request->cluster_id,
             'title' => $request->title,
         ]);
-        Module::createByType('text', $request, $post->id);
         return redirect()->route('posts.show', [
             'cluster' => $post->cluster->slug,
             'post' => $post->slug,
@@ -51,17 +50,17 @@ class PostsController extends Controller
             ->with('success', 'Post created successfully!');
     }
 
-    public function update(PostRequest $request, Post $post)
+    public function update(PostRequest $request)
     {
-        // $post = Post::Update([
-        //     'title' => $request->title,
-        // ]);
-        // Module::updateByType('text', $request, $post->id);
-        // return redirect()->route('posts.show', [
-        //     'cluster' => $post->cluster->slug,
-        //     'post' => $post->slug,
-        // ])
-        //     ->with('success', 'Post created successfully!');
+        $post = Post::Update([
+            'title' => $request->title,
+            'slug' => NametoSlug($request->title),
+        ]);
+        return redirect()->route('posts.show', [
+            'cluster' => $post->cluster->slug,
+            'post' => $post->slug,
+        ])
+            ->with('success', 'Post updated successfully!');
     }
 
     public function destroy(Post $post)

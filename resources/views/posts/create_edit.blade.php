@@ -48,9 +48,6 @@ Create Post
             </select>
           </div>
 
-          {{-- content --}}
-          @include('modules._create_edit')
-
           {{-- submit button --}}
           <div class="form-group row mb-0">
             <div class="col-md-6 offset-md-4">

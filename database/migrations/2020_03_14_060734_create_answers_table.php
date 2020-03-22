@@ -15,10 +15,10 @@ class CreateAnswersTable extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->integer('user_id');
-			$table->integer('module_id');
+            $table->integer('user_id')->default(0);
+            $table->integer('module_id')->default(0);
             $table->timestamps();
-			$table->json('content');
+            $table->json('content');
         });
     }
 
