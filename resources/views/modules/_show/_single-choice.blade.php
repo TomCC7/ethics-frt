@@ -12,9 +12,11 @@ $order=['A','B','C','D','E','F','G','H','I','J'];
 <input type="hidden" id="type-{{$module->id}}" name="types[{{$module->id}}]" value="{{$module->type}}">
 
 @foreach ($module->getContent()->choices as $choice)
-<div>
-  <input type="radio" id="module-{{$module->id}}" name="answers[{{$module->id}}]" value="{{$loop->iteration}}">
-  {{$choice}}
+<div class="form-group" id="module-{{$module->id}}">
+  <label class="radio-inline">
+    <input type="radio" name="answers[{{$module->id}}]" value="{{$loop->iteration}}">
+    {{$choice}}
+  </label>
 </div>
 @endforeach
 <br>

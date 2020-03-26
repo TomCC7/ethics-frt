@@ -1,43 +1,44 @@
 <div class="wrapper">
 
-  <nav id="sidebar">
+  <nav id="sidebar" class="navbar navbar-dark bg-dark documentation-sidebar">
 
-    <div id="sidebar-header">
+    <div id="sidebar-header" class="navbar-brand flex-column">
       <p> <strong> {{config('app.name')}} </strong> </p>
     </div>
 
-    <ul id="sidebar-menu">
+    <ul id="sidebar-menu" class="navbar-nav ml-auto flex-column">
 
       @auth
-      <li> <a href="/">Dashboard</a> </li>
+      <li class="nav-item"> <a class="nav-link" href="/">Dashboard</a> </li>
       @endauth
 
       @can ('admin')
-      <li> <a href="{{route('clusters.index')}}">Contents</a> </li>
-      <li> <a href="{{route('users.index')}}">Users</a> </li>
-      <li> <a href="{{route('answers.index')}}">Answers</a></li>
+      <li class="nav-item"> <a class="nav-link" href="{{route('clusters.index')}}">Contents</a> </li>
+      <li class="nav-item"> <a class="nav-link" href="{{route('users.index')}}">Users</a> </li>
+      <li class="nav-item"> <a class="nav-link" href="{{route('answers.index')}}">Answers</a></li>
       @endcan
 
       @auth @cannot('admin')
-      <li> <a href="#">Posts</a> </li>
+      <li class="nav-item"> <a class="nav-link" href="#">Posts</a> </li>
       @endcan @endauth
 
       @auth
-      <li>
-        <a href="#">Hello, <strong>{{ Auth::user()->name }}</strong> </a>
-        <ul class="sidebar-dropdown">
-          <li> <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">Logout</a> </li>
+      <li class="nav-item">
+        <a class="nav-link dropdown dropdown-toggle" href="#" data-toggle="dropdown" role="button">Hello,
+          <strong>{{ Auth::user()->name }}</strong> </a>
+        <ul class="dropdown-menu dropdown-menu-left">
+          <li class=" dropdown-item"> <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">Logout</a> </li>
         </ul>
       </li>
 
-      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf
       </form>
 
       @endauth
 
       @guest
-      <li>
+      <li class="nav-item">
         <p> Login to begin. </p>
       </li>
       @endguest

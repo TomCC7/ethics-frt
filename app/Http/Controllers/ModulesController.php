@@ -9,6 +9,7 @@ use App\Http\Requests\ModuleRequest;
 
 class ModulesController extends Controller
 {
+
     /**
      * Store a module
      */
@@ -22,4 +23,14 @@ class ModulesController extends Controller
         ])
             ->with('success', 'Module created successfully!');
     }
+    /**
+     * Update a module
+     */
+    /**
+     * Edit a module
+     */
+    // public function edit(Module $module)
+    // {
+    //     return view('modules.edit', compact('module'));
+    // }
 }

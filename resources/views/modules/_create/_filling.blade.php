@@ -1,7 +1,7 @@
 {{-- Create a filling module in the current post --}}
 {{-- Included by "posts.show" --}}
 
-<div class="card">
+<div class="card d-none" id="form-create-filling">
   <form method="POST" action="{{route('modules.store')}}">
     @csrf
     {{-- Post id and type --}}
@@ -14,15 +14,15 @@
       <label for="question">
         Your question
       </label>
-      <input type="text" id="question" name="question" placeholder="Fill in your question here">
+      <input type="text" id="question_filling" name="question" placeholder="Fill in your question here" required>
     </div>
 
     <div class="form-group">
       <input type="hidden" name="short" id="short" value="0">
-      <label for="short">
+      <label class="checkbox">
+        <input type="checkbox" name="short" value="1">
         Is this question a short one?
       </label>
-      <input type="checkbox" name="short" id="short" value="1">
     </div>
     {{-- submit button --}}
     <div class="form-group row mb-0">

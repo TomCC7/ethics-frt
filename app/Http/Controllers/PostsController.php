@@ -22,6 +22,7 @@ class PostsController extends Controller
     public function show(Cluster $cluster, Post $post)
     {
         // $clusters=Cluster::All();
+        $post=$cluster->posts()->where('id',$post->id)->get()[0];
         return view('posts.show', compact('post'));
     }
 
@@ -50,12 +51,13 @@ class PostsController extends Controller
             ->with('success', 'Post created successfully!');
     }
 
-    public function update(PostRequest $request)
+    public function update(PostRequest $request,Post $post)
     {
-        $post = Post::Update([
+        $post->update([
             'title' => $request->title,
-            'slug' => NametoSlug($request->title),
         ]);
+        $post->cluster_id=$request->cluster_id;
+        $post->save();
         return redirect()->route('posts.show', [
             'cluster' => $post->cluster->slug,
             'post' => $post->slug,

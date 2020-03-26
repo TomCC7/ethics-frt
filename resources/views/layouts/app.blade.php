@@ -24,13 +24,13 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-2" id="sidenav">
+    <div class="col-xs" id="sidenav">
       @include('layouts.left_navbar')
 
       @include('shared._messages')
       @include('shared._errors')
     </div>
-    <div class="col">
+    <div class="col-auto">
       <div class="row" id='pageHeader'>
         <h1>@yield('pageHeader')</h1>
       </div>

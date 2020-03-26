@@ -1,5 +1,6 @@
 {{-- This file shows a module --}}
 {{-- Included by 'posts.show' --}}
+{{-- <a href="{{route('modules.edit',$module->id)}}"><button class="btn btn-success">Edit</button></a> --}}
 @switch($module->type)
     @case('text')
       @include('modules._show._text')

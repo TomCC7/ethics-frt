@@ -18,7 +18,7 @@ Create Post
 
       {{-- determine which form to use --}}
       @if ($post->id)
-      <form method="POST" action={{route('posts.update',$post->id)}}>
+      <form method="POST" action={{route('posts.update',$post->slug)}}>
         @method('PATCH')
       @else
       <form method="POST" action={{route('posts.store')}}>
@@ -52,7 +52,7 @@ Create Post
           <div class="form-group row mb-0">
             <div class="col-md-6 offset-md-4">
               <button type="submit" class="btn btn-primary">
-                {{$post->id ? 'Store' : 'Create'}}
+                {{$post->id ? 'Update' : 'Create'}}
               </button>
             </div>
           </div>
