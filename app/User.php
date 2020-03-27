@@ -46,5 +46,14 @@ class User extends Authenticatable
 
 	public function answers() {
 		return $this->hasMany('App\Collected\Answer');
-	}
+    }
+
+    /**
+     * The relationship with answerrecords
+     * @return Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function answerRecords()
+    {
+        return $this->hasMany('App\Collected\AnswerRecord');
+    }
 }

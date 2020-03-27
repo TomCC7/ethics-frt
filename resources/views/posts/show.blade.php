@@ -12,16 +12,38 @@ Post-<small>{{$post->title}}</small>
 <div id="content">
   <form method="POST" action="{{route('answers.store')}}">
     @csrf
+    <input type="hidden" name="post_id" value="{{$post->id}}">
     @each('modules._show', $post->modules, 'module', 'modules._show._empty')
-    <button type="submit">Submit answer</button>
-  </form>
 
-  <br>
+    {{-- Can't be seen by admin --}}
+    {{-- @cannot('admin') --}}
+    {{-- Only can be seen when there's question --}}
+    @if ($post->modules()->question()->first())
+    <div class="form-group">
+
+      @if($answer_record)
+      <button type="submit" class="btn btn-secondary"
+        onclick="return confirm('Are you sure you want to resubmit your answer?');">
+        Resubmit answer
+      </button>
+      <span class="d:inline">You've submitted your answer at
+        {{$answer_record->updated_at}}!</span>
+      @else
+      <button type="submit" class="btn btn-primary">
+        Submit answer
+      </button>
+      @endif
+
+    </div>
+    @endif
+    {{-- @endcannot --}}
+
+  </form>
 
   {{-- Creating --}}
   @include('modules._create')
 
-  </div>
+</div>
 </div>
 @endsection
 

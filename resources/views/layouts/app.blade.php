@@ -30,7 +30,7 @@
       @include('shared._messages')
       @include('shared._errors')
     </div>
-    <div class="col-auto">
+    <div class="col">
       <div class="row" id='pageHeader'>
         <h1>@yield('pageHeader')</h1>
       </div>

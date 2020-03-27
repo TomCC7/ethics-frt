@@ -84,6 +84,7 @@
   if ($('#input-choice_num').val()<2||$('#input-choice_num').val()>10)
   {
     alert('Choice number must between 2 and 10!');
+    return;
   }
   // set all to d-none
   for (let i=0;i<10;i++)

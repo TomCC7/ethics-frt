@@ -5,12 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Content\Cluster;
 use App\Content\Post;
-use App\Content\Module;
 use App\Handlers\MarkdownHandler;
 use App\Handlers\ImageUploadHandler;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostRequest;
-use App\User;
+use Illuminate\Support\Facades\App;
 
 class PostsController extends Controller
 {
@@ -21,9 +20,18 @@ class PostsController extends Controller
 
     public function show(Cluster $cluster, Post $post)
     {
-        // $clusters=Cluster::All();
-        $post=$cluster->posts()->where('id',$post->id)->get()[0];
-        return view('posts.show', compact('post'));
+        $answer_record=$post->userRecord(Auth::id())->first();
+        // find the post which belongs to the cluster
+        $post=$cluster->posts()->where('id',$post->id)->first();
+        // check if the post exists
+        if ($post)
+        {
+        return view('posts.show', compact('post','answer_record'));
+        }
+        else
+        {
+            App::abort(404);
+        }
     }
 
     public function create(Post $post)

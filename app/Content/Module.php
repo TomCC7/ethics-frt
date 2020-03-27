@@ -30,7 +30,7 @@ class Module extends Model
     /**
      * The relationship with post
      *
-     * @return App\Content\Post
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function post()
     {
@@ -40,7 +40,7 @@ class Module extends Model
     /**
      * The relationship with answer
      *
-     * @return App\Collected\Answer
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function answers()
     {
