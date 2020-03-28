@@ -1,11 +1,6 @@
 {{-- This file shows the module of single-choice type --}}
 {{-- Included by 'modules._show' --}}
 
-{{-- choices in the loop--}}
-@php
-$order=['A','B','C','D','E','F','G','H','I','J'];
-@endphp
-
 <span><b>{{$module->getContent()->question}}</b></span>
 <br>
 {{-- type --}}
@@ -19,4 +14,3 @@ $order=['A','B','C','D','E','F','G','H','I','J'];
   </label>
 </div>
 @endforeach
-<br>

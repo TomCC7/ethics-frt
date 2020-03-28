@@ -13,7 +13,9 @@ Post-<small>{{$post->title}}</small>
   <form method="POST" action="{{route('answers.store')}}">
     @csrf
     <input type="hidden" name="post_id" value="{{$post->id}}">
-    @each('modules._show', $post->modules, 'module', 'modules._show._empty')
+    @foreach ($post->modules as $module)
+    @include('modules._show._show')
+    @endforeach
 
     {{-- Can't be seen by admin --}}
     {{-- @cannot('admin') --}}
@@ -41,7 +43,9 @@ Post-<small>{{$post->title}}</small>
   </form>
 
   {{-- Creating --}}
-  @include('modules._create')
+  @can('admin')
+    @include('modules._create._create')
+  @endcan
 
 </div>
 </div>

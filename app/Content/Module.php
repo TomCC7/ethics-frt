@@ -26,6 +26,16 @@ class Module extends Model
         'filling' => ['question', 'short'],
     ];
 
+    /**
+     * Get the attribute of this model
+     *
+     * @return array
+     */
+    public function Attribute()
+    {
+        return self::$attribute[$this->type];
+    }
+
     /** Relationships with other models @return relation */
     /**
      * The relationship with post

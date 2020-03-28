@@ -46,3 +46,8 @@
     - add module create method: single-choice, multiple-choice, filling(need to improve request)
     - add post submit function(need to improve request)
     - add index and show pages of the answers
+
+# DATE：20200328
+# AUTHOR： CC
+    - improve experience
+    - add module edit and delete method

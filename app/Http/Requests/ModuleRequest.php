@@ -38,7 +38,7 @@ class ModuleRequest extends FormRequest
                 ];
                 break;
             default:
-                return false;
+                return [];
                 break;
         }
     }

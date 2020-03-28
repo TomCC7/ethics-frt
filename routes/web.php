@@ -30,4 +30,6 @@ Route::get('/contents/{currentCluster}', 'ClusterController@show')->name('cluste
 Route::resource('/answers', 'AnswersController', ['only' => ['store','index']]);
 Route::get('/answers/{cluster}/{post}','AnswersController@show')->name('answers.show');
 // ModulesController
-Route::resource('/modules', 'ModulesController', ['only' => ['store', 'edit', 'update']]);
+Route::resource('/modules', 'ModulesController', ['only' => ['store', 'edit', 'update','destroy']]);
+// SurveyController
+Route::resource('/surveys','SurveysController',['only' => ['index','show','create','store','edit','update','destroy']]);

@@ -12,4 +12,3 @@
 <textarea id="module-{{$module->id}}" name="answers[{{$module->id}}]"
   placeholder="Please answer this question"></textarea>
 @endif
-<br>

@@ -1,6 +1,5 @@
 {{-- Create a new module --}}
 {{-- Included by posts.show --}}
-@can('admin')
 <span><button type="button" class="btn btn-success" data-toggle="modal"
   data-target="#modal-form-select">
   Create a new module
@@ -26,4 +25,3 @@
       </div>
     </div>
   </div>
-  @endcan

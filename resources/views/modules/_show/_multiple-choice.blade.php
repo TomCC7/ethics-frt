@@ -18,5 +18,3 @@ $order=['A','B','C','D','E','F','G','H','I','J'];
   {{$choice}}
 </div>
 @endforeach
-
-<br>
