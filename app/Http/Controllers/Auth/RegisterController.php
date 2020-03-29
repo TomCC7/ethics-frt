@@ -53,13 +53,15 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'first_name' => ['string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'section_number' => ['required','numeric'],
+            'section_number' => ['required', 'numeric'],
             'semester' => ['required'],
-            'student_id' => ['required','string','digits_between:12,12','unique:users'],
+            'student_id' => ['required', 'string', 'digits_between:12,12', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ],[
-            'student_id.digits_between' => 'The length of student id should be 12'
+            'captcha' => ['required', 'captcha'],
+        ], [
+            'student_id.digits_between' => 'The length of student id should be 12',
+            'captcha.captcha' => 'Please fill in the right captcha',
         ]);
     }
 

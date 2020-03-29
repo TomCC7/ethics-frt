@@ -1,9 +1,6 @@
 {{-- Create a new module --}}
 {{-- Included by posts.show --}}
-<span><button type="button" class="btn btn-success" data-toggle="modal"
-  data-target="#modal-form-select">
-  Create a new module
-</button></span>
+
 <div class="modal" id="modal-form-select">
   <div class="modal-dialog">
     <div class="modal-content">

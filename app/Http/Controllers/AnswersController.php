@@ -9,6 +9,7 @@ use App\Content\Post;
 use App\Content\Module;
 use App\Collected\AnswerRecord;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\AnswerRequest;
 
 class AnswersController extends Controller
 {
@@ -16,7 +17,7 @@ class AnswersController extends Controller
      *
      * Store the answers of the modules
      */
-    public function store(Request $request)
+    public function store(AnswerRequest $request)
     {
         $answers = $request->answers;
         $types = $request->types;

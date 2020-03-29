@@ -27,6 +27,18 @@
             </div>
           </td>
         </tr>
+        {{-- optional --}}
+        <tr>
+          <td>
+            <div class="form-group">
+              <input type="hidden" name="optional" id="optional" value="0">
+              <label class="checkbox">
+                <input type="checkbox" name="optional" value="1">
+                Is this question optional?
+              </label>
+            </div>
+          </td>
+        </tr>
         {{-- type --}}
         <tr>
           <td>
@@ -49,10 +61,9 @@
           </td>
         </tr>
         {{-- choices(js needed) --}}
-        @for ($i=0; $i < 10; $i++)
-        <tr id="choice-{{$i}}" class="d-none">
+        @for ($i=0; $i < 10; $i++) <tr id="choice-{{$i}}" class="d-none">
           <td>
-            <div class="form-group" >
+            <div class="form-group">
               <label for="choice-{{$i}}">
                 Choice {{$i+1}}
               </label>
@@ -60,7 +71,7 @@
             </div>
           </td>
           </tr>
-        @endfor
+          @endfor
       </tbody>
     </table>
     {{-- submit --}}

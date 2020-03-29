@@ -11,7 +11,7 @@ class Module extends Model
      *
      * @var array
      */
-    protected $fillable = ['type', 'content'];
+    protected $fillable = ['type', 'content','optional'];
 
     /**
      * The attribute of different types of modules
@@ -143,6 +143,7 @@ class Module extends Model
         $module = self::create([
             'type' => 'filling',
             'content' => $content,
+            'optional' => $request->optional,
         ]);
         $module->post_id = $request->post_id;
         $module->save();
@@ -162,6 +163,7 @@ class Module extends Model
         $module = self::create([
             'type' => $request->type,
             'content' => $content,
+            'optional' => $request->optional,
         ]);
         $module->post_id = $request->post_id;
         $module->save();

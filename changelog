@@ -50,4 +50,10 @@
 # DATE：20200328
 # AUTHOR： CC
     - improve experience
+    * add answer record model
     - add module edit and delete method
+
+# DATE：20200329
+# AUTHOR： CC
+    - add answer request validation
+    - add optional to modules

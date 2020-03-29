@@ -38,11 +38,9 @@ class ModuleRequest extends FormRequest
                 ];
                 break;
             default:
-                return [];
                 break;
         }
     }
-
     /**
      * messages to be sent when not validated
      * @return array

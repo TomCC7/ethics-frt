@@ -33,23 +33,29 @@
     </h3>
   </div>
   @endcan
-{{-- body --}}
-<div class="card-body">
-  @switch($module->type)
-  @case('text')
-  @include('modules._show._text')
-  @break
-  @case('single-choice')
-  @include('modules._show._single-choice')
-  @break
-  @case('multiple-choice')
-  @include('modules._show._multiple-choice')
-  @break
-  @case('filling')
-  @include('modules._show._filling')
-  @break
-  @default
-  @break
-  @endswitch
-</div>
+
+  {{-- body --}}
+  <div class="card-body">
+    {{-- type --}}
+    @if($module->type!=='text')
+    <input type="hidden" id="type-{{$module->id}}" name="types[{{$module->id}}]" value="{{$module->type}}">
+    @endif
+
+    @switch($module->type)
+      @case('text')
+        @include('modules._show._text')
+        @break
+      @case('single-choice')
+        @include('modules._show._single-choice')
+        @break
+      @case('multiple-choice')
+        @include('modules._show._multiple-choice')
+        @break
+      @case('filling')
+        @include('modules._show._filling')
+        @break
+      @default
+        @break
+    @endswitch
+  </div>
 </div>

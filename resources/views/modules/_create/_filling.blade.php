@@ -24,6 +24,14 @@
         Is this question a short one?
       </label>
     </div>
+    {{-- optional --}}
+    <div class="form-group">
+      <input type="hidden" name="optional" id="optional" value="0">
+      <label class="checkbox">
+        <input type="checkbox" name="optional" value="1">
+        Is this question optional?
+      </label>
+    </div>
     {{-- submit button --}}
     <div class="form-group row mb-0">
       <div class="col-md-6 offset-md-4">
