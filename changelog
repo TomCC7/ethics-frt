@@ -62,3 +62,4 @@
 # AUTHOR： CC
     - fix a bug of captcha
     - add prerequisite
+    - add cluster store destroy method

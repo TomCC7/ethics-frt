@@ -23,13 +23,12 @@ Route::post('/posts/upload_image', 'PostsController@uploadImage')->name('posts.u
 Route::get('/contents/{cluster}/{post}', 'PostsController@show')->name('posts.show');
 // PagesController
 Route::get('/', 'PagesController@frontpage')->name('frontpage');
-// ClusterController
-Route::get('/contents', 'ClusterController@index')->name('clusters.index');
-Route::get('/contents/{currentCluster}', 'ClusterController@show')->name('clusters.show');
+// ClustersController
+Route::resource('/contents','ClustersController',['only' => ['show','index','store','update','destroy']]);
 // AnswersController
 Route::resource('/answers', 'AnswersController', ['only' => ['store','index']]);
 Route::get('/answers/{cluster}/{post}','AnswersController@show')->name('answers.show');
 // ModulesController
 Route::resource('/modules', 'ModulesController', ['only' => ['store', 'edit', 'update','destroy']]);
 // SurveyController
-Route::resource('/surveys','SurveysController',['only' => ['index','show','create','store','edit','update','destroy']]);
+// Route::resource('/surveys','SurveysController',['only' => ['index','show','create','store','edit','update','destroy']]);
