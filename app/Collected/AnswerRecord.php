@@ -3,7 +3,6 @@
 namespace App\Collected;
 
 use Illuminate\Database\Eloquent\Model;
-
 class AnswerRecord extends Model
 {
     /**
@@ -34,14 +33,12 @@ class AnswerRecord extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function scopeOfUser($query,$user_id)
-    {
-        return $query->where('user_id',$user_id);
-    }
-    public function scopeOfPost($query,$post_id)
-    {
-        return $query->where('post_id',$post_id);
-    }
+    /**
+     * Find a unique record
+     * @param int $user_id
+     * @param int $post_id
+     * @return Facade/Ignition/QueryRecorder/Query
+     */
     public function scopeFindUnique($query,$user_id,$post_id)
     {
         return $query->where('post_id',$post_id)->where('user_id',$user_id);

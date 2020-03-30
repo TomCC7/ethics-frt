@@ -56,4 +56,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Collected\AnswerRecord');
     }
+
+    /**
+     * Get the answer record of a certain post
+     */
+    public function postRecord($post_id)
+    {
+        return $this->answerRecords()->where('post_id',$post_id);
+    }
 }

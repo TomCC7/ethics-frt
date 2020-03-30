@@ -43,7 +43,7 @@ class AnswersController extends Controller
         // create an answerrecord
         $post = Post::Find($request->post_id);
         // if empty, then create a record
-        if (empty($post->answerRecords()->ofUser(Auth::id())->get()->toArray())) {
+        if (empty($post->userRecord(Auth::id())->get()->toArray())) {
             $record = AnswerRecord::Make();
             $record->post_id = $post->id;
             $record->user_id = Auth::id();

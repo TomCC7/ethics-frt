@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Collected\AnswerRecord;
 use Illuminate\Http\Request;
 use App\Content\Cluster;
 use App\Content\Post;
@@ -20,9 +21,24 @@ class PostsController extends Controller
 
     public function show(Cluster $cluster, Post $post)
     {
+        //get the record of the user of this post(not realized)
         $answer_record=$post->userRecord(Auth::id())->first();
         // find the post which belongs to the cluster
         $post=$cluster->posts()->where('id',$post->id)->first();
+
+        // check if there's unanswered prerequisite(when not admin)
+        if (!Auth::user()->is_admin && isset($post->prerequisite))
+        {
+            $preq=Post::Find($post->prerequisite);
+            $preq_answer=AnswerRecord::FindUnique(Auth::id(),$preq->id)->first();
+            // check if the answer exists
+            if (!$preq_answer)
+            {
+                return redirect()->route('posts.show',[$preq->cluster->slug,$preq->slug])
+                                 ->with('info','You have unfinished prerequisite(s), redirected here');
+            }
+        }
+
         // check if the post exists
         if ($post)
         {
