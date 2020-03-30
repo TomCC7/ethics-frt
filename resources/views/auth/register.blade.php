@@ -151,7 +151,7 @@
                             <label for="captcha" class="col-md-4 col-form-label text-md-right">Captcha</label>
 
                             <div class="col-md-6">
-                                <input id="captcha"
+                                <input id="captcha" name="captcha"
                                     class="form-control{{ $errors->has('captcha') ? ' is-invalid' : '' }}" required>
 
                                 <img class="thumbnail captcha mt-3 mb-2" src="{{ captcha_src('flat') }}"

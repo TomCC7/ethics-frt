@@ -57,3 +57,7 @@
 # AUTHOR： CC
     - add answer request validation
     - add optional to modules
+
+# DATE：20200329
+# AUTHOR： CC
+    - fix a bug of captcha
