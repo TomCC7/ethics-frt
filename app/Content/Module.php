@@ -85,18 +85,20 @@ class Module extends Model
      */
     public static function createByType($request)
     {
-        $content = $request->only(self::$attribute['$request->type']); // can't call $this because there's no instance for static method
+        $content = $request->only(self::$attribute[$request->type]); // can't call $this because there's no instance for static method
         // do some convertion
         switch ($request->type) {
             case 'filling':
                 $content['short'] = boolval($content['short']);
                 break;
+            case 'select':
+                $content['options'] = explode("\r\n", $content['options']);
             default:
                 break;
         }
         $module = self::make([
             'type' => $request->type,
-            'content' => $content,
+            'content' => json_encode($content),
             'optional' => $request->optional,
         ]);
         $module->post_id = $request->post_id;

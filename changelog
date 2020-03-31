@@ -71,3 +71,4 @@
 # DATE：20200331
 # AUTHOR： CC
     * merge multiple and single choice question(many similarities)
+    - add select create method
