@@ -45,14 +45,14 @@
       @case('text')
         @include('modules._show._text')
         @break
-      @case('single-choice')
-        @include('modules._show._single-choice')
-        @break
-      @case('multiple-choice')
-        @include('modules._show._multiple-choice')
+      @case('choice')
+        @include('modules._show._choice')
         @break
       @case('filling')
         @include('modules._show._filling')
+        @break
+      @case('select')
+        @include('modules._show._select')
         @break
       @default
         @break

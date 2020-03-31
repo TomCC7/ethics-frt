@@ -31,12 +31,8 @@ class AnswersTableSeeder extends Seeder
                     case 'filling':
                         $answer->content = json_encode($faker->sentence);
                         break;
-                    case 'single-choice':
+                    case 'choice':
                         $answer->content = json_encode($faker->numberBetween(1, 4));
-                        break;
-                    case 'multiple-choice':
-                        $content = $faker->randomElements([1, 2, 3, 4], $faker->numberBetween(0, 4));
-                        $answer->content = json_encode($content);
                         break;
                     default:
                         break;
@@ -44,6 +40,6 @@ class AnswersTableSeeder extends Seeder
             });
             Answer::insert($answers->toArray());
         }
-        Answer::Where('content','"seed"')->delete();
+        Answer::Where('content', '"seed"')->delete();
     }
 }

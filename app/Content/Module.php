@@ -11,7 +11,7 @@ class Module extends Model
      *
      * @var array
      */
-    protected $fillable = ['type', 'content','optional'];
+    protected $fillable = ['type', 'content', 'optional'];
 
     /**
      * The attribute of different types of modules
@@ -21,9 +21,9 @@ class Module extends Model
      */
     protected static $attribute = [
         'text' => ['body'],
-        'single-choice' => ['question', 'choices', 'correct_answer'],
-        'multiple-choice' => ['question', 'choices', 'choice-num', 'correct_answer', 'min', 'max'],
+        'choice' => ['question', 'choices', 'correct_answer', 'choice_num', 'is_multiple', 'min', 'max'],
         'filling' => ['question', 'short'],
+        'select' => ['question', 'options'],
     ];
 
     /**
@@ -34,6 +34,16 @@ class Module extends Model
     public function Attribute()
     {
         return self::$attribute[$this->type];
+    }
+
+    /**
+     * Get all types of module
+     * @static
+     * @return array
+     */
+    public static function getType()
+    {
+        return array_keys(self::$attribute);
     }
 
     /** Relationships with other models @return relation */
@@ -75,22 +85,23 @@ class Module extends Model
      */
     public static function createByType($request)
     {
+        $content = $request->only(self::$attribute['$request->type']); // can't call $this because there's no instance for static method
+        // do some convertion
         switch ($request->type) {
-            case 'text':
-                return self::createText($request);
-                break;
             case 'filling':
-                return self::createFilling($request);
-                break;
-            case 'single-choice':
-                // no break, will execute the next case
-            case 'multiple-choice':
-                return self::createChoice($request);
+                $content['short'] = boolval($content['short']);
                 break;
             default:
-                return null;
                 break;
         }
+        $module = self::make([
+            'type' => $request->type,
+            'content' => $content,
+            'optional' => $request->optional,
+        ]);
+        $module->post_id = $request->post_id;
+        $module->save();
+        return $module;
     }
 
     /**
@@ -112,79 +123,20 @@ class Module extends Model
     }
 
     /**
-     * Create Module of type "text"
-     *
-     * @static
-     * @return App\Content\Module
-     */
-    protected static function createText($request)
-    {
-        $content = json_encode($request->only(self::$attribute['text'])); // can't call $this because there's no instance for static method
-        $module = self::create([
-            'type' => 'text',
-            'content' => $content,
-        ]);
-        $module->post_id = $request->post_id;
-        $module->save();
-        return $module;
-    }
-
-    /**
-     * Create Module of type "filling"
-     *
-     * @static
-     * @return App\Content\Module
-     */
-    protected static function createFilling($request)
-    {
-        $content = $request->only(self::$attribute['filling']); // can't call $this because there's no instance for static method
-        $content['short'] = boolval($content['short']);
-        $content = json_encode($content);
-        $module = self::create([
-            'type' => 'filling',
-            'content' => $content,
-            'optional' => $request->optional,
-        ]);
-        $module->post_id = $request->post_id;
-        $module->save();
-        return $module;
-    }
-
-    /**
-     * Create Module of type "choice"
-     *
-     * @static
-     * @return App\Content\Module
-     */
-    protected static function createChoice($request)
-    {
-        $content = $request->only(self::$attribute[$request->type]);
-        $content = json_encode($content);
-        $module = self::create([
-            'type' => $request->type,
-            'content' => $content,
-            'optional' => $request->optional,
-        ]);
-        $module->post_id = $request->post_id;
-        $module->save();
-        return $module;
-    }
-
-    /**
      * return a scope where modules are questions
      * @return Facade\Ignition\QueryRecorder\Query
      */
     public function scopeQuestion($query)
     {
-        return $query->where('type','!=','text');
+        return $query->where('type', '!=', 'text');
     }
 
     /**
      * return a scope of given type
      * @return Facade\Ignition\QueryRecorder\Query
      */
-    public function scopeOfType($query,$type)
+    public function scopeOfType($query, $type)
     {
-        return $query->where('type',$type);
+        return $query->where('type', $type);
     }
 }

@@ -25,13 +25,7 @@ class ModuleRequest extends FormRequest
                     'short'    => 'required|boolean'
                 ];
                 break;
-            case 'single-choice':
-                return [
-                    'question' => 'required|min:3|max:250',
-                    'choices.*' => 'max:1000'
-                ];
-                break;
-            case 'multiple-choice':
+            case 'choice':
                 return [
                     'question' => 'required|min:3|max:250',
                     'choices.*' => 'max:1000'

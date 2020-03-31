@@ -10,17 +10,17 @@
 
       @auth
       <li class="nav-item"> <a class="nav-link" href="/">Dashboard</a> </li>
+      <li class="nav-item"> <a class="nav-link" href="{{route('contents.index')}}">Contents</a> </li>
       @endauth
 
       @can ('admin')
-      <li class="nav-item"> <a class="nav-link" href="{{route('contents.index')}}">Contents</a> </li>
       <li class="nav-item"> <a class="nav-link" href="{{route('users.index')}}">Users</a> </li>
       <li class="nav-item"> <a class="nav-link" href="{{route('answers.index')}}">Answers</a></li>
       @endcan
 
-      @auth @cannot('admin')
-      <li class="nav-item"> <a class="nav-link" href="#">Posts</a> </li>
-      @endcan @endauth
+      {{-- @auth @cannot('admin') --}}
+      {{-- <li class="nav-item"> <a class="nav-link" href="#">Posts</a> </li> --}}
+      {{-- @endcan @endauth --}}
 
       @auth
       <li class="nav-item">
@@ -34,10 +34,7 @@
 
       <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf
       </form>
-
-      @endauth
-
-      @guest
+      @else
       <li class="nav-item">
         <p> Login to begin. </p>
       </li>

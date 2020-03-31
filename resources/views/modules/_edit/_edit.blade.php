@@ -16,9 +16,7 @@
     @case('filling')
       @include('modules._edit._filling')
       @break
-    @case('single-choice')
-      {{-- no break --}}
-    @case('multiple-choice')
+    @case('choice')
       @include('modules._edit._choice')
       @break
     @default

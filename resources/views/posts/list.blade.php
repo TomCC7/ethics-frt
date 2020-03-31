@@ -4,11 +4,10 @@
     @csrf
     @method('DELETE')
     <a href="{{route('posts.create')}}"> Create a new post </a>
-    {{-- <a href="" onclick="event.preventDefault(); --}}
-    {{-- document.getElementById('delete-form').submit();"> --}}
-      {{-- Delete this cluster --}}
-    {{-- </a> --}}
-    <button type="submit">Delete</button>
+    <a href="" onclick="event.preventDefault();
+    document.getElementById('delete-form').submit();">
+      Delete this cluster
+    </a>
   </form>
 </div>
 @endcan

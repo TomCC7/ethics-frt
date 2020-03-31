@@ -14,7 +14,7 @@ Post-<small>{{$post->title}}</small>
   <form method="POST" action="{{route('answers.store')}}">
     @csrf
     <input type="hidden" name="post_id" value="{{$post->id}}">
-  @endcannot
+    @endcannot
 
     @foreach ($post->modules as $module)
     @include('modules._show._show')
@@ -40,7 +40,7 @@ Post-<small>{{$post->title}}</small>
 
     @endif
   </form>
-    @endcannot
+  @endcannot
 
   {{-- Creating --}}
   @can('admin')
@@ -87,11 +87,13 @@ function SelectForm()
     var text_form=document.getElementById("form-create-text");
     var choice_form=document.getElementById("form-create-choice");
     var filling_form=document.getElementById("form-create-filling");
+    var select_form=document.getElementById("form-create-select");
     var select=$('#select-form-select');
     // make all forms hidden
     text_form.className="card d-none";
     choice_form.className="d-none table-responsive";
     filling_form.className="card d-none";
+    select_form.className="card d-none";
     switch (select.val())
     {
       case "text":
@@ -103,9 +105,13 @@ function SelectForm()
       case "filling":
         filling_form.className="card";
         break;
+      case "select":
+        select_form.className="card";
+        break;
       default:
         break;
     }
   }
+
 </script>
 @stop

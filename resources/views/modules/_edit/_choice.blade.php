@@ -18,7 +18,8 @@
           <label for="question">
             Your question
           </label>
-          <input type="text" id="question_choice" name="question" placeholder="Fill in your question here" required
+          <input type="text" class="form-control" id="question_choice" name="question"
+            placeholder="Fill in your question here" required
             value="{{old('question',$module->getContent()->question)}}">
         </div>
       </td>
@@ -30,10 +31,10 @@
           <label for="type">
             select the type
             <select class="form-control" name="type" id="type">
-              <option value="single-choice" {{$module->type==='single-choice' ? 'selected' : ''}}>
+              <option value="0" {{$module->getContent()->is_multiple==false ? 'selected' : ''}}>
                 Single choice
               </option>
-              <option value="multiple-choice" {{$module->type==='multiple-choice' ? 'selected' : ''}}>
+              <option value="1" {{$module->getContent()->is_multiple==true ? 'selected' : ''}}>
                 Multiple choice
               </option>
             </select>

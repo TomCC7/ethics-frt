@@ -62,4 +62,12 @@
 # AUTHOR： CC
     - fix a bug of captcha
     - add prerequisite
+
+# DATE：20200330
+# AUTHOR： CC
     - add cluster store destroy method
+    - add question of type select
+
+# DATE：20200331
+# AUTHOR： CC
+    * merge multiple and single choice question(many similarities)

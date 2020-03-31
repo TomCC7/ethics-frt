@@ -5,7 +5,7 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\Content\Module::class, function (Faker $faker) {
-    $types = ['text', 'single-choice', 'multiple-choice', 'filling'];
+    $types = App\Content\Module::getType();
     switch ($faker->randomElement($types)) {
         case 'text':
             return [
@@ -13,27 +13,28 @@ $factory->define(App\Content\Module::class, function (Faker $faker) {
                 'content' => json_encode(['body' => $faker->text]),
             ];
             break;
-        case 'single-choice':
+        case 'choice':
             return [
-                'type' => 'single-choice',
-                'content' => choiceContent($faker),
-            ];
-            break;
-        case 'multiple-choice':
-            return [
-                'type' => 'multiple-choice',
+                'type' => 'choice',
                 'content' => choiceContent($faker),
             ];
             break;
         case 'filling':
             return [
                 'type' => 'filling',
-                'content' => json_encode(['question' => $faker->sentence(),
-                                          'short' => $faker->boolean]),
+                'content' => json_encode([
+                    'question' => $faker->sentence(),
+                    'short' => $faker->boolean
+                ]),
             ];
             break;
+        case 'select':
+            return [
+                'type' => 'select',
+                'content' => selectContent($faker),
+            ];
         default:
-            return[
+            return [
                 'type' => 'error',
             ];
     }
@@ -44,7 +45,21 @@ function choiceContent(Faker $faker)
     $choices = [$faker->word, $faker->word, $faker->word, $faker->word];
     $content = [
         'question' => $faker->sentence,
-        'choices' => $choices
+        'choices' => $choices,
+        'is_multiple' => $faker->boolean,
+    ];
+    return json_encode($content);
+}
+
+function selectContent(Faker $faker)
+{
+    $options = [];
+    for ($i = 0; $i < $faker->numberBetween(2, 10); $i++) {
+        array_push($options, $faker->word);
+    }
+    $content = [
+        'question' => $faker->sentence,
+        'options' => $options,
     ];
     return json_encode($content);
 }

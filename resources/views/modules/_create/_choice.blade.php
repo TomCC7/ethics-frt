@@ -46,8 +46,8 @@
               <label for="type">
                 select the type
                 <select class="form-control" name="type" id="type">
-                  <option value="single-choice">Single choice</option>
-                  <option value="multiple-choice">Multiple choice</option>
+                  <option value="0">Single choice</option>
+                  <option value="1">Multiple choice</option>
                 </select>
               </label>
             </div>

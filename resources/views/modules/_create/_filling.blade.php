@@ -14,7 +14,7 @@
       <label for="question">
         Your question
       </label>
-      <input type="text" id="question_filling" name="question" placeholder="Fill in your question here" required>
+      <input type="text" class="form-control" id="question_filling" name="question" placeholder="Fill in your question here" required>
     </div>
 
     <div class="form-group">
