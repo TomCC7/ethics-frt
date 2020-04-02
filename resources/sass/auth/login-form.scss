@@ -1,0 +1,32 @@
+
+#login-box {
+  // Vertically align to 35% and horizontally to 50%
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+#login-box #logo {
+  width: 300px;
+  margin: 10% 0
+}
+
+#login-box #toolbar{
+  margin-top: 2em;
+}
+
+#login-box #submit {
+  width: 100%;
+  background-color: white;
+  color: #3490dc;
+}
+
+#login-box #submit:hover {
+  background-color: #3490dc;
+  color: white;
+}
+
+#login-box #remember-me {
+  text-align: right;
+}

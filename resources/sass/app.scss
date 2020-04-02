@@ -6,7 +6,10 @@
 @import 'sitewide';
 
 // The side navbar
-@import 'side-navbar.scss';
+@import 'shared/side-navbar.scss';
+
+// The login form
+@import 'auth/login-form.scss';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
