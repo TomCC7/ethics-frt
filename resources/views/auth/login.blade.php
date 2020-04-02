@@ -4,11 +4,13 @@
 
 @section('content')
 
-  <div id="site-description" class="col">
-    @include ('pages/description')
+  <div id="site-description" class="col loginpage-wrapper">
+    <div style="margin-left: 1em; margin-right: 1em">
+      @include ('pages/description')
+    </div>
   </div>
 
-  <div id="login-wrapper" class="col">
+  <div id="login-wrapper" class="col loginpage-wrapper">
     <div id="login-box">
       <img class="content-center" id="logo" src="{{ asset('image/JILOGO.png') }}" alt="">
       <form method="POST" action="{{ route('login') }}">

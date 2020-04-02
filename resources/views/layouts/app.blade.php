@@ -13,31 +13,33 @@
 
 
     <!-- Styles -->
-    @yield('styles')
-  {{-- <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/mycss.css') }}" rel="stylesheet"> --}}
+  @yield('styles')
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body>
 
-<div id="side-navbar-wrapper">
-  @include('layouts.side_navbar')
-</div>
-
-<div id="yggdrasil" class="container-fluid">
-  @include('shared._messages')
-  @include('shared._errors')
-
-  <div id='page-header'>
-    <h1>@yield('pageHeader')</h1>
+  <div id="side-navbar-wrapper">
+    @include('layouts.side_navbar')
   </div>
 
-  <div id="page-content-wrapper">
-    @yield('content')
+  <div id="yggdrasil" class="container-fluid">
+    <div id="messages-and-errors">
+      @include('shared._messages')
+      @include('shared._errors')
+    </div>
+
+    @auth <!-- Do not show header and stylize PCW for login page -->
+    <div id='page-header'>
+      <h1>@yield('pageHeader')</h1>
+    </div>
+    @endauth
+
+    @auth <div id="page-content-wrapper"> @endauth
+    @guest <div class="row no-gutters"> @endguest
+      @yield('content')
+    </div>
   </div>
-</div>
 
 <!-- Modals -->
 @yield('modals')

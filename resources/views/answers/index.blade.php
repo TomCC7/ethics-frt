@@ -1,5 +1,8 @@
 @extends('layouts.app')
+
 @section('title', 'Answers')
+
+@section('pageHeader', 'Answers collected')
 
 @section('content')
 <div>

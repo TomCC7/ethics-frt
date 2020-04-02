@@ -21,6 +21,13 @@
   overflow-y: scroll;
 }
 
+#messages-and-errors {
+  position: absolute;
+  right: 2vw;
+  top: 3vh;
+  z-index: 1;
+}
+
 #yggdrasil {
   margin-left: 14rem;
   width: calc(100% - 14rem);
@@ -106,12 +113,12 @@
   text-align: right;
 }
 
-#site-description {
+.loginpage-wrapper {
   margin: 1em;
   padding: 1em;
   border: 5px #009fe0 dotted;
-  overflow-y: scroll;
   height: calc(100vh - 4em);
+  overflow-y: scroll;
 }
 
 /*!
