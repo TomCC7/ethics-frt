@@ -154,7 +154,7 @@
                                 <input id="captcha" name="captcha"
                                     class="form-control{{ $errors->has('captcha') ? ' is-invalid' : '' }}" required>
 
-                                <img class="thumbnail captcha mt-3 mb-2" src="{{ captcha_src('flat') }}"
+                                <img class="thumbnail captcha mt-3 mb-2" src="/captcha/flat?'+Math.random()"
                                     onclick="this.src='/captcha/flat?'+Math.random()"
                                     title="Click to change the captcha">
 

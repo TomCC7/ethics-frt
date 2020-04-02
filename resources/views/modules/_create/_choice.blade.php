@@ -5,7 +5,9 @@
   <form class="form" method="POST" action="{{route('modules.store')}}">
     @csrf
     {{-- Post id --}}
-    <input type="hidden" name="post_id" value="{{$post->id}}">
+		<input type="hidden" name="post_id" value="{{$post->id}}">
+		{{-- type --}}
+		<input type="hidden" name="type" id="type" value="choice">
     {{-- content --}}
     <table class="table">
       <thead>
@@ -45,7 +47,7 @@
             <div class="form-group">
               <label for="type">
                 select the type
-                <select class="form-control" name="type" id="type">
+                <select class="form-control" name="is_multiple" id="is_multiple">
                   <option value="0">Single choice</option>
                   <option value="1">Multiple choice</option>
                 </select>
