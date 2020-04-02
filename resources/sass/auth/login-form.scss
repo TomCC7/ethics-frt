@@ -27,6 +27,15 @@
   color: white;
 }
 
-#login-box #remember-me {
+#login-box #misc {
   text-align: right;
 }
+
+#site-description {
+  margin: 1em;
+  padding: 1em;
+  border: 5px #009fe0 dotted;
+  overflow-y: scroll;
+  height: calc(100vh - 4em);
+}
+

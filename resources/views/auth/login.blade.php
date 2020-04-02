@@ -51,7 +51,7 @@
               </button>
             </div>
 
-            <div id="remember-me" class="form-check col">
+            <div id="misc" class="form-check col">
               <div>
                 <input class="form-check-input" type="checkbox" name="remember" id="remember"
                   {{ old('remember') ? 'checked' : '' }}>

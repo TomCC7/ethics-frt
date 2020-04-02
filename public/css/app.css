@@ -1,6 +1,27 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
 #yggdrasil {
+  position: absolute;
+  padding: 0px;
+}
+
+#page-header {
+  margin: 8px;
+  padding: 8px;
+  background: #bdffe7;
+  color: #0c7900;
+  height: 4rem;
+}
+
+#page-content-wrapper {
+  margin: 8px;
+  padding: 8px;
+  background: #efefef;
+  height: calc(100vh - 32px - 4rem);
+  overflow-y: scroll;
+}
+
+#yggdrasil {
   margin-left: 14rem;
   width: calc(100% - 14rem);
 }
@@ -81,8 +102,16 @@
   color: white;
 }
 
-#login-box #remember-me {
+#login-box #misc {
   text-align: right;
+}
+
+#site-description {
+  margin: 1em;
+  padding: 1em;
+  border: 5px #009fe0 dotted;
+  overflow-y: scroll;
+  height: calc(100vh - 4em);
 }
 
 /*!

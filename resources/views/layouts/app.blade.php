@@ -30,11 +30,11 @@
   @include('shared._messages')
   @include('shared._errors')
 
-  <div class="row" id='pageHeader'>
+  <div id='page-header'>
     <h1>@yield('pageHeader')</h1>
   </div>
 
-  <div class="row" id="pageContentWrapper">
+  <div id="page-content-wrapper">
     @yield('content')
   </div>
 </div>
