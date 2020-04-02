@@ -1,5 +1,58 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+#yggdrasil {
+  margin-left: 14rem;
+}
+
+#side-navbar {
+  padding: 0.7rem;
+  height: 100%;
+  width: 14rem;
+  position: fixed;
+  overflow-x: hidden;
+  background: #3c3c3c;
+}
+
+#side-navbar-header {
+  color: white;
+  font-size: 30px;
+  text-align: center;
+}
+
+#side-navbar-menu {
+  list-style-type: none;
+  padding: 0;
+}
+
+.side-navbar-item {
+  background: #313131;
+  margin: 8px;
+  padding: 4%;
+}
+
+#side-navbar .dropdown-menu {
+  background-clip: content-box;
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 100%;
+}
+
+#side-navbar .dropdown-menu .side-navbar-item {
+  margin-left: 12%;
+}
+
+.side-navbar-link {
+  margin: 6px 0;
+  display: block;
+  color: white;
+}
+
+.side-navbar-link:hover {
+  color: red;
+  text-decoration: none;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors

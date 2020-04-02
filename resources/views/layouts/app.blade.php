@@ -17,27 +17,25 @@
   {{-- <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
   <link href="{{ asset('css/mycss.css') }}" rel="stylesheet"> --}}
-  <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-xs" id="sidenav">
-      @include('layouts.left_navbar')
+<div id="side-navbar-wrapper">
+  @include('layouts.side_navbar')
+</div>
 
-      @include('shared._messages')
-      @include('shared._errors')
-    </div>
-    <div class="col">
-      <div class="row" id='pageHeader'>
-        <h1>@yield('pageHeader')</h1>
-      </div>
-      <div class="row" id="pageContentWrapper">
-      @yield('content')
-      </div>
-    </div>
+<div id="yggdrasil" class="container-fluid">
+  @include('shared._messages')
+  @include('shared._errors')
+
+  <div class="row" id='pageHeader'>
+    <h1>@yield('pageHeader')</h1>
+  </div>
+
+  <div class="row" id="pageContentWrapper">
+    @yield('content')
   </div>
 </div>
 

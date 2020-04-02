@@ -1,8 +1,12 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
-// Variables
+// Variables and sitewide configuration
 @import 'variables';
+@import 'sitewide';
+
+// The side navbar
+@import 'side-navbar.scss';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';

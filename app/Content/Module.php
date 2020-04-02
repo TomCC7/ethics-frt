@@ -101,6 +101,11 @@ class Module extends Model
             'content' => json_encode($content),
             'optional' => $request->optional,
         ]);
+
+        if ($module->type == 'text'){
+            $module->optional = false;
+        }
+
         $module->post_id = $request->post_id;
         $module->save();
         return $module;

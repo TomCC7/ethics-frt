@@ -3,8 +3,6 @@
 @section('title','Login')
 
 @section('content')
-<div class="container">
-<div class="row">
 
   <div id="site-description" class="col">
     @include ('pages/description')
@@ -73,6 +71,4 @@
       </div>
     </form>
   </div>
-</div>
-</div>
 @endsection
