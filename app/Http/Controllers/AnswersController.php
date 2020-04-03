@@ -54,7 +54,13 @@ class AnswersController extends Controller
             $record->batch += 1;
             $record->save();
         }
-        return back()->with('success', "You've submitted your answer!");
+        session()->flash('success', $post->message ? $post->message : 'You\'ve submitted your answer!');
+        // redirect to the redirect set by user or back
+        if ($post->redirect) {
+            return redirect($post->redirect);
+        } else {
+            return back();
+        }
     }
 
     /**

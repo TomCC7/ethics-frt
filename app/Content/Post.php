@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = ['cluster_id', 'prerequisite', 'title', 'slug'];
+    protected $fillable = ['cluster_id', 'prerequisite', 'title', 'slug', 'redirect', 'message'];
 
     /**
      * The relationship with modules
@@ -40,7 +40,7 @@ class Post extends Model
      */
     public function userRecord($user_id)
     {
-        return $this->answerRecords()->where('user_id',$user_id);
+        return $this->answerRecords()->where('user_id', $user_id);
     }
     /**
      *
