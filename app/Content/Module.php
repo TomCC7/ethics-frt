@@ -3,9 +3,11 @@
 namespace App\Content;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Module extends Model
 {
+    use SoftDeletes;
     /**
      * variables that can be mass assignable
      *
@@ -102,7 +104,7 @@ class Module extends Model
             'optional' => $request->optional,
         ]);
 
-        if ($module->type == 'text'){
+        if ($module->type == 'text') {
             $module->optional = false;
         }
 

@@ -5,7 +5,7 @@
 
 @section('pageHeader')
 Post-<small>{{$post->title}}</small>
-<span><a href="{{route('posts.edit',$post->slug)}}"><button class="btn btn-success">Edit</button></a></span>
+<span><a href="{{route('posts.edit',$post->id)}}"><button class="btn btn-success">Edit</button></a></span>
 @endsection
 
 @section('content')

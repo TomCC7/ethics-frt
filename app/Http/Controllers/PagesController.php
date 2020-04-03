@@ -15,7 +15,7 @@ class PagesController extends Controller
         if (
             Auth::user() &&
             !$user->is_admin &&
-            !$user->postRecord(5)->first()
+            !$user->isRegistered()
         ) {
             session()->flash('warning', 'Please finish registration!');
             return redirect()->to('/contents/Register-Info/Belief-Information');

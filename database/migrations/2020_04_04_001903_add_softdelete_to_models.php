@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSlugColumnToModels extends Migration
+class AddSoftdeleteToModels extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,13 @@ class AddSlugColumnToModels extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->string('slug');
+            $table->softDeletes();
+        });
+        Schema::table('modules', function (Blueprint $table) {
+            $table->softDeletes();
         });
         Schema::table('clusters', function (Blueprint $table) {
-            $table->string('slug');
+            $table->softDeletes();
         });
     }
 
@@ -29,10 +32,13 @@ class AddSlugColumnToModels extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->dropColumn('slug');
+            $table->dropSoftDeletes();
+        });
+        Schema::table('modules', function (Blueprint $table) {
+            $table->dropSoftDeletes();
         });
         Schema::table('clusters', function (Blueprint $table) {
-            $table->dropColumn('slug');
+            $table->dropSoftDeletes();
         });
     }
 }

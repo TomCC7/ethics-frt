@@ -1,6 +1,6 @@
 @can('admin')
 <div id="post-toolbar">
-  <form action="{{route('contents.destroy',$content->slug)}}" method="POST" id="delete-form">
+  <form action="{{route('contents.destroy',$content->id)}}" method="POST" id="delete-form">
     @csrf
     @method('DELETE')
     <a href="{{route('posts.create')}}"> Create a new post </a>
@@ -17,10 +17,11 @@
     <tbody>
       @foreach($content->posts as $post)
       <tr>
-        <td class="post-list-item"> <a href="{{route('posts.show',[$content->slug,$post->slug])}}"> {{$post->title}}
+        <td class="post-list-item"> <a href="{{route('posts.show',['cluster'=>$content->id,'post'=>$post->id])}}">
+            {{$post->title}}
           </a> </td>
         <td>
-          <form method="POST" action="{{route('posts.destroy',$post->slug)}}">
+          <form method="POST" action="{{route('posts.destroy',$post->id)}}">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-danger">Delete</button>

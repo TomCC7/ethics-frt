@@ -17,13 +17,13 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-		'first_name',
-		'last_name',
+        'first_name',
+        'last_name',
         'email',
-		'password',
-		'student_id',
-		'semester',
-		'section_number',
+        'password',
+        'student_id',
+        'semester',
+        'section_number',
     ];
 
     /**
@@ -44,8 +44,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-	public function answers() {
-		return $this->hasMany('App\Collected\Answer');
+    public function answers()
+    {
+        return $this->hasMany('App\Collected\Answer');
     }
 
     /**
@@ -62,6 +63,15 @@ class User extends Authenticatable
      */
     public function postRecord($post_id)
     {
-        return $this->answerRecords()->where('post_id',$post_id);
+        return $this->answerRecords()->where('post_id', $post_id);
+    }
+
+    /**
+     * return if the user has completed registration
+     * @return bool
+     */
+    public function isRegistered()
+    {
+        return null !== $this->postRecord(5)->first();
     }
 }

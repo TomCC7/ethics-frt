@@ -17,7 +17,7 @@ class PostRequest extends FormRequest
             case 'PATCH':
             {
                 return [
-                    'title'       => 'required|min:2|unique:posts',
+                    'title'       => 'required|min:2',
                     'cluster_id' => 'required|numeric',
                 ];
             }

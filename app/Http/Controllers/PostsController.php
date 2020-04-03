@@ -19,33 +19,30 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
-    public function show(Cluster $cluster, Post $post)
+    public function show(Request $request, Cluster $cluster, Post $post)
     {
-        //get the record of the user of this post(not realized)
-        $answer_record=$post->userRecord(Auth::id())->first();
+        if ($request->post_slug !== $post->slug) {
+            return redirect($post->link(), 301);
+        }
+        //get the record of the user of this post
+        $answer_record = $post->userRecord(Auth::id())->first();
         // find the post which belongs to the cluster
-        $post=$cluster->posts()->where('id',$post->id)->first();
+        $post = $cluster->posts()->where('id', $post->id)->first();
 
         // check if there's unanswered prerequisite(when not admin)
-        if (!Auth::user()->is_admin && isset($post->prerequisite))
-        {
-            $preq=Post::Find($post->prerequisite);
-            $preq_answer=AnswerRecord::FindUnique(Auth::id(),$preq->id)->first();
+        if (!Auth::user()->is_admin && isset($post->prerequisite)) {
+            $preq = Post::Find($post->prerequisite);
+            $preq_answer = AnswerRecord::FindUnique(Auth::id(), $preq->id)->first();
             // check if the answer exists
-            if (!$preq_answer)
-            {
-                return redirect()->route('posts.show',[$preq->cluster->slug,$preq->slug])
-                                 ->with('info','You have unfinished prerequisite(s), redirected here');
+            if (!$preq_answer) {
+                return redirect()->route('posts.show', ['cluster'->$preq->cluster_id, 'post' => $preq->id])
+                    ->with('info', 'You have unfinished prerequisite(s), redirected here');
             }
         }
-
         // check if the post exists
-        if ($post)
-        {
-        return view('posts.show', compact('post','answer_record'));
-        }
-        else
-        {
+        if ($post) {
+            return view('posts.show', compact('post', 'answer_record'));
+        } else {
             App::abort(404);
         }
     }
@@ -69,22 +66,22 @@ class PostsController extends Controller
             'title' => $request->title,
         ]);
         return redirect()->route('posts.show', [
-            'cluster' => $post->cluster->slug,
-            'post' => $post->slug,
+            'cluster' => $post->cluster->id,
+            'post' => $post->id,
         ])
             ->with('success', 'Post created successfully!');
     }
 
-    public function update(PostRequest $request,Post $post)
+    public function update(PostRequest $request, Post $post)
     {
         $post->update([
             'title' => $request->title,
         ]);
-        $post->cluster_id=$request->cluster_id;
+        $post->cluster_id = $request->cluster_id;
         $post->save();
         return redirect()->route('posts.show', [
-            'cluster' => $post->cluster->slug,
-            'post' => $post->slug,
+            'cluster' => $post->cluster->id,
+            'post' => $post->id,
         ])
             ->with('success', 'Post updated successfully!');
     }

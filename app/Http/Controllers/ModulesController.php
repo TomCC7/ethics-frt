@@ -18,8 +18,9 @@ class ModulesController extends Controller
         $post = Post::Find($request->post_id);
         Module::createByType($request);
         return redirect()->route('posts.show', [
-            'cluster' => $post->cluster->slug,
-            'post' => $post->slug,
+            'cluster' => $post->cluster_id,
+            'post' => $post->id,
+            'post_slug' => $post->slug,
         ])
             ->with('success', 'Module created successfully!');
     }
@@ -38,8 +39,9 @@ class ModulesController extends Controller
             'content' => $content
         ]);
         return redirect()->route('posts.show', [
-            'cluster' => $post->cluster->slug,
-            'post' => $post->slug,
+            'cluster' => $post->cluster_id,
+            'post' => $post->id,
+            'post_slug' => $post->slug,
         ])
             ->with('success', 'Module Updated successfully!');
     }

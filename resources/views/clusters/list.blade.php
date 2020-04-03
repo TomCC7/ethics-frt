@@ -25,7 +25,7 @@ Contents
   <div class="row">
     <ul id="cluster-list">
       @foreach($clusters as $cluster)
-      <li> <a href="{{route('contents.show',$cluster->slug)}}">
+      <li> <a href="{{route('contents.show',$cluster->id)}}">
           {{$cluster->name}}
         </a>
       </li>

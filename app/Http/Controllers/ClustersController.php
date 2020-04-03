@@ -23,7 +23,7 @@ class ClustersController extends Controller
      * show all posts of a cluster
      * @return view
      */
-    public function show(Cluster $content)
+    public function show(Request $request, Cluster $content)
     {
         $clusters = Cluster::all();
         return view('clusters.list', compact('clusters', 'content'));
@@ -35,7 +35,7 @@ class ClustersController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['name' => 'required|max:100|unique:clusters']);
+        $request->validate(['name' => 'required|max:100']);
         Cluster::Create(['name' => $request->name]);
         return back()->with('success', 'Cluster created successfully!');
     }

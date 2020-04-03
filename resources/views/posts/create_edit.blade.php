@@ -18,7 +18,7 @@ Create Post
 
       {{-- determine which form to use --}}
       @if ($post->id)
-      <form method="POST" action={{route('posts.update',$post->slug)}}>
+      <form method="POST" action={{route('posts.update',$post->id)}}>
         @method('PATCH')
       @else
       <form method="POST" action={{route('posts.store')}}>

@@ -3,9 +3,11 @@
 namespace App\Content;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
+    use SoftDeletes;
     protected $fillable = ['cluster_id', 'prerequisite', 'title', 'slug', 'redirect', 'message'];
 
     /**
@@ -42,13 +44,25 @@ class Post extends Model
     {
         return $this->answerRecords()->where('user_id', $user_id);
     }
+
     /**
-     *
-     * Change the route key name using in model binding
-     * @return string
+     * return the link of the post
      */
-    public function getRouteKeyName()
+    public function link($params = [])
     {
-        return 'slug';
+        return route('posts.show', [
+            'cluster' => $this->cluster_id,
+            'post' => $this->id,
+            'post_slug' => $this->slug,
+        ], $params);
     }
+    // /**
+    //  *
+    //  * Change the route key name using in model binding
+    //  * @return string
+    //  */
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
 }
