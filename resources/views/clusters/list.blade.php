@@ -47,4 +47,8 @@ Contents
 @section('modals')
 @include('clusters._create_edit')
 @include('posts._create')
+
+@isset($content)
+@include('clusters._destroy_confirm')
+@endisset
 @endsection

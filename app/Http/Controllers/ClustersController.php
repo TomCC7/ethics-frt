@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Content\Cluster;
+use Illuminate\Validation\Rule;
 
 class ClustersController extends Controller
 {
@@ -53,8 +54,13 @@ class ClustersController extends Controller
     /**
      * destroy a cluster
      */
-    public function destroy(Cluster $content)
+    public function destroy(Request $request, Cluster $content)
     {
+        // validate the confirmation
+        $request->validate(
+            ['confirmation' => ['required', Rule::in($content->name)]],
+            ['confirmation.in' => 'Please fill in the right name!']
+        );
         // delete the cluster
         $content->delete();
         return redirect()->route('contents.index')->with('success', 'Cluster has been deleted!');

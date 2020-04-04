@@ -1,4 +1,6 @@
-<div class="modal" id="create-post">
+{{-- create a post modal --}}
+{{-- included by clusters.list --}}
+<div class="modal fade" id="create-post">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

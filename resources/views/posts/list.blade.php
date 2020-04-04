@@ -1,13 +1,7 @@
 @can('admin')
 <div id="post-toolbar">
   <a href="#create-post" data-toggle="modal"> Create a new post here </a>
-  <form action="{{route('contents.destroy',$content->slug)}}" method="POST" id="delete-form">
-    @csrf
-    @method('DELETE')
-    <a href="" onclick="event.preventDefault();
-    document.getElementById('delete-form').submit();">
-      Delete this cluster
-    </a>
+  <a href="#delete-cluster" data-toggle="modal">Delete this cluster</a>
   </form>
 </div>
 @endcan

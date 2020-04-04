@@ -1,3 +1,5 @@
+{{-- create or edit the content of a cluster --}}
+{{-- included by clusters.list --}}
 <div class="modal fade" id="CreateCluster" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
