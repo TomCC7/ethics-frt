@@ -19,9 +19,6 @@ class AddSoftdeleteToModels extends Migration
         Schema::table('modules', function (Blueprint $table) {
             $table->softDeletes();
         });
-        Schema::table('clusters', function (Blueprint $table) {
-            $table->softDeletes();
-        });
     }
 
     /**
@@ -35,9 +32,6 @@ class AddSoftdeleteToModels extends Migration
             $table->dropSoftDeletes();
         });
         Schema::table('modules', function (Blueprint $table) {
-            $table->dropSoftDeletes();
-        });
-        Schema::table('clusters', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
     }

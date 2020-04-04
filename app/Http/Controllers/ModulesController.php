@@ -68,10 +68,6 @@ class ModulesController extends Controller
      */
     public function destroy(Module $module)
     {
-        // delete the answers
-        foreach ($module->answers as $answer) {
-            $answer->delete();
-        }
         // delete the module itself
         $module->delete();
         return back()->with('success', 'You have already deleted this module!');

@@ -1,9 +1,9 @@
 @can('admin')
 <div id="post-toolbar">
-  <form action="{{route('contents.destroy',$content->id)}}" method="POST" id="delete-form">
+  <a href="#create-post" data-toggle="modal"> Create a new post here </a>
+  <form action="{{route('contents.destroy',$content->slug)}}" method="POST" id="delete-form">
     @csrf
     @method('DELETE')
-    <a href="{{route('posts.create')}}"> Create a new post </a>
     <a href="" onclick="event.preventDefault();
     document.getElementById('delete-form').submit();">
       Delete this cluster
@@ -17,7 +17,7 @@
     <tbody>
       @foreach($content->posts as $post)
       <tr>
-        <td class="post-list-item"> <a href="{{route('posts.show',['cluster'=>$content->id,'post'=>$post->id])}}">
+        <td class="post-list-item"> <a href="{{route('posts.show',['cluster'=>$content->slug,'post'=>$post->id])}}">
             {{$post->title}}
           </a> </td>
         <td>

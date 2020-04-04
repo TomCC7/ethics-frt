@@ -6,16 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model
 {
-	protected $fillable = [
-		'content',
-	];
+    protected $fillable = [
+        'content',
+    ];
 
-    public function user() {
-		return $this->belongsTo('App\User');
-	}
+    /**
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function module()
+    {
+        return $this->belongsTo('App\Content\Module');
+    }
 
-	public function module() {
-		return $this->belongsTo('App\Content\Module');
+    /**
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function answerRecord()
+    {
+        return $this->belongsTo('App\Collected\AnswerRecord');
     }
 
     public function getContent()

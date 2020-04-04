@@ -3,6 +3,7 @@
 namespace App\Collected;
 
 use Illuminate\Database\Eloquent\Model;
+
 class AnswerRecord extends Model
 {
     /**
@@ -34,13 +35,22 @@ class AnswerRecord extends Model
     }
 
     /**
+     * The relationship with answer
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function answers()
+    {
+        return $this->hasMany('App\Collected\Answer');
+    }
+
+    /**
      * Find a unique record
      * @param int $user_id
      * @param int $post_id
      * @return Facade/Ignition/QueryRecorder/Query
      */
-    public function scopeFindUnique($query,$user_id,$post_id)
+    public function scopeFindUnique($query, $user_id, $post_id)
     {
-        return $query->where('post_id',$post_id)->where('user_id',$user_id);
+        return $query->where('post_id', $post_id)->where('user_id', $user_id);
     }
 }

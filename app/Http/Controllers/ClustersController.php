@@ -55,10 +55,6 @@ class ClustersController extends Controller
      */
     public function destroy(Cluster $content)
     {
-        // delete the posts
-        foreach ($content->posts as $post) {
-            $post->delete();
-        }
         // delete the cluster
         $content->delete();
         return redirect()->route('contents.index')->with('success', 'Cluster has been deleted!');

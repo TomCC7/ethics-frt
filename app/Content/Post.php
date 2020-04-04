@@ -51,7 +51,7 @@ class Post extends Model
     public function link($params = [])
     {
         return route('posts.show', [
-            'cluster' => $this->cluster_id,
+            'cluster' => $this->cluster->slug,
             'post' => $this->id,
             'post_slug' => $this->slug,
         ], $params);

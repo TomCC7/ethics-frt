@@ -81,10 +81,6 @@ class PostsController extends Controller
 
     public function destroy(Post $post)
     {
-        // delete the modules of the post
-        $post->modules->each(function ($module) {
-            $module->delete();
-        });
         // delete the post itself
         $post->delete();
 
