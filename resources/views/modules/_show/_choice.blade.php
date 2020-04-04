@@ -39,6 +39,16 @@
       </label>
     </div>
     @break
+    @case('datalist')
+    <div class="form-group" id="module-{{$module->id}}">
+      <input class="form-control" name="answers[{{$module->id}}]" type="text" list="data-{{$module->id}}">
+      <datalist id="data-{{$module->id}}">
+        @foreach ($module->getContent()->options as $option)
+        <option value="{{$option}}">{{$option}}</option>
+        @endforeach
+      </datalist>
+    </div>
+    @break
     @default
       <p class="red bold">TypeError!</p>
 @endswitch

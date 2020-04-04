@@ -41,7 +41,7 @@ class SeedRegistrationPosts extends Migration
     {
         $agreement = $cluster->posts()->create([
             'title' => 'Agreement',
-            'redirect' => '/contents/Register-Info/Demographic-Information'
+            'redirect' => '/contents/1/2'
         ]);
         // title part
         $title = $agreement->modules()->create([
@@ -69,7 +69,7 @@ class SeedRegistrationPosts extends Migration
     {
         $demo = $cluster->posts()->create([
             'title' => 'Demographic Information',
-            'redirect' => '/contents/Register-Info/English-Level-Information',
+            'redirect' => '/contents/1/3',
         ]);
         $demo->prerequisite = $demo->id - 1;
         $demo->save();
@@ -108,7 +108,7 @@ class SeedRegistrationPosts extends Migration
         // Identification
         $identification = $demo->modules()->create([
             'type' => 'choice',
-            'content' => '{"question":"How do you identify?","options":["Asian","Black","Hispanic","White","Other"],"subtype":"select"}',
+            'content' => '{"question":"How do you identify?","options":["Asian","Black","Hispanic","White"],"subtype":"datalist"}',
         ]);
     }
 
@@ -116,7 +116,7 @@ class SeedRegistrationPosts extends Migration
     {
         $english = $cluster->posts()->create([
             'title' => 'English Level Information',
-            'redirect' => '/contents/Register-Info/Educational-Information',
+            'redirect' => '/contents/1/4',
         ]);
         $english->prerequisite = $english->id - 1;
         $english->save();
@@ -151,7 +151,7 @@ class SeedRegistrationPosts extends Migration
     {
         $education = $cluster->posts()->create([
             'title' => 'Educational Information',
-            'redirect' => '/contents/Register-Info/Belief-Information',
+            'redirect' => '/contents/1/5',
         ]);
         $education->prerequisite = $education->id - 1;
         $education->save();
@@ -171,7 +171,7 @@ class SeedRegistrationPosts extends Migration
             'content' => json_encode([
                 'question' => 'Major',
                 'options' => $this->major_data,
-                'subtype' => 'select',
+                'subtype' => 'datalist',
             ]),
         ]);
         // Field of work
@@ -180,7 +180,7 @@ class SeedRegistrationPosts extends Migration
             'content' => json_encode([
                 'question' => 'Field you are in or you want to be in',
                 'options' => $this->industry_data,
-                'subtype' => 'select',
+                'subtype' => 'datalist',
             ]),
         ]);
         // parental education level
@@ -194,7 +194,7 @@ class SeedRegistrationPosts extends Migration
             'content' => json_encode([
                 'question' => 'The Field of Him/Her',
                 'options' => $this->industry_data,
-                'subtype' => 'select',
+                'subtype' => 'datalist',
             ]),
         ]);
         // income
@@ -216,12 +216,12 @@ class SeedRegistrationPosts extends Migration
         // religion
         $religion = $belief->modules()->create([
             'type' => 'choice',
-            'content' => '{"question":"Religious Affiliation","options":["Buddhist","Catholic Christianity","Hindu","Jewish","Mormon","Muslim","Non-believer (agnostic or atheist)","Protestant Christianity","Other"],"subtype":"select"}',
+            'content' => '{"question":"Religious Affiliation","options":["Buddhist","Catholic Christianity","Hindu","Jewish","Mormon","Muslim","Non-believer (agnostic or atheist)","Protestant Christianity"],"subtype":"datalist"}',
         ]);
         // Political
         $political = $belief->modules()->create([
             'type' => 'choice',
-            'content' => '{"question":"Political Orientation","options":["Very liberal","Somewhat liberal","Neither liberal nor conservative","Somewhat conservative","Very conservative"],"subtype":"select"}',
+            'content' => '{"question":"Political Orientation","options":["Very liberal","Somewhat liberal","Neither liberal nor conservative","Somewhat conservative","Very conservative"],"subtype":"datalist"}',
         ]);
     }
 
@@ -561,7 +561,6 @@ class SeedRegistrationPosts extends Migration
         "Homemaker",
         "Military",
         "Religious",
-        "Other",
         "I don't know"
     ];
 }

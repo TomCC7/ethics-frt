@@ -32,7 +32,7 @@ class Module extends Model
      * @var array
      */
     protected static $subtypes = [
-        'choice' => ['single', 'multiple', 'select'],
+        'choice' => ['single', 'multiple', 'select','datalist'],
     ];
 
     /**
