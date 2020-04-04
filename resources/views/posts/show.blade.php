@@ -5,7 +5,7 @@
 
 @section('pageHeader')
 Post-<small>{{$post->title}}</small>
-<span><a href="{{route('posts.edit',$post->id)}}"><button class="btn btn-success">Edit</button></a></span>
+<span><button class="btn btn-success" data-toggle="modal" data-target="#edit-post">Edit</button></span>
 @endsection
 
 @section('content')
@@ -47,17 +47,20 @@ Post-<small>{{$post->title}}</small>
   <span><button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-form-select">
       Create a new module
     </button></span>
-  @include('modules._create._create')
   @endcan
+</div>
+</div>
+@endsection
 
-</div>
-</div>
+@section('modals')
+@include('modules._create._create')
+@include('posts._edit')
 @endsection
 
 {{-- Render the rich text editor --}}
 @section('styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
-@stop
+@endsection
 
 @section('scripts')
 <script type="text/javascript" src="{{ asset('js/module.js') }}"></script>
@@ -81,6 +84,7 @@ Post-<small>{{$post->title}}</small>
         pasteImage: true,
       });
 });
+
 function SelectForm()
   {
     // getting the variables
@@ -107,6 +111,5 @@ function SelectForm()
         break;
     }
   }
-
 </script>
-@stop
+@endsection

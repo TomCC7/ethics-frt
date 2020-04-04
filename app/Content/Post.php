@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Post extends Model
 {
     use SoftDeletes;
-    protected $fillable = ['cluster_id', 'prerequisite', 'title', 'slug', 'redirect', 'message'];
+    protected $fillable = ['prerequisite', 'title', 'slug', 'redirect', 'message'];
 
     /**
      * The relationship with modules

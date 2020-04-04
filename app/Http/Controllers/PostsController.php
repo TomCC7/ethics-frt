@@ -61,10 +61,11 @@ class PostsController extends Controller
 
     public function store(PostRequest $request)
     {
-        $post = Post::create([
-            'cluster_id' => $request->cluster_id,
+        $post = Post::make([
             'title' => $request->title,
         ]);
+        $post->cluster_id = $request->cluster_id;
+        $post->save();
         return redirect()->route('posts.show', [
             'cluster' => $post->cluster->id,
             'post' => $post->id,
@@ -74,16 +75,8 @@ class PostsController extends Controller
 
     public function update(PostRequest $request, Post $post)
     {
-        $post->update([
-            'title' => $request->title,
-        ]);
-        $post->cluster_id = $request->cluster_id;
-        $post->save();
-        return redirect()->route('posts.show', [
-            'cluster' => $post->cluster->id,
-            'post' => $post->id,
-        ])
-            ->with('success', 'Post updated successfully!');
+        $post->update($request->toArray());
+        return back()->with('success', 'Post updated successfully!');
     }
 
     public function destroy(Post $post)
