@@ -16,11 +16,9 @@
         </div>
       </div>
       <div class="modal-body">
-
         @include('modules._create._text')
         @include('modules._create._choice')
         @include('modules._create._filling')
-        @include('modules._create._select')
       </div>
     </div>
   </div>

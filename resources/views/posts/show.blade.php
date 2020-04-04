@@ -87,13 +87,11 @@ function SelectForm()
     var text_form=document.getElementById("form-create-text");
     var choice_form=document.getElementById("form-create-choice");
     var filling_form=document.getElementById("form-create-filling");
-    var select_form=document.getElementById("form-create-select");
     var select=$('#select-form-select');
     // make all forms hidden
     text_form.className="card d-none";
     choice_form.className="d-none table-responsive";
     filling_form.className="card d-none";
-    select_form.className="card d-none";
     switch (select.val())
     {
       case "text":
@@ -104,9 +102,6 @@ function SelectForm()
         break;
       case "filling":
         filling_form.className="card";
-        break;
-      case "select":
-        select_form.className="card";
         break;
       default:
         break;

@@ -56,12 +56,12 @@ class SeedRegistrationPosts extends Migration
         // consent 1
         $consent1 = $agreement->modules()->create([
             'type' => 'choice',
-            'content' => '{"question":"Consent for modules:","choices":["I consent to participate in the modules with information saved and used for research purposes","I consent to participate in the modules with information saved but not used for research purposes"],"is_multiple":"0"}',
+            'content' => '{"question":"Consent for modules:","options":["I consent to participate in the modules with information saved and used for research purposes","I consent to participate in the modules with information saved but not used for research purposes"],"subtype":"single"}',
         ]);
         // consent 2
         $consent2 = $agreement->modules()->create([
             'type' => 'choice',
-            'content' => '{"question":"Consent for surveys:","choices":["I consent to participate in the surveys with information saved and used for research purposes","I don\'t want to take surveys"],"is_multiple":"0"}',
+            'content' => '{"question":"Consent for surveys:","options":["I consent to participate in the surveys with information saved and used for research purposes","I don\'t want to take surveys"],"subtype":"single"}',
         ]);
     }
 
@@ -76,7 +76,7 @@ class SeedRegistrationPosts extends Migration
         // user_type
         $user_type = $demo->modules()->create([
             'type' => 'choice',
-            'content' =>  '{"question":"User Type","choices":["student","non-student"],"is_multiple":"0"}',
+            'content' =>  '{"question":"User Type","options":["student","non-student"],"subtype":"single"}',
         ]);
         // ages
         $age_span = [];
@@ -84,29 +84,31 @@ class SeedRegistrationPosts extends Migration
             $age_span[] = $i;
         }
         $ages = $demo->modules()->create([
-            'type' => 'select',
+            'type' => 'choice',
             'content' => json_encode([
                 'question' => 'Ages',
                 'options' => $age_span,
+                'subtype' => 'select',
             ]),
         ]);
         // Gender
         $gender = $demo->modules()->create([
             'type' => 'choice',
-            'content' => '{"question":"Gender","choices":["male","female","other"],"is_multiple":"0"}',
+            'content' => '{"question":"Gender","options":["male","female","other"],"subtype":"single"}',
         ]);
         // Nationality
         $nationality = $demo->modules()->create([
-            'type' => 'select',
+            'type' => 'choice',
             'content' => json_encode([
                 'question' => 'Nationality',
                 'options' => $this->nationality_data,
+                'subtype' => 'select',
             ]),
         ]);
         // Identification
         $identification = $demo->modules()->create([
-            'type' => 'select',
-            'content' => '{"question":"How do you identify?","options":["Asian","Black","Hispanic","White","Other"]}',
+            'type' => 'choice',
+            'content' => '{"question":"How do you identify?","options":["Asian","Black","Hispanic","White","Other"],"subtype":"select"}',
         ]);
     }
 
@@ -120,28 +122,28 @@ class SeedRegistrationPosts extends Migration
         $english->save();
         // Order
         $order = $english->modules()->create([
-            'type' => 'select',
-            'content' => '{"question":"Order in which your English was learned:","options":["Native","Second","Third","Forth"]}',
+            'type' => 'choice',
+            'content' => '{"question":"Order in which your English was learned:","options":["Native","Second","Third","Forth"],"subtype":"select"}',
         ]);
         // Listening
         $listening = $english->modules()->create([
-            'type' => 'select',
-            'content' => '{"question":"Listening","options":["Almost none","Poor","Fair","Good","Very good"]}',
+            'type' => 'choice',
+            'content' => '{"question":"Listening","options":["Almost none","Poor","Fair","Good","Very good"],"subtype":"select"}',
         ]);
         // speaking
         $speaking = $english->modules()->create([
-            'type' => 'select',
-            'content' => '{"question":"Speaking","options":["Almost none","Poor","Fair","Good","Very good"]}',
+            'type' => 'choice',
+            'content' => '{"question":"Speaking","options":["Almost none","Poor","Fair","Good","Very good"],"subtype":"select"}',
         ]);
         // reading
         $reading = $english->modules()->create([
-            'type' => 'select',
-            'content' => '{"question":"Reading","options":["Almost none","Poor","Fair","Good","Very good"]}',
+            'type' => 'choice',
+            'content' => '{"question":"Reading","options":["Almost none","Poor","Fair","Good","Very good"],"subtype":"select"}',
         ]);
         // writing
         $writing = $english->modules()->create([
-            'type' => 'select',
-            'content' => '{"question":"Writing","options":["Almost none","Poor","Fair","Good","Very good"]}',
+            'type' => 'choice',
+            'content' => '{"question":"Writing","options":["Almost none","Poor","Fair","Good","Very good"],"subtype":"select"}',
         ]);
     }
 
@@ -155,47 +157,50 @@ class SeedRegistrationPosts extends Migration
         $education->save();
         // Highest Education Degree Achieved
         $degree_get = $education->modules()->create([
-            'type' => 'select',
-            'content' => '{"question":"Highest Education Degree Achieved","options":["Less than a high school diploma","High school degree or equivalent","Some college, no degree","Associate degree","Bachelor\u2019s degree","Master\u2019s degree","Professional degree","Doctorate"]}',
+            'type' => 'choice',
+            'content' => '{"question":"Highest Education Degree Achieved","options":["Less than a high school diploma","High school degree or equivalent","Some college, no degree","Associate degree","Bachelor\u2019s degree","Master\u2019s degree","Professional degree","Doctorate"],"subtype":"select"}',
         ]);
         // Currently Pursuing
         $degree_now = $education->modules()->create([
-            'type' => 'select',
-            'content' => '{"question":"Currently Pursuing","options":["Bachelor\'s degree","Master\'s degree","Professional degree","Doctorate","None"]}',
+            'type' => 'choice',
+            'content' => '{"question":"Currently Pursuing","options":["Bachelor\'s degree","Master\'s degree","Professional degree","Doctorate","None"],"subtype":"select"}',
         ]);
         // Major
         $major = $education->modules()->create([
-            'type' => 'select',
+            'type' => 'choice',
             'content' => json_encode([
                 'question' => 'Major',
                 'options' => $this->major_data,
+                'subtype' => 'select',
             ]),
         ]);
         // Field of work
         $field = $education->modules()->create([
-            'type' => 'select',
+            'type' => 'choice',
             'content' => json_encode([
                 'question' => 'Field you are in or you want to be in',
                 'options' => $this->industry_data,
+                'subtype' => 'select',
             ]),
         ]);
         // parental education level
         $parental_level = $education->modules()->create([
-            'type' => 'select',
-            'content' => '{"question":"Highest Education Degree of Your Parents","options":["Less than a high school diploma","High school degree or equivalent","Some college, no degree","Associate degree","Bachelor\u2019s degree","Master\u2019s degree","Professional degree","Doctorate"]}',
+            'type' => 'choice',
+            'content' => '{"question":"Highest Education Degree of Your Parents","options":["Less than a high school diploma","High school degree or equivalent","Some college, no degree","Associate degree","Bachelor\u2019s degree","Master\u2019s degree","Professional degree","Doctorate"],"subtype":"select"}',
         ]);
         // parental field
         $parental_field = $education->modules()->create([
-            'type' => 'select',
+            'type' => 'choice',
             'content' => json_encode([
                 'question' => 'The Field of Him/Her',
                 'options' => $this->industry_data,
+                'subtype' => 'select',
             ]),
         ]);
         // income
         $income = $education->modules()->create([
-            'type' => 'select',
-            'content' => '{"question":"Combined parental\/familial income per month before taxes in RMB","options":["less than 1,500","1,500-4,500","4,500-9,000","9,000-35,000","35,000-55,000","55,000-80,000","80,000 or more","I don\'t know"]}',
+            'type' => 'choice',
+            'content' => '{"question":"Combined parental\/familial income per month before taxes in RMB","options":["less than 1,500","1,500-4,500","4,500-9,000","9,000-35,000","35,000-55,000","55,000-80,000","80,000 or more","I don\'t know"],"subtype":"select"}',
         ]);
     }
 
@@ -210,13 +215,13 @@ class SeedRegistrationPosts extends Migration
         $belief->save();
         // religion
         $religion = $belief->modules()->create([
-            'type' => 'select',
-            'content' => '{"question":"Religious Affiliation","options":["Buddhist","Catholic Christianity","Hindu","Jewish","Mormon","Muslim","Non-believer (agnostic or atheist)","Protestant Christianity","Other"]}',
+            'type' => 'choice',
+            'content' => '{"question":"Religious Affiliation","options":["Buddhist","Catholic Christianity","Hindu","Jewish","Mormon","Muslim","Non-believer (agnostic or atheist)","Protestant Christianity","Other"],"subtype":"select"}',
         ]);
         // Political
         $political = $belief->modules()->create([
-            'type' => 'select',
-            'content' => '{"question":"Political Orientation","options":["Very liberal","Somewhat liberal","Neither liberal nor conservative","Somewhat conservative","Very conservative"]}',
+            'type' => 'choice',
+            'content' => '{"question":"Political Orientation","options":["Very liberal","Somewhat liberal","Neither liberal nor conservative","Somewhat conservative","Very conservative"],"subtype":"select"}',
         ]);
     }
 

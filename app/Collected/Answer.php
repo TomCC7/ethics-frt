@@ -22,4 +22,8 @@ class Answer extends Model
     {
         return json_decode($this->content);
     }
+    // public function scopeOfChoice($query,$index)
+    // {
+    //     return $query->where('')
+    // }
 }

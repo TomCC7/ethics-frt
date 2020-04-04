@@ -7,23 +7,38 @@
 {{-- make the answer exist --}}
 <input type="hidden" name="answers[{{$module->id}}]">
 {{-- determine if the choice is multiple --}}
-@if($module->getContent()->is_multiple)
-@foreach ($module->getContent()->choices as $choice)
-<div class="form-group">
-  <label class="checkbox">
-    <input type="checkbox" id="module-{{$module->id}}-{{$loop->iteration}}" name="answers[{{$module->id}}][]"
-      value="{{$loop->iteration}}">
-    {{$choice}}
-  </label>
-</div>
-@endforeach
-@else
-@foreach ($module->getContent()->choices as $choice)
-<div class="form-group" id="module-{{$module->id}}">
-  <label class="radio-inline">
-    <input type="radio" name="answers[{{$module->id}}]" value="{{$loop->iteration}}">
-    {{$choice}}
-  </label>
-</div>
-@endforeach
-@endif
+@switch($module->getContent()->subtype)
+    @case('multiple')
+      @foreach ($module->getContent()->options as $option)
+      <div class="form-group">
+        <label class="checkbox">
+         <input type="checkbox" id="module-{{$module->id}}-{{$loop->iteration}}" name="answers[{{$module->id}}][]"
+           value="{{$loop->iteration}}">
+         {{$option}}
+       </label>
+      </div>
+      @endforeach
+      @break
+    @case('single')
+      @foreach ($module->getContent()->options as $option)
+      <div class="form-group" id="module-{{$module->id}}">
+        <label class="radio-inline">
+          <input type="radio" name="answers[{{$module->id}}]" value="{{$loop->iteration}}">
+          {{$option}}
+        </label>
+      </div>
+      @endforeach
+      @break
+    @case('select')
+    <div class="form-group" id="module-{{$module->id}}">
+        <select class="form-control" name="answers[{{$module->id}}]">
+          @foreach ($module->getContent()->options as $option)
+          <option value="{{$option}}">{{$option}}</option>
+          @endforeach
+        </select>
+      </label>
+    </div>
+    @break
+    @default
+      <p class="red bold">TypeError!</p>
+@endswitch

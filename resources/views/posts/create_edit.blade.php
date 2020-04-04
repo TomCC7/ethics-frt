@@ -20,11 +20,11 @@ Create Post
       @if ($post->id)
       <form method="POST" action={{route('posts.update',$post->id)}}>
         @method('PATCH')
-      @else
-      <form method="POST" action={{route('posts.store')}}>
-        @endif
+        @else
+        <form method="POST" action={{route('posts.store')}}>
+          @endif
 
-        @csrf
+          @csrf
 
           <div class="form-group">
             <label for='title' class="col-md-4 col-form-label text-md-right">
@@ -39,9 +39,9 @@ Create Post
               Cluster
             </label>
             <select name="cluster_id" id="cluster_id" class="form-control">
-              <option value="" hidden disabled {{ $post->id ? '' : 'selected' }}>Please choose a cluster</option>
+              <option value="" hidden disabled selected>Please choose a cluster</option>
               @foreach ($clusters as $cluster)
-              <option value='{{$cluster->id}}' {{$post->cluster_id == $cluster->id ? 'selected' : ''}}>
+              <option value='{{$cluster->id}}' {{is_selected($post->cluster_id,$cluster->id)}}>
                 {{$cluster->name}}
               </option>
               @endforeach

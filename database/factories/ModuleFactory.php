@@ -28,11 +28,6 @@ $factory->define(App\Content\Module::class, function (Faker $faker) {
                 ]),
             ];
             break;
-        case 'select':
-            return [
-                'type' => 'select',
-                'content' => selectContent($faker),
-            ];
         default:
             return [
                 'type' => 'error',
@@ -42,11 +37,12 @@ $factory->define(App\Content\Module::class, function (Faker $faker) {
 
 function choiceContent(Faker $faker)
 {
+    $subtypes = app(App\Content\Module::class)->subtypes('choice');
     $choices = [$faker->word, $faker->word, $faker->word, $faker->word];
     $content = [
         'question' => $faker->sentence,
-        'choices' => $choices,
-        'is_multiple' => $faker->boolean,
+        'options' => $choices,
+        'subtype' => $faker->randomElement($subtypes),
     ];
     return json_encode($content);
 }

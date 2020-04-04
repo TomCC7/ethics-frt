@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Observers\AnswerObserver;
 use App\Observers\ClusterObserver;
 use App\Observers\PostObserver;
 use Illuminate\Support\ServiceProvider;
@@ -28,5 +29,6 @@ class AppServiceProvider extends ServiceProvider
     {
         \App\Content\Post::observe(PostObserver::class);
         \App\Content\Cluster::observe(ClusterObserver::class);
+        \App\Collected\Answer::observe(AnswerObserver::class);
     }
 }
