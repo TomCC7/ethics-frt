@@ -41,7 +41,7 @@ class SeedRegistrationPosts extends Migration
     {
         $agreement = $cluster->posts()->create([
             'title' => 'Agreement',
-            'redirect' => '/contents/1/2'
+            'redirect' => '/contents/Register-Info/2'
         ]);
         // title part
         $title = $agreement->modules()->create([
@@ -69,7 +69,7 @@ class SeedRegistrationPosts extends Migration
     {
         $demo = $cluster->posts()->create([
             'title' => 'Demographic Information',
-            'redirect' => '/contents/1/3',
+            'redirect' => '/contents/Register-Info/3',
         ]);
         $demo->prerequisite = $demo->id - 1;
         $demo->save();
@@ -116,7 +116,7 @@ class SeedRegistrationPosts extends Migration
     {
         $english = $cluster->posts()->create([
             'title' => 'English Level Information',
-            'redirect' => '/contents/1/4',
+            'redirect' => '/contents/Register-Info/4',
         ]);
         $english->prerequisite = $english->id - 1;
         $english->save();
@@ -151,7 +151,7 @@ class SeedRegistrationPosts extends Migration
     {
         $education = $cluster->posts()->create([
             'title' => 'Educational Information',
-            'redirect' => '/contents/1/5',
+            'redirect' => '/contents/Register-Info/5',
         ]);
         $education->prerequisite = $education->id - 1;
         $education->save();

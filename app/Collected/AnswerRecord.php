@@ -38,9 +38,16 @@ class AnswerRecord extends Model
      * The relationship with answer
      * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function answers()
+    public function answers($id=null)
     {
-        return $this->hasMany('App\Collected\Answer');
+        if ($id===null)
+        {
+            return $this->hasMany('App\Collected\Answer');
+        }
+        else
+        {
+            return $this->hasMany('App\Collected\Answer')->where('id',$id)->first();
+        }
     }
 
     /**

@@ -11,15 +11,17 @@ Post-<small>{{$post->title}}</small>
 @section('content')
 <div id="content">
   @cannot('admin')
-  <form method="POST" action="{{route('answers.store')}}">
+  <form method="POST" action="{{route('answers.store',$post->id)}}">
     @csrf
-    <input type="hidden" name="post_id" value="{{$post->id}}">
+    @method('PUT')
     @endcannot
 
+    {{-- include modules --}}
     @foreach ($post->modules as $module)
     @include('modules._show._show')
     @endforeach
 
+    {{-- submit button --}}
     {{-- Can't be seen by admin --}}
     @cannot('admin')
     {{-- Only can be seen when there's question --}}

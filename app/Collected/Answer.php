@@ -3,6 +3,7 @@
 namespace App\Collected;
 
 use Illuminate\Database\Eloquent\Model;
+use Symfony\Component\HttpFoundation\Request;
 
 class Answer extends Model
 {
@@ -29,6 +30,11 @@ class Answer extends Model
     public function getContent()
     {
         return json_decode($this->content);
+    }
+
+    public function handleContent(Request $request)
+    {
+        
     }
     // public function scopeOfChoice($query,$index)
     // {

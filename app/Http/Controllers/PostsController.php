@@ -35,7 +35,7 @@ class PostsController extends Controller
             $preq_answer = AnswerRecord::FindUnique(Auth::id(), $preq->id)->first();
             // check if the answer exists
             if (!$preq_answer) {
-                return redirect()->route('posts.show', ['cluster'->$preq->cluster_id, 'post' => $preq->id])
+                return redirect()->route('posts.show', ['cluster' => $preq->cluster->slug, 'post' => $preq->id])
                     ->with('info', 'You have unfinished prerequisite(s), redirected here');
             }
         }

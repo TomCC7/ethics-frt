@@ -18,7 +18,7 @@ class PagesController extends Controller
             !$user->isRegistered()
         ) {
             session()->flash('warning', 'Please finish registration!');
-            return redirect()->to('/contents/Register-Info/Belief-Information');
+            return redirect()->to('/contents/Register-Info/5');
         }
         // check if the user has completed registration
         return view('pages.frontpage');

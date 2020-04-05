@@ -27,8 +27,9 @@ Route::get('/', 'PagesController@frontpage')->name('frontpage');
 Route::resource('/contents', 'ClustersController', ['only' => ['index', 'store', 'update', 'destroy']]);
 Route::get('contents/{content}', 'ClustersController@show')->name('contents.show');
 // AnswersController
-Route::resource('/answers', 'AnswersController', ['only' => ['store', 'index']]);
+Route::resource('/answers', 'AnswersController', ['only' => ['index']]);
 Route::get('/answers/{cluster}/{post}', 'AnswersController@show')->name('answers.show');
+Route::put('/answers/{post}', 'AnswersController@storeOrUpdate')->name('answers.store');
 // ModulesController
 Route::resource('/modules', 'ModulesController', ['only' => ['store', 'edit', 'update', 'destroy']]);
 // SurveyController

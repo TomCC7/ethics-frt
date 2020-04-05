@@ -13,7 +13,7 @@
 <div class="form-group">
   <label class="checkbox">
     <input type="checkbox" id="module-{{$module->id}}-{{$loop->iteration}}" name="answers[{{$module->id}}][]"
-      value="{{$loop->iteration}}">
+      value="{{$option}}">
     {{$option}}
   </label>
 </div>
@@ -23,7 +23,7 @@
 @foreach ($module->getContent()->options as $option)
 <div class="form-group" id="module-{{$module->id}}">
   <label class="radio-inline">
-    <input type="radio" name="answers[{{$module->id}}]" value="{{$loop->iteration}}">
+    <input type="radio" name="answers[{{$module->id}}]" value="{{$option}}">
     {{$option}}
   </label>
 </div>
@@ -43,7 +43,7 @@
 @case('datalist')
 <div class="form-group" id="module-{{$module->id}}">
   <input class="form-control" name="answers[{{$module->id}}]" type="text" list="data-{{$module->id}}"
-  placeholder="Prompts given, you can also give your own answer">
+    placeholder="Prompts given, you can also give your own answer">
   <datalist id="data-{{$module->id}}">
     @foreach ($module->getContent()->options as $option)
     <option value="{{$option}}">{{$option}}</option>
