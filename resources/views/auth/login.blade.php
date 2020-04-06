@@ -47,9 +47,12 @@
 
         <div class="form-group" id="toolbar">
           <div class="row align-items-center">
-            <div class="col-md-5">
+            <div class="col-md-8">
               <button type="submit" id="submit" class="btn btn-primary">
                 {{ __('Login') }}
+              </button>
+              <button type="button" id="register" class="btn btn-primary" data-toggle="modal" data-target="reg-dialog">
+                Register
               </button>
             </div>
 

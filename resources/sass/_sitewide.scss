@@ -1,6 +1,6 @@
 
 // The origin of the world should be very firm!
-#yggdrasil{
+#yggdrasil {
   position: absolute;
   padding: 0px;
 }
@@ -8,8 +8,8 @@
 #page-header {
   margin: 8px;
   padding: 8px;
-  background: #bdffe7;
-  color: #0c7900;
+  background: $headerBG;
+  color: $headerColor;
   height: 4rem;
 }
 

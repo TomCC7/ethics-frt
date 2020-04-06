@@ -20,7 +20,7 @@
 <body>
 
   <div id="side-navbar-wrapper">
-    @include('layouts.side_navbar')
+    @include('shared.side_navbar')
   </div>
 
   <div id="yggdrasil" class="container-fluid">

@@ -8,8 +8,8 @@
 #page-header {
   margin: 8px;
   padding: 8px;
-  background: #bdffe7;
-  color: #0c7900;
+  background: #b0d8ff;
+  color: #093973;
   height: 4rem;
 }
 
@@ -98,13 +98,14 @@
   margin-top: 2em;
 }
 
-#login-box #submit {
-  width: 100%;
+#login-box button {
+  width: 50%;
   background-color: white;
   color: #3490dc;
+  display: inline;
 }
 
-#login-box #submit:hover {
+#login-box button:hover {
   background-color: #3490dc;
   color: white;
 }

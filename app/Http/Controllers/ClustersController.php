@@ -15,7 +15,7 @@ class ClustersController extends Controller
     public function index()
     {
         $clusters = Cluster::all();
-        return view('clusters.list')->with(['clusters' => $clusters]);
+        return view('clusters.index')->with(['clusters' => $clusters]);
     }
 
     /**
@@ -26,7 +26,7 @@ class ClustersController extends Controller
     public function show(Cluster $content)
     {
         $clusters = Cluster::all();
-        return view('clusters.list', compact('clusters', 'content'));
+        return view('clusters.index', compact('clusters', 'content'));
         //Browse posts in a subview of the cluster list
     }
 

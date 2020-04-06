@@ -10,6 +10,7 @@ Edit Post
 Create Post
 @endif
 @endsection
+
 @section('content')
 
 <div class="container">

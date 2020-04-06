@@ -12,17 +12,18 @@
   margin: 10% 0
 }
 
-#login-box #toolbar{
+#login-box #toolbar {
   margin-top: 2em;
 }
 
-#login-box #submit {
-  width: 100%;
+#login-box button {
+  width: 50%;
   background-color: white;
   color: #3490dc;
+  display: inline;
 }
 
-#login-box #submit:hover {
+#login-box button:hover {
   background-color: #3490dc;
   color: white;
 }
