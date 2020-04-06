@@ -7,20 +7,21 @@
 <form class="form" method="POST" action="{{route('modules.update',$module->id)}}">
   @csrf
   @method('PATCH')
-  {{-- Post id --}}
+  {{-- Post id and type --}}
   <input type="hidden" name="post_id" value="{{$post->id}}">
+  <input type="hidden" name="type" value="{{$module->type}}">
   @switch($module->type)
-    @case('text')
-      @include('modules._edit._text')
-      @break
-    @case('filling')
-      @include('modules._edit._filling')
-      @break
-    @case('choice')
-      @include('modules._edit._choice')
-      @break
-    @default
-      @break
+  @case('text')
+  @include('modules._edit._text')
+  @break
+  @case('filling')
+  @include('modules._edit._filling')
+  @break
+  @case('choice')
+  @include('modules._edit._choice')
+  @break
+  @default
+  @break
   @endswitch
   {{-- submit --}}
   <div class="form-group row mb-0">
@@ -59,31 +60,5 @@
         pasteImage: true,
       });
 });
-</script>
-
-<script>
-  ChoicesNum();
-  function ChoicesNum()
-{
-  // check if the number of choice is right
-  if ($('#input-choice_num').val()<2||$('#input-choice_num').val()>10)
-  {
-    alert('Choice number must between 2 and 10!');
-    return;
-  }
-  // set all to d-none
-  for (let i=0;i<10;i++)
-  {
-    $(`#choice-${i}`).attr('class','d-none');
-    $(`#choice-${i}`).find('.form-control').attr('disabled',1);
-  }
-  // make given visible
-  var num=$('#input-choice_num').val();
-  for (let i=0;i<num;i++)
-  {
-    $(`#choice-${i}`).removeAttr('class');
-    $(`#choice-${i}`).find('.form-control').removeAttr('disabled');
-  }
-}
 </script>
 @endsection

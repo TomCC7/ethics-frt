@@ -3,9 +3,11 @@
 namespace App\Content;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Module extends Model
 {
+    use SoftDeletes;
     /**
      * variables that can be mass assignable
      *
@@ -21,9 +23,16 @@ class Module extends Model
      */
     protected static $attribute = [
         'text' => ['body'],
-        'choice' => ['question', 'choices', 'correct_answer', 'choice_num', 'is_multiple', 'min', 'max'],
+        'choice' => ['subtype', 'question', 'options', 'choice_num'],
         'filling' => ['question', 'short'],
-        'select' => ['question', 'options'],
+    ];
+
+    /**
+     * The subtypes of modules
+     * @var array
+     */
+    protected static $subtypes = [
+        'choice' => ['single', 'multiple', 'select','datalist'],
     ];
 
     /**
@@ -36,6 +45,19 @@ class Module extends Model
         return self::$attribute[$this->type];
     }
 
+    /**
+     * Get the subtypes of this model
+     * @param string $type
+     * @return array
+     */
+    public function Subtypes($type = '')
+    {
+        if ($type === '') {
+            return self::$subtypes[$this->type];
+        } else {
+            return self::$subtypes[$type];
+        }
+    }
     /**
      * Get all types of module
      * @static
@@ -78,12 +100,11 @@ class Module extends Model
     }
 
     /**
-     * Distributes creating tasks based on the type of the module
-     *
-     * @static
-     * @return App\Content\Module
+     * access and return the content from the request
+     * @param Request $request
+     * @return array
      */
-    public static function createByType($request)
+    public static function handleContent($request)
     {
         $content = $request->only(self::$attribute[$request->type]); // can't call $this because there's no instance for static method
         // do some convertion
@@ -91,42 +112,12 @@ class Module extends Model
             case 'filling':
                 $content['short'] = boolval($content['short']);
                 break;
-            case 'select':
+            case 'choice':
                 $content['options'] = explode("\r\n", $content['options']);
             default:
                 break;
         }
-        $module = self::make([
-            'type' => $request->type,
-            'content' => json_encode($content),
-            'optional' => $request->optional,
-        ]);
-
-        if ($module->type == 'text'){
-            $module->optional = false;
-        }
-
-        $module->post_id = $request->post_id;
-        $module->save();
-        return $module;
-    }
-
-    /**
-     * Distributes creating tasks based on the type of the module
-     *
-     * @static
-     * @return App\Content\Module
-     */
-    public static function updateByType($type, $request, $post_id)
-    {
-        switch ($type) {
-            case 'text':
-                return self::updateText($request, $post_id);
-                break;
-
-            default:
-                break;
-        }
+        return json_encode($content);
     }
 
     /**

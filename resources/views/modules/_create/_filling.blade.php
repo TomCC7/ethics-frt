@@ -14,7 +14,8 @@
       <label for="question">
         Your question
       </label>
-      <input type="text" class="form-control" id="question_filling" name="question" placeholder="Fill in your question here" required>
+      <input type="text" class="form-control" id="question_filling" name="question"
+        placeholder="Fill in your question here" required>
     </div>
 
     <div class="form-group">
@@ -26,7 +27,7 @@
     </div>
     {{-- optional --}}
     <div class="form-group">
-      <input type="hidden" name="optional" id="optional" value="0">
+      <input type="hidden" name="optional" value="0">
       <label class="checkbox">
         <input type="checkbox" name="optional" value="1">
         Is this question optional?

@@ -5,21 +5,23 @@
 
 @section('pageHeader')
 Post-<small>{{$post->title}}</small>
-<span><a href="{{route('posts.edit',$post->slug)}}"><button class="btn btn-success">Edit</button></a></span>
+<span><button class="btn btn-success" data-toggle="modal" data-target="#edit-post">Edit</button></span>
 @endsection
 
 @section('content')
 <div id="content">
   @cannot('admin')
-  <form method="POST" action="{{route('answers.store')}}">
+  <form method="POST" action="{{route('answers.store',$post->id)}}">
     @csrf
-    <input type="hidden" name="post_id" value="{{$post->id}}">
+    @method('PUT')
     @endcannot
 
+    {{-- include modules --}}
     @foreach ($post->modules as $module)
     @include('modules._show._show')
     @endforeach
 
+    {{-- submit button --}}
     {{-- Can't be seen by admin --}}
     @cannot('admin')
     {{-- Only can be seen when there's question --}}
@@ -47,17 +49,20 @@ Post-<small>{{$post->title}}</small>
   <span><button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-form-select">
       Create a new module
     </button></span>
-  @include('modules._create._create')
   @endcan
+</div>
+</div>
+@endsection
 
-</div>
-</div>
+@section('modals')
+@include('modules._create._create')
+@include('posts._edit')
 @endsection
 
 {{-- Render the rich text editor --}}
 @section('styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
-@stop
+@endsection
 
 @section('scripts')
 <script type="text/javascript" src="{{ asset('js/module.js') }}"></script>
@@ -81,19 +86,18 @@ Post-<small>{{$post->title}}</small>
         pasteImage: true,
       });
 });
+
 function SelectForm()
   {
     // getting the variables
     var text_form=document.getElementById("form-create-text");
     var choice_form=document.getElementById("form-create-choice");
     var filling_form=document.getElementById("form-create-filling");
-    var select_form=document.getElementById("form-create-select");
     var select=$('#select-form-select');
     // make all forms hidden
     text_form.className="card d-none";
     choice_form.className="d-none table-responsive";
     filling_form.className="card d-none";
-    select_form.className="card d-none";
     switch (select.val())
     {
       case "text":
@@ -105,13 +109,9 @@ function SelectForm()
       case "filling":
         filling_form.className="card";
         break;
-      case "select":
-        select_form.className="card";
-        break;
       default:
         break;
     }
   }
-
 </script>
-@stop
+@endsection

@@ -24,3 +24,12 @@ function array_intval($array)
         return intval($item);
     }, $array);
 }
+
+/**
+ * determine if the option is selected
+ * @return bool
+ */
+function is_selected($var1,$var2)
+{
+    return $var1===$var2?'selected':'';
+}

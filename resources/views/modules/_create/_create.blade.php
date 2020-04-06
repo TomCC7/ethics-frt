@@ -1,6 +1,5 @@
 {{-- Create a new module --}}
 {{-- Included by posts.show --}}
-@section('modals')
 <div class="modal" id="modal-form-select">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -16,13 +15,10 @@
         </div>
       </div>
       <div class="modal-body">
-
         @include('modules._create._text')
         @include('modules._create._choice')
         @include('modules._create._filling')
-        @include('modules._create._select')
       </div>
     </div>
   </div>
 </div>
-@endsection

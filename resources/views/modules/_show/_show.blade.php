@@ -51,9 +51,6 @@
       @case('filling')
         @include('modules._show._filling')
         @break
-      @case('select')
-        @include('modules._show._select')
-        @break
       @default
         @break
     @endswitch

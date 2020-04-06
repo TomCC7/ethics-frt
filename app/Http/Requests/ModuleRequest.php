@@ -28,12 +28,6 @@ class ModuleRequest extends FormRequest
             case 'choice':
                 return [
                     'question' => 'required|min:3|max:250',
-                    'choices.*' => 'max:1000',
-                ];
-                break;
-            case 'select':
-                return [
-                    'question' => 'required|min:3|max:250',
                     'options'  => 'max:10000',
                 ];
             default:
