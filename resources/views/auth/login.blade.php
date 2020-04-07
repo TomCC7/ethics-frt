@@ -4,6 +4,9 @@
 
 @section('content')
 
+@include('auth.register')
+@include('auth.passwords.reset')
+
   <div id="site-description" class="col loginpage-wrapper">
     <div style="margin-left: 1em; margin-right: 1em">
       @include ('pages/description')
@@ -16,7 +19,7 @@
       <form method="POST" action="{{ route('login') }}">
       @csrf
         <div class="form-group">
-        <label for="email">{{ __('E-Mail Address') }}</label>
+          <label for="email">{{ __('E-Mail Address') }}</label>
           <div>
             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
               name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -31,7 +34,7 @@
         </div>
 
         <div class="form-group">
-        <label for="password">{{ __('Password') }}</label>
+          <label for="password">{{ __('Password') }}</label>
           <div>
             <input id="password" type="password"
               class="form-control @error('password') is-invalid @enderror" name="password"
@@ -46,32 +49,29 @@
         </div>
 
         <div class="form-group" id="toolbar">
-          <div class="row align-items-center">
-            <div class="col-md-8">
-              <button type="submit" id="submit" class="btn btn-primary">
-                {{ __('Login') }}
-              </button>
-              <button type="button" id="register" class="btn btn-primary" data-toggle="modal" data-target="reg-dialog">
-                Register
-              </button>
+          <button type="submit" id="submit" class="btn btn-primary">
+            {{ __('Login') }}
+          </button>
+          <button type="button" id="register" class="btn btn-primary" data-toggle="modal" data-target="#register-dialog">
+            {{ __('Register') }}
+          </button>
+
+          <div id="misc" class="form-check">
+            <div>
+              <input class="form-check-input" type="checkbox" name="remember" id="remember"
+                {{ old('remember') ? 'checked' : '' }}>
+              <label class="form-check-label" for="remember">
+                {{ __('Remember Me') }}
+              </label>
             </div>
 
-            <div id="misc" class="form-check col">
+            @if (Route::has('password.request'))
               <div>
-                <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                  {{ old('remember') ? 'checked' : '' }}>
-                <label class="form-check-label" for="remember">
-                  {{ __('Remember Me') }}
-                </label>
+                <a href="#" id="reset-password" data-toggle="modal" data-target="#reset-dialog">
+                  {{ __('Reset password') }}
+                </a>
               </div>
-
-              @if (Route::has('password.request'))
-                <div>
-                  <a href="{{ route('password.request') }}">
-                    {{ __('Reset password') }}
-                  </a>
-                </div>
-              @endif
+            @endif
             </div>
           </div>
         </div>

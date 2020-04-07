@@ -14,13 +14,14 @@
 
 #login-box #toolbar {
   margin-top: 2em;
+  display: flex; // Align content to two edges
+  justify-content: space-between;
 }
 
 #login-box button {
-  width: 50%;
   background-color: white;
   color: #3490dc;
-  display: inline;
+  width: 27%;
 }
 
 #login-box button:hover {
@@ -30,6 +31,7 @@
 
 #login-box #misc {
   text-align: right;
+  display: inline-block; // Pack things into one div as text
 }
 
 .loginpage-wrapper {
