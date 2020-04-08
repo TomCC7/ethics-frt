@@ -14,8 +14,8 @@ class AddRedirectToPosts extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->string('redirect')->nullable(); // address redirect to when the post finished
-            $table->string('message')->nullable(); // the message shown when the post finished
+            $table->integer('redirect')->nullable(); // redirect user to another post, specified by id
+            $table->string('message')->nullable(); // the message shown when the post is finished
         });
     }
 

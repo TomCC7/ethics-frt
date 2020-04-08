@@ -5,7 +5,7 @@
 
 @section('pageHeader')
 @if($post->id)
-Edit Post
+  Editing Post {{ $post->name }}
 @else
 Create Post
 @endif

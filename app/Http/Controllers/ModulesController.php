@@ -21,7 +21,7 @@ class ModulesController extends Controller
         $module = Module::Make([
             'type' => $request->type,
             'content' => $content,
-            'optional' => $request->optional ? $request->optional : false,
+            'optional' => $request->optional or false,
         ]);
         $module->post_id = $request->post_id;
         $module->save();
@@ -68,6 +68,6 @@ class ModulesController extends Controller
     {
         // delete the module itself
         $module->delete();
-        return back()->with('success', 'You have already deleted this module!');
+        return back()->with('success', 'You have deleted this module!');
     }
 }

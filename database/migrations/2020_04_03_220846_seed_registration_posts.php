@@ -17,12 +17,12 @@ class SeedRegistrationPosts extends Migration
      */
     public function up()
     {
-        $cluster = Cluster::Create(['name' => 'Register Info']);
-        $this->createAgreement($cluster);
-        $this->createDemographicInformation($cluster);
-        $this->createEnglishLevel($cluster);
-        $this->createEducation($cluster);
-        $this->createBelief($cluster);
+        $cluster = Cluster::Create(['name' => 'Registration']);
+        $this->create_agreement($cluster);
+        $this->create_demographicInformation($cluster);
+        $this->create_english_level($cluster);
+        $this->create_education($cluster);
+        $this->create_belief($cluster);
     }
 
     /**
@@ -37,11 +37,11 @@ class SeedRegistrationPosts extends Migration
     /**
      * create the agreement post
      */
-    protected function createAgreement($cluster)
+    protected function create_agreement($cluster)
     {
         $agreement = $cluster->posts()->create([
             'title' => 'Agreement',
-            'redirect' => '/contents/Register-Info/2'
+            'redirect' => 2
         ]);
         // title part
         $title = $agreement->modules()->create([
@@ -65,20 +65,20 @@ class SeedRegistrationPosts extends Migration
         ]);
     }
 
-    protected function createDemographicInformation($cluster)
+    protected function create_demographicInformation($cluster)
     {
         $demo = $cluster->posts()->create([
             'title' => 'Demographic Information',
-            'redirect' => '/contents/Register-Info/3',
+            'redirect' => 3,
         ]);
-        $demo->prerequisite = $demo->id - 1;
+        $demo->prerequisite = $demo->id - 1; // depends on agreement
         $demo->save();
         // user_type
         $user_type = $demo->modules()->create([
             'type' => 'choice',
             'content' =>  '{"question":"User Type","options":["student","non-student"],"subtype":"single"}',
         ]);
-        // ages
+        // age
         $age_span = [];
         for ($i = 18; $i < 100; $i++) {
             $age_span[] = $i;
@@ -108,15 +108,15 @@ class SeedRegistrationPosts extends Migration
         // Identification
         $identification = $demo->modules()->create([
             'type' => 'choice',
-            'content' => '{"question":"How do you identify?","options":["Asian","Black","Hispanic","White"],"subtype":"datalist"}',
+            'content' => '{"question":"How do you identify yourself?","options":["Asian","Black","Hispanic","White"],"subtype":"datalist"}',
         ]);
     }
 
-    public function createEnglishLevel($cluster)
+    public function create_english_level($cluster)
     {
         $english = $cluster->posts()->create([
             'title' => 'English Level Information',
-            'redirect' => '/contents/Register-Info/4',
+            'redirect' => 4,
         ]);
         $english->prerequisite = $english->id - 1;
         $english->save();
@@ -147,11 +147,11 @@ class SeedRegistrationPosts extends Migration
         ]);
     }
 
-    public function createEducation($cluster)
+    public function create_education($cluster)
     {
         $education = $cluster->posts()->create([
             'title' => 'Educational Information',
-            'redirect' => '/contents/Register-Info/5',
+            'redirect' => 5,
         ]);
         $education->prerequisite = $education->id - 1;
         $education->save();
@@ -204,12 +204,11 @@ class SeedRegistrationPosts extends Migration
         ]);
     }
 
-    public function createBelief($cluster)
+    public function create_belief($cluster)
     {
         $belief = $cluster->posts()->create([
             'title' => 'Belief Information',
-            'redirect' => '/',
-            'message' => 'You\'ve completed registration, welcome!',
+            'message' => "You've completed registration, welcome!",
         ]);
         $belief->prerequisite = $belief->id - 1;
         $belief->save();
