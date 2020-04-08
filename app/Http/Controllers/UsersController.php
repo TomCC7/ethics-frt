@@ -23,13 +23,15 @@ class UsersController extends Controller
     public function index()
     {
         Gate::authorize('admin');
-        $users = User::paginate(20);// paginate
+        $users = User::paginate(20); // paginate
         return view('users.index', compact('users'));
     }
 
     public function edit(User $user)
     {
-        $this->authorize('update', $user);
+        if (Auth::user()->is_admin !== 1) { // admins can edit any user
+            $this->authorize('update', $user);
+        }
         return view('users.edit', compact('user'));
     }
 
@@ -51,6 +53,6 @@ class UsersController extends Controller
             'section_number' => $data['section_number'],
             'semester' => $data['semester'],
         ]);
-        return redirect()->route('root')->with('success', 'Profile saved successfully!');
+        return redirect()->route('frontpage')->with('success', 'Profile saved successfully!');
     }
 }

@@ -20,14 +20,14 @@
           questions and also answers that have been collected.
         </p>
         <p>
-          If you are sure to do this, please tpye in <strong>{{$content->name}}</strong> to confirm.
+          If you are sure to do this, please tpye in <strong>{{$cluster->name}}</strong> to confirm.
         </p>
         {{-- delete form --}}
-        <form action="{{route('contents.destroy',$content->slug)}}" method="POST">
+        <form action="{{route('contents.destroy',$cluster->slug)}}" method="POST">
           @csrf
           @method('DELETE')
           <div class="form-group">
-            <input type="text" class="form-control" name="confirmation" required pattern="{{$content->name}}">
+            <input type="text" class="form-control" name="confirmation" required pattern="{{$cluster->name}}">
           </div>
           <div class="form-group">
             <button type="submit" class="btn btn-outline-danger btn-block">

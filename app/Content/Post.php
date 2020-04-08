@@ -48,21 +48,19 @@ class Post extends Model
     /**
      * return the link of the post
      */
-    public function link($params = [])
-    {
-        return route('posts.show', [
-            'cluster' => $this->cluster->slug,
-            'post' => $this->id,
-            'post_slug' => $this->slug,
-        ], $params);
+    //public function link($params = [])
+    //{
+    //    return route('posts.show', [
+    //        'cluster' => $this->cluster->slug,
+    //        'post' => $this->slug
+    //    ], $params);
+    //}
+    /**
+      *
+      * Change the route key name using in model binding
+      * @return string
+      */
+    public function getRouteKeyName() {
+        return 'slug';
     }
-    // /**
-    //  *
-    //  * Change the route key name using in model binding
-    //  * @return string
-    //  */
-    // public function getRouteKeyName()
-    // {
-    //     return 'slug';
-    // }
 }

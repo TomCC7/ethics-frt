@@ -11,7 +11,7 @@
  */
 function NametoSlug($name)
 {
-    return str_replace(' ', '-', $name);
+    return str_replace(' ', '-', $name)."-".time(); // add time to guarantee uniqueness
 }
 
 /**

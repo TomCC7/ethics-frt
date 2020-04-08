@@ -4,7 +4,7 @@
 @section('title',$post->title . '-Post')
 
 @section('pageHeader')
-Post-<small>{{$post->title}}</small>
+Post: <small>{{$post->title}}</small>
 <span><button class="btn btn-success" data-toggle="modal" data-target="#edit-post">Edit</button></span>
 @endsection
 

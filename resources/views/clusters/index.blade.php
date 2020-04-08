@@ -4,51 +4,52 @@
 
 @section('pageHeader')
 Contents
-@isset($content)
-> {{$content->name}}
+@isset($selectedCluster)
+> {{$selectedCluster->name}}
 @endisset
 @endsection
 
 @section('content')
+<div class="row">
+  <div class="col-2">
+    {{-- Show cluster list on the left --}}
 
-<div class="col-2">
-  <!-- Show cluster list on the left -->
+    @can('admin')
+    {{-- Only admins can edit clusters --}}
+    <div class="row" id="cluster-toolbar">
+      <a class="col" href="" data-toggle="modal" data-target="#CreateCluster">Create a new cluster</a>
+      <a class="col" href="#">Placeholder</a>
+    </div>
+    @endcan
 
-  @can('admin')
-  <!-- Only admins can edit clusters -->
-  <div class="row" id="cluster-toolbar">
-    <a class="col" href="" data-toggle="modal" data-target="#CreateCluster">Create a new cluster</a>
-    <a class="col" href="#">Placeholder</a>
+    <div class="row">
+      <ul id="cluster-list">
+        @foreach($clusters as $cluster)
+        <li><a href="{{route('clusters.show',$cluster->slug)}}">
+            {{$cluster->name}}
+            </a>
+        </li>
+        @endforeach
+      </ul>
+    </div>
   </div>
-  @endcan
 
-  <div class="row">
-    <ul id="cluster-list">
-      @foreach($clusters as $cluster)
-      <li> <a href="{{route('contents.show',$cluster->slug)}}">
-          {{$cluster->name}}
-        </a>
-      </li>
-      @endforeach
-    </ul>
-  </div>
 
-</div>
-
-@isset($content)
-<!-- Showing the posts in a cluster -->
+@isset($selectedCluster)
+{{-- Showing the posts in a cluster --}}
 <div class="col">
-  @include('posts.list')
+  @include('posts.index')
 </div>
 @endisset
+
+</div>
 
 @endsection
 
 @section('modals')
 @include('clusters._create_edit')
-@include('posts._create')
 
-@isset($content)
-@include('clusters._destroy_confirm')
+@isset($selectedCluster)
+  @include('clusters._destroy_confirm')
 @endisset
 @endsection

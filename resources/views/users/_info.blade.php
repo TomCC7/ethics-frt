@@ -10,7 +10,10 @@
   <td>{{$user->last_name}}</td>
   <td>{{$user->student_id}}</td>
 
-  <td><a href="{{route('users.show',$user->id)}}"><button>
+  <td><a href="{{ route('users.show',$user->id) }}"><button>
   Detail
+  </button></a></td>
+  <td><a href="{{ route('users.edit',$user->id) }}"><button>
+  Edit
   </button></a></td>
 </tr>

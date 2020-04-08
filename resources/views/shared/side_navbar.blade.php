@@ -31,6 +31,9 @@
           <strong>{{ Auth::user()->name }}</strong></li>
       </a>
       <ul class="dropdown-menu dropdown-menu-left">
+        <a class="side-navbar-link" href="{{ route('users.edit', Auth::user()) }}">
+          <li class="side-navbar-item">Edit profile</li>
+        </a>
         <a class="side-navbar-link" href="{{ route('logout') }}" onclick="event.preventDefault();
           document.getElementById('logout-form').submit();">
           <li class="side-navbar-item">Logout</li>

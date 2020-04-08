@@ -21,6 +21,9 @@ class PostsController extends Controller
 
     public function show(Request $request, Cluster $cluster, Post $post)
     {
+        if ($request->post_slug !== $post->slug) {
+            return redirect($post->link(), 301);
+        }
         // get the record of the user of this post
         $answer_record = $post->userRecord(Auth::id())->first();
         // find the post which belongs to the cluster
@@ -40,7 +43,8 @@ class PostsController extends Controller
         if ($post) {
             return view('posts.show', compact('post', 'answer_record'));
         } else {
-            App::abort(404);
+            //App::abort(404);
+            return $request;
         }
     }
 
@@ -64,8 +68,8 @@ class PostsController extends Controller
         $post->cluster_id = $request->cluster_id;
         $post->save();
         return redirect()->route('posts.show', [
-            'cluster' => $post->cluster->slug,
-            'post' => $post->slug,
+            'cluster' => $post->cluster->id,
+            'post' => $post->id,
         ])
             ->with('success', 'Post created successfully!');
     }
