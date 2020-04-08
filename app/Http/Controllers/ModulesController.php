@@ -21,11 +21,7 @@ class ModulesController extends Controller
         $module = Module::Make([
             'type' => $request->type,
             'content' => $content,
-<<<<<<< HEAD
             'optional' => $request->optional or false,
-=======
-            'optional' => $request->optional ? $request->optional : false,
->>>>>>> 1de98fac6db986d03eee3fd3324dabd2180274ef
         ]);
         $module->post_id = $request->post_id;
         $module->save();
