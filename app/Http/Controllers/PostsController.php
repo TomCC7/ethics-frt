@@ -23,6 +23,14 @@ class PostsController extends Controller
     {
         // get the record of the user of this post
         $answer_record = $post->userRecord(Auth::id())->first();
+        // get the answers of the user
+        $answers=[];
+        if ($answer_record)
+        {
+            foreach ($answer_record->answers as $answer) {
+                $answers[$answer->module_id]=$answer->getContent();
+            }
+        }
         // avoid cluster/post mismatch
         $post = $cluster->posts()->where('id', $post->id)->first();
 
@@ -38,7 +46,7 @@ class PostsController extends Controller
         }
         // check if the post exists
         if ($post) {
-            return view('posts.show', compact('post', 'answer_record'));
+            return view('posts.show', compact('post', 'answer_record','answers'));
         } else {
             App::abort(404);
         }

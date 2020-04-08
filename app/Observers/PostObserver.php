@@ -16,7 +16,7 @@ class PostObserver
      */
     public function saving(Post $post)
     {
-        $post->slug = NametoSlug($post->title).$post->id;
+        $post->slug = NametoSlug($post->title);
     }
 
     /**

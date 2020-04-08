@@ -13,7 +13,7 @@
 <div class="form-group">
   <label class="checkbox">
     <input type="checkbox" id="module-{{$module->id}}-{{$loop->iteration}}" name="answers[{{$module->id}}][]"
-      value="{{$option}}">
+      value="{{$option}}" {{is_checked($option,isset($answers[$module->id])?$answers[$module->id]:'')}}>
     {{$option}}
   </label>
 </div>
@@ -23,7 +23,8 @@
 @foreach ($module->getContent()->options as $option)
 <div class="form-group" id="module-{{$module->id}}">
   <label class="radio-inline">
-    <input type="radio" name="answers[{{$module->id}}]" value="{{$option}}">
+    <input type="radio" name="answers[{{$module->id}}]" value="{{$option}}"
+      {{is_checked($option,isset($answers[$module->id])?$answers[$module->id]:'')}}>
     {{$option}}
   </label>
 </div>
@@ -34,7 +35,8 @@
   <select class="form-control" name="answers[{{$module->id}}]">
     <option value="" disabled hidden selected>Please choose an option</option>
     @foreach ($module->getContent()->options as $option)
-    <option value="{{$option}}">{{$option}}</option>
+    <option value="{{$option}}" {{is_selected($option,isset($answers[$module->id])?$answers[$module->id]:'')}}>
+      {{$option}}</option>
     @endforeach
   </select>
   </label>
@@ -43,7 +45,7 @@
 @case('datalist')
 <div class="form-group" id="module-{{$module->id}}">
   <input class="form-control" name="answers[{{$module->id}}]" type="text" list="data-{{$module->id}}"
-    placeholder="Prompts given, you can also give your own answer">
+    placeholder="Prompts given, you can also give your own answer" value="{{$answers[$module->id]?? ''}}">
   <datalist id="data-{{$module->id}}">
     @foreach ($module->getContent()->options as $option)
     <option value="{{$option}}">{{$option}}</option>

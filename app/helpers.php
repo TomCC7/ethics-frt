@@ -11,7 +11,7 @@
  */
 function NametoSlug($name)
 {
-    return str_replace(' ', '-', $name)."-".time(); // add time to guarantee uniqueness
+    return str_replace(' ', '-', $name) . "-" . time(); // add time to guarantee uniqueness
 }
 
 /**
@@ -27,9 +27,22 @@ function array_intval($array)
 
 /**
  * determine if the option is selected
- * @return bool
+ * @return string
  */
-function is_selected($var1,$var2)
+function is_selected($var1, $var2)
 {
-    return $var1===$var2?'selected':'';
+    return $var1 === $var2 ? 'selected' : '';
+}
+
+/**
+ * determine if the option is selected
+ * @return string
+ */
+function is_checked($var1, $var2)
+{
+    if (is_array($var2)) {
+        return in_array($var1, $var2) ? 'checked' : '';
+    } else {
+        return $var1 === $var2 ? 'checked' : '';
+    }
 }

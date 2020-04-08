@@ -14,7 +14,7 @@ class AddOptionalToModules extends Migration
     public function up()
     {
         Schema::table('modules', function (Blueprint $table) {
-            $table->boolean('optional')->default(false);
+            $table->boolean('optional')->default(0);
         });
     }
 

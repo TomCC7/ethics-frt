@@ -32,10 +32,16 @@ class Answer extends Model
         return json_decode($this->content);
     }
 
-    public function handleContent(Request $request)
+    /**
+     * return a scope of given module_id
+     * @param $module_id
+     *
+     */
+    public function scopeOfModule($query,$module_id)
     {
-        
+        return $query->where('module_id',$module_id);
     }
+
     // public function scopeOfChoice($query,$index)
     // {
     //     return $query->where('')
