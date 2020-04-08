@@ -93,7 +93,7 @@ class PostsController extends Controller
         // delete the post itself
         $post->delete();
 
-        return redirect()->route(clusters.show, [
+        return redirect()->route('clusters.show', [
             'cluster' => $post->cluster->slug,
         ])
             ->with('success', 'Post '.$post->name.' is deleted!');

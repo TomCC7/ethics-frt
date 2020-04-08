@@ -24,7 +24,7 @@ $factory->define(App\Content\Module::class, function (Faker $faker) {
                 'type' => 'filling',
                 'content' => json_encode([
                     'question' => $faker->sentence(),
-                    'short' => $faker->boolean
+                    'short' => $faker->randomElement(['short','long']),
                 ]),
             ];
             break;

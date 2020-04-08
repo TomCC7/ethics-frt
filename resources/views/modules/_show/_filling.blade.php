@@ -5,7 +5,7 @@
 <br>
 
 <div class="col-md-6 form-group">
-  @if ($module->getContent()->short)
+  @if ($module->getContent()->subtype==='short')
   <input type="text" class="form-control" id="module-{{$module->id}}" name="answers[{{$module->id}}]"
     placeholder="Answer here" value="{{$answers[$module->id]?? ''}}">
   @else

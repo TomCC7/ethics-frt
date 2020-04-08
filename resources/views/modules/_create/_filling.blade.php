@@ -19,9 +19,9 @@
     </div>
 
     <div class="form-group">
-      <input type="hidden" name="short" id="short" value="0">
+      <input type="hidden" name="subtype" id="subtype" value="long">
       <label class="checkbox">
-        <input type="checkbox" name="short" value="1">
+        <input type="checkbox" name="subtype" value="short">
         Is this question a short one?
       </label>
     </div>

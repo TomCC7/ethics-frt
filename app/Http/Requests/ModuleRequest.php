@@ -22,13 +22,14 @@ class ModuleRequest extends FormRequest
             case 'filling':
                 return [
                     'question' => 'required|min:3|max:250',
-                    'short'    => 'required|boolean'
+                    'subtype'    => 'required|string',
                 ];
                 break;
             case 'choice':
                 return [
                     'question' => 'required|min:3|max:250',
                     'options'  => 'max:10000',
+                    'subtype'    => 'required|string',
                 ];
             default:
                 return [];

@@ -24,7 +24,7 @@ class Module extends Model
     protected static $attribute = [
         'text' => ['body'],
         'choice' => ['subtype', 'question', 'options', 'choice_num'],
-        'filling' => ['question', 'short'],
+        'filling' => ['question', 'subtype'],
     ];
 
     /**
@@ -109,9 +109,6 @@ class Module extends Model
         $content = $request->only(self::$attribute[$request->type]); // can't call $this because there's no instance for static method
         // do some convertion
         switch ($request->type) {
-            case 'filling':
-                $content['short'] = boolval($content['short']);
-                break;
             case 'choice':
                 $content['options'] = explode("\r\n", $content['options']);
             default:
