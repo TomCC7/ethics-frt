@@ -23,7 +23,7 @@ class PostsController extends Controller
     {
         // get the record of the user of this post
         $answer_record = $post->userRecord(Auth::id())->first();
-        // find the post which belongs to the cluster
+        // avoid cluster/post mismatch
         $post = $cluster->posts()->where('id', $post->id)->first();
 
         // check if there's unanswered prerequisite(when not admin)
