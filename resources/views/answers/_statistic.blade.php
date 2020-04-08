@@ -2,15 +2,16 @@
   <thead>
     <tr>
       <td>Contents</td>
+      <td>Counts</td>
     </tr>
   </thead>
   <tbody>
 @switch($module->type)
   @case('choice')
-    @foreach ($module->getContent()->choices as $choice)
+    @foreach ($module->getContent()->options as $option)
     <tr>
       <td>
-        {{$choice}}
+        {{$option}}
       </td>
     </tr>
     @endforeach

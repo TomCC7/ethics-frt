@@ -11,7 +11,7 @@ Post: <small>{{$post->title}}</small>
 @section('content')
 <div id="content">
   @cannot('admin')
-  <form method="POST" action="{{route('answers.store',$post->id)}}">
+  <form method="POST" action="{{route('answers.store',$post->slug)}}">
     @csrf
     @method('PUT')
     @endcannot

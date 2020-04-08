@@ -15,7 +15,7 @@
             {{$post->title}}
           </a> </td>
         <td>
-          <form method="POST" action="{{route('posts.destroy',$post->id)}}">
+          <form method="POST" action="{{route('posts.destroy',$post->slug)}}">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-danger">Delete</button>

@@ -14,10 +14,10 @@ class AddSlugColumnToModels extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->string('slug');
+            $table->string('slug')->unique();
         });
         Schema::table('clusters', function (Blueprint $table) {
-            $table->string('slug');
+            $table->string('slug')->unique();
         });
     }
 
