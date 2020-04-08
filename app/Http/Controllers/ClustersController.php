@@ -24,10 +24,11 @@ class ClustersController extends Controller
      * show all posts of a cluster
      * @return view
      */
-    public function show(Request $request, Cluster $content)
+    public function show(Request $request, Cluster $cluster)
     {
         $clusters = Cluster::all();
-        return view('clusters.index', compact('clusters', 'content'));
+        $selectedCluster = $cluster;
+        return view('clusters.index', compact('clusters', 'selectedCluster'));
         //Browse posts in a subview of the cluster list
     }
 

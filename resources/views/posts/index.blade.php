@@ -9,9 +9,9 @@
 <div id="post-list">
   <table class="table table-hover" id="post-list">
     <tbody>
-      @foreach($content->posts as $post)
+      @foreach($selectedCluster->posts as $post)
       <tr>
-        <td class="post-list-item"> <a href="{{route('posts.show',['cluster'=>$content->slug,'post'=>$post->id])}}">
+        <td class="post-list-item"> <a href="{{route('posts.show',['cluster'=>$selectedCluster->slug,'post'=>$post->slug])}}">
             {{$post->title}}
           </a> </td>
         <td>
@@ -26,3 +26,5 @@
     </tbody>
   </table>
 </div>
+
+@include('posts._create')

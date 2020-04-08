@@ -22,6 +22,7 @@ class PostsTableSeeder extends Seeder
             use ($cluster_ids, $faker) {
                 $post->cluster_id = $faker->randomElement($cluster_ids);
             });
+
         Post::insert($posts->toArray());
     }
 }

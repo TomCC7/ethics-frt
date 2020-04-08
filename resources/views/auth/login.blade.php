@@ -4,9 +4,6 @@
 
 @section('content')
 
-@include('auth.register')
-@include('auth.passwords.reset')
-
   <div id="site-description" class="col loginpage-wrapper">
     <div style="margin-left: 1em; margin-right: 1em">
       @include ('pages/description')
@@ -79,3 +76,9 @@
     </div>
   </div>
 @endsection
+
+@section('modals')
+  @include('auth.register')
+  @include('auth.passwords.reset')
+@endsection
+
