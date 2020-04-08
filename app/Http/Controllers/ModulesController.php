@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Content\Post;
 use App\Content\Module;
 use App\Http\Requests\ModuleRequest;
+use Illuminate\Http\Request;
+use App\Handlers\ImageUploadHandler;
+use Illuminate\Support\Facades\Auth;
+use League\Csv\Reader;
 
 class ModulesController extends Controller
 {
@@ -69,5 +72,28 @@ class ModulesController extends Controller
         // delete the module itself
         $module->delete();
         return back()->with('success', 'You have deleted this module!');
+    }
+
+    /** handle the image upload in the text module */
+    public function uploadImage(Request $request, ImageUploadHandler $uploader)
+    {
+        // initialize the data with false value
+        $data = [
+            'success'   => false,
+            'msg'       => 'upload failed!!',
+            'file_path' => ''
+        ];
+        // determine whether there's files uploaded
+        if ($file = $request->upload_file) {
+            // save the file
+            $result = $uploader->save($file, 'posts', Auth::id());
+            // if success
+            if ($result) {
+                $data['file_path'] = $result['path'];
+                $data['msg']       = "uploaded!";
+                $data['success']   = true;
+            }
+        }
+        return $data;
     }
 }

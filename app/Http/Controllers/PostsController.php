@@ -6,8 +6,6 @@ use App\Collected\AnswerRecord;
 use Illuminate\Http\Request;
 use App\Content\Cluster;
 use App\Content\Post;
-use App\Handlers\MarkdownHandler;
-use App\Handlers\ImageUploadHandler;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\App;
@@ -97,27 +95,5 @@ class PostsController extends Controller
             'cluster' => $post->cluster->slug,
         ])
             ->with('success', 'Post '.$post->name.' is deleted!');
-    }
-
-    public function uploadImage(Request $request, ImageUploadHandler $uploader)
-    {
-        // initialize the data with false value
-        $data = [
-            'success'   => false,
-            'msg'       => 'upload failed!!',
-            'file_path' => ''
-        ];
-        // determine whether there's files uploaded
-        if ($file = $request->upload_file) {
-            // save the file
-            $result = $uploader->save($file, 'posts', Auth::id());
-            // if success
-            if ($result) {
-                $data['file_path'] = $result['path'];
-                $data['msg']       = "uploaded!";
-                $data['success']   = true;
-            }
-        }
-        return $data;
     }
 }

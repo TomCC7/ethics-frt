@@ -4,6 +4,7 @@ namespace App\Content;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use League\Csv\Reader;
 
 class Module extends Model
 {
@@ -32,7 +33,7 @@ class Module extends Model
      * @var array
      */
     protected static $subtypes = [
-        'choice' => ['single', 'multiple', 'select','datalist'],
+        'choice' => ['single', 'multiple', 'select', 'datalist'],
     ];
 
     /**
@@ -100,24 +101,6 @@ class Module extends Model
     }
 
     /**
-     * access and return the content from the request
-     * @param Request $request
-     * @return array
-     */
-    public static function handleContent($request)
-    {
-        $content = $request->only(self::$attribute[$request->type]); // can't call $this because there's no instance for static method
-        // do some convertion
-        switch ($request->type) {
-            case 'choice':
-                $content['options'] = explode("\r\n", $content['options']);
-            default:
-                break;
-        }
-        return json_encode($content);
-    }
-
-    /**
      * return a scope where modules are questions
      * @return Facade\Ignition\QueryRecorder\Query
      */
@@ -133,5 +116,45 @@ class Module extends Model
     public function scopeOfType($query, $type)
     {
         return $query->where('type', $type);
+    }
+
+    /**
+     * access and return the content from the request
+     * @static
+     * @param Request $request
+     * @return array
+     */
+    public static function handleContent($request)
+    {
+        $content = $request->only(self::$attribute[$request->type]); // can't call $this because there's no instance for static method
+        // do some convertion
+        switch ($request->type) {
+            case 'choice':
+                // check if the options is a file
+                if (is_object($request->options)) {
+                    $content['options'] = self::handleCsvUpload($request->options);
+                } else {
+                    $content['options'] = explode("\r\n", $content['options']);
+                }
+            default:
+                break;
+        }
+        return json_encode($content);
+    }
+
+    /**
+     * convert the csv file uploaded to array
+     * @static
+     * @param $path
+     * @return array
+     */
+    protected static function handleCsvUpload($path)
+    {
+        $options = [];
+        $file = Reader::createFromPath($path);
+        foreach ($file->fetchColumn(0) as $val) {
+            $options[] = $val;
+        }
+        return $options;
     }
 }

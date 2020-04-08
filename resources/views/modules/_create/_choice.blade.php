@@ -2,7 +2,7 @@
 {{-- Included by "posts.show" --}}
 
 <div class="card d-none" id="form-create-choice">
-  <form method="POST" action="{{route('modules.store')}}">
+  <form method="POST" action="{{route('modules.store')}}" enctype="multipart/form-data">
     @csrf
     {{-- Post id and type --}}
     <input type="hidden" name="post_id" value="{{$post->id}}">
@@ -42,6 +42,12 @@
       <textarea class="form-control" name="options" id="options" rows="5"
         placeholder="{{"e.g.\r\noption1\r\noption2\r\n..."}}">
 </textarea>
+    </div>
+
+    {{-- file upload --}}
+    <div class="form-group">
+      <label for="file-upload">Load options from a file</label>
+      <input type="file" name="options" id="file-upload" class="form-control-file" title="only the first column will be detected">
     </div>
 
     {{-- submit button --}}
