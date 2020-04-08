@@ -7,7 +7,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{route('posts.update',$post->id)}}" method="POST">
+      <form action="{{route('posts.update',$post->slug)}}" method="POST">
         @csrf
         @method('PATCH')
         <div class="modal-body">

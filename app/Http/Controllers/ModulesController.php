@@ -21,14 +21,13 @@ class ModulesController extends Controller
         $module = Module::Make([
             'type' => $request->type,
             'content' => $content,
-            'optional' => $request->optional,
+            'optional' => $request->optional or false,
         ]);
         $module->post_id = $request->post_id;
         $module->save();
         return redirect()->route('posts.show', [
-            'cluster' => $post->cluster_id,
-            'post' => $post->id,
-            'post_slug' => $post->slug,
+            'cluster' => $post->cluster->slug,
+            'post' => $post->slug,
         ])
             ->with('success', 'Module created successfully!');
     }
@@ -45,9 +44,8 @@ class ModulesController extends Controller
         $module->update($request->toArray());
         $module->update(['content' => $content]);
         return redirect()->route('posts.show', [
-            'cluster' => $post->cluster_id,
-            'post' => $post->id,
-            'post_slug' => $post->slug,
+            'cluster' => $post->cluster->slug,
+            'post' => $post->slug,
         ])
             ->with('success', 'Module Updated successfully!');
     }
@@ -70,6 +68,6 @@ class ModulesController extends Controller
     {
         // delete the module itself
         $module->delete();
-        return back()->with('success', 'You have already deleted this module!');
+        return back()->with('success', 'You have deleted this module!');
     }
 }

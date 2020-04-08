@@ -24,7 +24,7 @@ Route::resource('/contents', 'ClustersController', ['only' => ['index', 'store',
 Route::get('/contents/{cluster}', 'ClustersController@show')->name('clusters.show');
 
 // PostsController
-Route::resource('posts', 'PostsController', ['only' => ['index', 'edit', 'update', 'create', 'destroy', 'store']]);
+Route::resource('/posts', 'PostsController', ['only' => ['index', 'edit', 'update', 'create', 'destroy', 'store']]);
 Route::post('/posts/upload_image', 'PostsController@uploadImage')->name('posts.upload_image');
 Route::get('/contents/{cluster}/{post}', 'PostsController@show')->name('posts.show');
 

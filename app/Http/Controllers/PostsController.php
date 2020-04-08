@@ -67,13 +67,17 @@ class PostsController extends Controller
             'cluster' => $post->cluster->slug,
             'post' => $post->slug,
         ])
-            ->with('success', 'Post created successfully!');
+            ->with('success', 'Post'.$post->name.' created successfully!');
     }
 
     public function update(PostRequest $request, Post $post)
     {
         $post->update($request->toArray());
-        return back()->with('success', 'Post updated successfully!');
+        return redirect()->route('posts.show', [
+            'cluster' => $post->cluster->slug,
+            'post' => $post->slug,
+        ])
+            ->with('success', 'Post '.$post->name.' is updated successfully!');
     }
 
     public function destroy(Post $post)
@@ -81,7 +85,10 @@ class PostsController extends Controller
         // delete the post itself
         $post->delete();
 
-        return back()->with('success', 'post has been deleted!');
+        return redirect()->route(clusters.show, [
+            'cluster' => $post->cluster->slug,
+        ])
+            ->with('success', 'Post '.$post->name.' is deleted!');
     }
 
     public function uploadImage(Request $request, ImageUploadHandler $uploader)
