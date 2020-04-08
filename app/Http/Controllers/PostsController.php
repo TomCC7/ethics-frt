@@ -31,7 +31,7 @@ class PostsController extends Controller
                 $answers[$answer->module_id]=$answer->getContent();
             }
         }
-        // find the post which belongs to the cluster
+        // avoid cluster/post mismatch
         $post = $cluster->posts()->where('id', $post->id)->first();
 
         // check if there's unanswered prerequisite(when not admin)
