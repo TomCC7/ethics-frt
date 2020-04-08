@@ -18,13 +18,13 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($module->answers()->with('user')->get() as $answer)
+            @foreach ($module->answers as $answer)
             <tr>
               <td>
-                {{$answer->user->student_id}}
+                {{$answer->answerRecord->user->student_id}}
               </td>
               <td>
-                {{$answer->content}}
+                {{$answer->getContent()}}
               </td>
             </tr>
             @endforeach

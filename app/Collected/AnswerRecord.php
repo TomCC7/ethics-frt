@@ -38,18 +38,23 @@ class AnswerRecord extends Model
      * The relationship with answer
      * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function answers($id=null)
+    public function answers($id = null)
     {
-        if ($id===null)
-        {
+        if ($id === null) {
             return $this->hasMany('App\Collected\Answer');
-        }
-        else
-        {
-            return $this->hasMany('App\Collected\Answer')->where('id',$id)->first();
+        } else {
+            return $this->hasMany('App\Collected\Answer')->where('id', $id)->first();
         }
     }
 
+    /**
+     * The relationship with answerofmodule
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function answerOfModule($module_id)
+    {
+        return $this->answers()->where('module_id', $module_id)->first();
+    }
     /**
      * Find a unique record
      * @param int $user_id

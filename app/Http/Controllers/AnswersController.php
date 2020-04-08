@@ -50,8 +50,8 @@ class AnswersController extends Controller
             foreach ($answers as $module_id => $request_answer) {
                 // convert to int
                 $content = $this->handleAnswer($module_id, $request_answer);
-                if ($record->answers($module_id)) {
-                    $record->answers($module_id)->update(['content' => $content]);
+                if ($record->answerOfModule($module_id)) {
+                    $record->answerOfModule($module_id)->update(['content' => $content]);
                 } else {
                     $answer = Answer::Make(['content' => $content]);
                     $answer->module_id = intval($module_id);
@@ -86,7 +86,7 @@ class AnswersController extends Controller
      */
     public function show(Cluster $cluster, Post $post)
     {
-        $modules = $post->modules()->question()->with('post', 'answers')->get();
+        $modules = $post->modules()->question()->with('answers.answerRecord.user')->get();
         return view('answers.show', compact('post', 'modules'));
     }
 
