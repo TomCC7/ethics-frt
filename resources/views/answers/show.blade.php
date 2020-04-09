@@ -4,7 +4,17 @@ Result-{{$post->title}}
 @endsection
 
 @section('pageHeader')
-Result of <b><i>{{$post->title}}</i></b>
+<div class="float-left">
+  Result of <b><i>{{$post->title}}</i></b>
+</div>
+<div class="float-right">
+  <form action="{{route('answers.download')}}" method="POST" class="d-inline-block">
+    @csrf
+    <input type="hidden" name="type" value="post">
+    <input type="hidden" name="post_id" value="{{$post->id}}">
+    <button class="btn btn-success" type="submit">Download CSV</button>
+  </form>
+</div>
 @endsection
 
 @section('content')

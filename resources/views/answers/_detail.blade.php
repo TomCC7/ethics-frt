@@ -2,8 +2,18 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h3>Detail</h3>
-        <button data-dismiss="modal">X</button>
+        <div class="float-left">
+          <h3 class="d-inline-block">Detail</h3>
+          <form action="{{route('answers.download')}}" method="POST" class="d-inline-block">
+            @csrf
+            <input type="hidden" name="type" value="detail">
+            <input type="hidden" name="module_id" value="{{$module->id}}">
+            <button class="btn btn-outline-info" type="submit">Download CSV</button>
+          </form>
+        </div>
+        <button type="button" class="close float-right" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body">
         {{-- single or mult --}}
