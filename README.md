@@ -56,9 +56,12 @@ Refer to `Google` to set up your own MySQL server. Other database servers should
 
 Now you can visit `127.0.0.1:8000` to look at the website, homestead has mapped the website automatically here.
 
->Note: Admin account
->>user: rolson@example.org
->>password: 123456
+>Note: accounts
+>>admin: admin@site
+>>password: admin
+>>
+>>user: user@site
+>>password: user
 
 ### Develop Procedure Regarding Front-End
 
@@ -69,6 +72,11 @@ Now you can visit `127.0.0.1:8000` to look at the website, homestead has mapped 
 
 ### Frames used
 
-- `laravel/ui`
+- `laravel/ui` - support of the frontend(bootstrap)
 - `barryvdh/laravel-debugbar`- a debugger for laravel
 - `league/html-to-markdown` - convert html to markdown
+- `mews/captcha` - support of captcha
+- `league/csv` - support of csv file
+- `laravel/scout` - a search engine
+- `predis/predis` - phpredis
+- `algolia/algoliasearch-client-php` - a search engine

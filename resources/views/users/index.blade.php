@@ -30,8 +30,21 @@ Users
     </tbody>
   </table>
   {{-- paginate --}}
-  <div name='render_page'>
-    {!! $users->render() !!}
+  <div>
+    <div id='render_page' class="d-inline-block">
+      {!! $users->render() !!}
+    </div>
+    {{-- search bar --}}
+    <div id="search-bar" class="d-inline-block">
+      <form action="{{route('users.search')}}" method="GET">
+        <div class="form-inline">
+          <input type="text" class="form-control" name="index" placeholder="Search for users" required>
+          <button type="submit" class="btn btn-info">
+            Search
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 

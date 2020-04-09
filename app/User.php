@@ -5,10 +5,21 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, Searchable;
+
+    /**
+     * 获取索引名称
+     *
+     * @return string
+     */
+    public function searchableAs()
+    {
+        return 'users';
+    }
 
     /**
      * The attributes that are mass assignable.

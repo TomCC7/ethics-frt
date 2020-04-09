@@ -10,9 +10,14 @@ use App\Content\Module;
 use App\Collected\AnswerRecord;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AnswerRequest;
+use Illuminate\Auth\Access\Gate;
 
 class AnswersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Store or update the answers of the modules
      */

@@ -88,15 +88,15 @@ class AnswersDownloadController extends Controller
     protected function PostHandler($post_id)
     {
         $post = Post::Where('id', $post_id)->with(['modules'])->first();
-        $modules=$post->modules()->question()->get();
+        $modules = $post->modules()->question()->get();
         $csv = Writer::createFromFileObject(new SplTempFileObject);
         // header
         $header = ['student_id', 'submit time'];
         foreach ($modules as $index => $module) {
             if ($module->getContent()->subtype === 'multiple') {
-                for ($i = 0; $i < count($module->getContent()->options); $header[] = $index+1 . '.' . (++$i));
+                for ($i = 0; $i < count($module->getContent()->options); $header[] = $index + 1 . '.' . (++$i));
             } else {
-                $header[] = $index+1;
+                $header[] = $index + 1;
             }
         }
         $csv->insertOne($header);
