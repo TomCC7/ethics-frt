@@ -32,14 +32,15 @@ class PostsController extends Controller
         // avoid cluster/post mismatch
         $post = $cluster->posts()->where('id', $post->id)->first();
 
-        // check if there's unanswered prerequisite(when not admin)
+        // check if there's unfinished prerequisite, admins are not affected
         if (!Auth::user()->is_admin && isset($post->prerequisite)) {
             $preq = Post::Find($post->prerequisite);
             $preq_answer = AnswerRecord::FindUnique(Auth::id(), $preq->id)->first();
             // check if the answer exists
             if (!$preq_answer) {
-                return redirect()->route('posts.show', ['cluster' => $preq->cluster->slug, 'post' => $preq->id])
-                    ->with('info', 'You have unfinished prerequisite(s), redirected here');
+                return redirect()
+                    ->route('posts.show', ['cluster' => $preq->cluster->slug, 'post' => $preq->slug])
+                    ->with('warning', 'Before viewing that post, please finish this first.');
             }
         }
         // check if the post exists

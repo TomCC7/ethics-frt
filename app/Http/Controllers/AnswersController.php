@@ -62,12 +62,16 @@ class AnswersController extends Controller
         }
 
         // flash the message to the user
-        session()->flash('success', $post->message ? $post->message : 'You\'ve submitted your answer!');
-        // redirect to the redirect set by user or back
+        session()->flash('info', $post->message);
+        // redirect to the next post or send the user back
         if ($post->redirect) {
-            return redirect($post->redirect);
+            return redirect()
+                ->route('posts.show', [
+                    "cluster" => Cluster::find($post->cluster_id)->slug,
+                    "post" => Post::find($post->redirect)->slug] )
+                    ->with('success', 'Answers submitted.');
         } else {
-            return back();
+            return back()->with('success', 'Answers submitted.');
         }
     }
 
