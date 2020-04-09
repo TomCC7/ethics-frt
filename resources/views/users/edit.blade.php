@@ -15,7 +15,7 @@
 
         <div class="card-body">
 
-          <form method="POST" action="{{ route('users.update',$user->id) }}">
+          <form method="POST" action="{{ route('users.update', ["user" => $user->id, "self_editing" => $self_editing] ) }}">
 
             @csrf
             @method('PATCH')
