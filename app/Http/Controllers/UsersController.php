@@ -27,17 +27,20 @@ class UsersController extends Controller
         return view('users.index', compact('users'));
     }
 
-    public function edit(User $user)
+    public function edit(Request $request, User $user)
     {
         if (Auth::user()->is_admin !== 1) { // admins can edit any user
             $this->authorize('update', $user);
         }
-        return view('users.edit', compact('user'));
+        $self_editing = $request->self_editing;
+        return view('users.edit', compact('user', 'self_editing'));
     }
 
-    public function update(User $user, Request $request)
+    public function update(Request $request, User $user)
     {
-        //$this->authorize('update', $user);
+        if (Auth::user()->is_admin !== 1) { // admins can edit any user
+            $this->authorize('update', $user);
+        }
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
             'first_name' => ['required', 'string', 'max:255'],
@@ -53,6 +56,11 @@ class UsersController extends Controller
             'section_number' => $data['section_number'],
             'semester' => $data['semester'],
         ]);
-        return redirect()->route('frontpage')->with('success', 'Profile saved successfully!');
+        $self_editing = $request->self_editing;
+        if ($self_editing) {
+            return redirect()->route('frontpage')->with('success', 'Profile saved successfully!');
+        } else {
+            return redirect()->route('users.index')->with('success', 'Profile saved successfully!');
+        }
     }
 }

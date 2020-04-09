@@ -4,7 +4,7 @@
     <p> <strong> {{config('app.name')}} </strong> </p>
   </div>
 
-  <ul id="side-navbar-menu" class="menu">
+  <ul class="side-navbar-menu">
 
     @auth
     <a class="side-navbar-link" href="/">
@@ -19,27 +19,35 @@
     <a class="side-navbar-link" href="{{route('users.index')}}">
       <li class="side-navbar-item">Users</li>
     </a>
-    <a class="side-navbar-link" href="{{route('answers.index')}}">
-      <li class="side-navbar-item">Answers</li>
+    <a class="side-navbar-link" role="button" data-toggle="collapse"
+      href="#answer-sorting" aria-expanded="false" aria-controls="answer-sorting">
+      <li class="side-navbar-item dropdown-toggle">Answers</li>
     </a>
+    <ul class="collapse side-navbar-menu side-navbar-submenu" id="answer-sorting">
+      <a class="side-navbar-link" href="{{route('answers.index')}}">
+        <li class="side-navbar-item">By Post</li>
+      </a>
+      <a class="side-navbar-link" href="{{route('answers.index')}}">
+        <li class="side-navbar-item">By User</li>
+      </a>
+    </ul>
     @endcan
 
     @auth
-    <div class="dropdown">
-      <a class="side-navbar-link dropdown" role="button" data-toggle="dropdown" href="#">
-        <li class="side-navbar-item dropdown-toggle">Hello,
-          <strong>{{ Auth::user()->name }}</strong></li>
+    <a class="side-navbar-link" role="button" data-toggle="collapse"
+      href="#user-actions" aria-expanded="false" aria-controls="user-actions">
+      <li class="side-navbar-item dropdown-toggle">Hello,
+        <strong>{{ Auth::user()->name }}</strong></li>
+    </a>
+    <ul class="collapse side-navbar-menu side-navbar-submenu" id="user-actions">
+      <a class="side-navbar-link" href="{{ route('users.edit', ["user" => Auth::user(), "self_editing" => true]) }}">
+        <li class="side-navbar-item">Edit profile</li>
       </a>
-      <ul class="dropdown-menu dropdown-menu-left">
-        <a class="side-navbar-link" href="{{ route('users.edit', Auth::user()) }}">
-          <li class="side-navbar-item">Edit profile</li>
-        </a>
-        <a class="side-navbar-link" href="{{ route('logout') }}" onclick="event.preventDefault();
-          document.getElementById('logout-form').submit();">
-          <li class="side-navbar-item">Logout</li>
-        </a>
-      </ul>
-    </div>
+      <a class="side-navbar-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+        document.getElementById('logout-form').submit();">
+        <li class="side-navbar-item">Logout</li>
+      </a>
+    </ul>
 
     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf
     </form>

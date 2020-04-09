@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 // UsersController
-Route::resource('users', 'UsersController', ['only' => ['show', 'edit', 'update', 'index', 'destroy']]);
+Route::resource('/users', 'UsersController', ['only' => ['show', 'edit', 'update', 'index', 'destroy']]);
 
 // ClustersController
 Route::resource('/contents', 'ClustersController', ['only' => ['index', 'store', 'update', 'destroy']]);

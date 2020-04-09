@@ -48,18 +48,17 @@
   text-align: center;
 }
 
-#side-navbar-menu {
+.side-navbar-menu {
   list-style-type: none;
   padding: 0;
 }
 
 .side-navbar-item {
   background: #313131;
-  margin: 8px;
   padding: 4%;
 }
 
-#side-navbar .dropdown-menu {
+#side-navbar #collapse {
   background-clip: content-box;
   background: transparent;
   border: none;
@@ -67,12 +66,12 @@
   width: 100%;
 }
 
-#side-navbar .dropdown-menu .side-navbar-item {
+#side-navbar .side-navbar-submenu {
   margin-left: 12%;
 }
 
 .side-navbar-link {
-  margin: 6px 0;
+  margin: 0 6px 8px;
   display: block;
   color: white;
 }
