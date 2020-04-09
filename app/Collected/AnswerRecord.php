@@ -40,11 +40,7 @@ class AnswerRecord extends Model
      */
     public function answers($id = null)
     {
-        if ($id === null) {
-            return $this->hasMany('App\Collected\Answer');
-        } else {
-            return $this->hasMany('App\Collected\Answer')->where('id', $id)->first();
-        }
+        return $this->hasMany('App\Collected\Answer');
     }
 
     /**

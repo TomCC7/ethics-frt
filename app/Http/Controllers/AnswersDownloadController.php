@@ -88,10 +88,11 @@ class AnswersDownloadController extends Controller
     protected function PostHandler($post_id)
     {
         $post = Post::Where('id', $post_id)->with(['modules'])->first();
+        $modules=$post->modules()->question()->get();
         $csv = Writer::createFromFileObject(new SplTempFileObject);
         // header
         $header = ['student_id', 'submit time'];
-        foreach ($post->modules as $index => $module) {
+        foreach ($modules as $index => $module) {
             if ($module->getContent()->subtype === 'multiple') {
                 for ($i = 0; $i < count($module->getContent()->options); $header[] = $index+1 . '.' . (++$i));
             } else {
@@ -102,9 +103,9 @@ class AnswersDownloadController extends Controller
         // records
         foreach ($post->answerRecords()->orderby('updated_at', 'desc')->with('user')->get() as $index => $answerRecord) {
             $record = [$answerRecord->user->student_id, $answerRecord->updated_at];
-            foreach ($post->modules as $index => $module) {
+            foreach ($modules as $index => $module) {
                 // get the answer of the module
-                $answer = $answerRecord->answerOfModule($module->id)->first();
+                $answer = $answerRecord->answerOfModule($module->id);
                 if ($answer) {
                     if ($module->getContent()->subtype === 'multiple') {
                         foreach ($module->getContent()->options as $option) {

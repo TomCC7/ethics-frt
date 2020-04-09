@@ -34,6 +34,7 @@ class Module extends Model
      */
     protected static $subtypes = [
         'choice' => ['single', 'multiple', 'select', 'datalist'],
+        'filling' => ['short','long'],
     ];
 
     /**

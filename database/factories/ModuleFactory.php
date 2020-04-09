@@ -3,8 +3,10 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use Faker\Generator as Faker;
+use App\Content\Module;
 
 $factory->define(App\Content\Module::class, function (Faker $faker) {
+    $module=app(Module::class);
     $types = App\Content\Module::getType();
     switch ($faker->randomElement($types)) {
         case 'text':
@@ -24,7 +26,7 @@ $factory->define(App\Content\Module::class, function (Faker $faker) {
                 'type' => 'filling',
                 'content' => json_encode([
                     'question' => $faker->sentence(),
-                    'short' => $faker->randomElement(['short','long']),
+                    'subtype' => $faker->randomElement($module->Subtypes('filling')),
                 ]),
             ];
             break;
@@ -43,19 +45,6 @@ function choiceContent(Faker $faker)
         'question' => $faker->sentence,
         'options' => $choices,
         'subtype' => $faker->randomElement($subtypes),
-    ];
-    return json_encode($content);
-}
-
-function selectContent(Faker $faker)
-{
-    $options = [];
-    for ($i = 0; $i < $faker->numberBetween(2, 10); $i++) {
-        array_push($options, $faker->word);
-    }
-    $content = [
-        'question' => $faker->sentence,
-        'options' => $options,
     ];
     return json_encode($content);
 }

@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             ClustersTableSeeder::class,
             PostsTableSeeder::class,
             ModulesTableSeeder::class,
+            AnswersTableSeeder::class,
         ]);
     }
 }
