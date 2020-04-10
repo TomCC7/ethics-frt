@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+// PagesController
+Route::get('/', 'PagesController@frontpage')->name('frontpage');
+
 // Auth
 Auth::routes();
 
@@ -29,9 +32,6 @@ Route::resource('/posts', 'PostsController', ['only' => ['index', 'edit', 'updat
 Route::post('/posts/upload_image', 'PostsController@uploadImage')->name('posts.upload_image');
 Route::get('/contents/{cluster}/{post}', 'PostsController@show')->name('posts.show');
 
-// PagesController
-Route::get('/', 'PagesController@frontpage')->name('frontpage');
-
 // AnswersController
 Route::resource('/answers', 'AnswersController', ['only' => ['index']]);
 Route::get('/answers/{cluster}/{post}', 'AnswersController@show')->name('answers.show');
@@ -40,3 +40,5 @@ Route::put('/answers/{post}', 'AnswersController@storeOrUpdate')->name('answers.
 Route::post('/answers/download','AnswersDownloadController@download')->name('answers.download');
 // ModulesController
 Route::resource('/modules', 'ModulesController', ['only' => ['store', 'edit', 'update', 'destroy']]);
+// SearchController
+Route::get('/searches/user','SearchesController@user')->name('users.search');

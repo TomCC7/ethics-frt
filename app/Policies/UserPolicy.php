@@ -26,7 +26,9 @@ class UserPolicy
         return $currentUser->id === $user->id;
     }
 
-    public function setAdmin(User $currentUser) {
-        return $currentUser->isSuperadmin();
+    public function destroy(User $currentUser, User $user)
+    {
+        // admin cannot delete itself
+        return ($currentUser->is_admin && $currentUser !== $user) || $currentUser === $user;
     }
 }

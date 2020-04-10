@@ -51,6 +51,7 @@ class AnswerRecord extends Model
     {
         return $this->answers()->where('module_id', $module_id)->first();
     }
+
     /**
      * Find a unique record
      * @param int $user_id
