@@ -37,9 +37,10 @@ User Detail
       <td><b>Last Name</b></td>
       <td>{{$user->last_name}}</td>
     </tr>
+    @if($basic_info)
     <tr>
       <td><b>User Type</b></td>
-      <td>{{$user->is_admin?'admin':$basic_info[0]->getContent()}}</td>
+      <td>{{$basic_info[0]->getContent()}}</td>
     </tr>
     <tr>
       <td><b>Age</b></td>
@@ -57,10 +58,12 @@ User Detail
       <td><b>Identification</b></td>
       <td>{{$basic_info[4]->getContent()}}</td>
     </tr>
+    @endif
   </tbody>
 </table>
 
 {{-- Engilish level Information --}}
+@if($language_info)
 <caption>
   <h1 class="text-center">Language Information</h1>
 </caption>
@@ -86,7 +89,9 @@ User Detail
     </tr>
   </tbody>
 </table>
+@endif
 {{-- Education --}}
+@if($education_info)
 <caption>
   <h1 class="text-center">Educational Background</h1>
 </caption>
@@ -122,7 +127,9 @@ User Detail
     </tr>
   </tbody>
 </table>
+@endif
 {{-- Belief --}}
+@if($belief_info)
 <caption>
   <h1 class="text-center">Religious Background</h1>
 </caption>
@@ -138,4 +145,5 @@ User Detail
     </tr>
   </tbody>
 </table>
+@endif
 @endsection
