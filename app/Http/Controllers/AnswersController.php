@@ -13,6 +13,11 @@ use App\Http\Requests\AnswerRequest;
 
 class AnswersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Store or update the answers of the modules
      */

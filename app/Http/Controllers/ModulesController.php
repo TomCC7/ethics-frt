@@ -12,6 +12,10 @@ use League\Csv\Reader;
 
 class ModulesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
      * Store a module

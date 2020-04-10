@@ -29,7 +29,7 @@ class UsersController extends Controller
 
     public function edit(Request $request, User $user)
     {
-        if (Auth::user()->is_admin !== 1) { // admins can edit any user
+        if (!Auth::user()->is_admin) { // admins can edit any user
             $this->authorize('update', $user);
         }
         $self_editing = $request->self_editing;
@@ -38,7 +38,7 @@ class UsersController extends Controller
 
     public function update(Request $request, User $user)
     {
-        if (Auth::user()->is_admin !== 1) { // admins can edit any user
+        if (!Auth::user()->is_admin) { // admins can edit any user
             $this->authorize('update', $user);
         }
         $this->validate($request, [
@@ -63,4 +63,11 @@ class UsersController extends Controller
             return redirect()->route('users.index')->with('success', 'Profile saved successfully!');
         }
     }
+
+    public function setAdmin(Request $request, User $user) {
+        //$this->authorize('setAdmin'); // check if the current user can do this
+        $user->update(['is_admin' => $request->is_admin]);
+        return redirect()->route('users.index')->with('success', 'Permission set successfully.');
+    }
+
 }

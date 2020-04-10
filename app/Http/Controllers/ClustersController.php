@@ -8,7 +8,13 @@ use Illuminate\Validation\Rule;
 
 class ClustersController extends Controller
 {
-    /**
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /*
      *
      * Show all clusters
      * @return view

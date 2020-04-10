@@ -21,8 +21,12 @@ class UserPolicy
         //
     }
 
-    public function update(User $currentUser,User $user)
+    public function update(User $currentUser, User $user)
     {
         return $currentUser->id === $user->id;
+    }
+
+    public function setAdmin(User $currentUser) {
+        return $currentUser->isSuperadmin();
     }
 }

@@ -66,12 +66,11 @@ class User extends Authenticatable
         return $this->answerRecords()->where('post_id', $post_id);
     }
 
-    /**
-     * return if the user has completed registration
-     * @return bool
-     */
-    public function isRegistered()
-    {
-        return null !== $this->postRecord(5)->first();
+    public function isAdmin() {
+        return $this->is_admin !== 0;
+    }
+
+    public function isSuperadmin() {
+        return $this->is_admin === 2;
     }
 }

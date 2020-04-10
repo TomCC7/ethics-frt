@@ -13,6 +13,11 @@ use App\Content\Post;
 
 class AnswersDownloadController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Convert the data to csv file and return a download file
      *
