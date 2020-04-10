@@ -10,6 +10,7 @@ use App\Content\Module;
 use App\Collected\AnswerRecord;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AnswerRequest;
+use App\User;
 use Illuminate\Auth\Access\Gate;
 
 class AnswersController extends Controller
@@ -84,10 +85,18 @@ class AnswersController extends Controller
      *
      * Show the answer list
      */
-    public function index()
+    public function index(Request $request)
     {
-        $clusters = Cluster::All();
-        return view('answers.index', compact('clusters'));
+        if ($request->by==='users')
+        {
+            $users=User::All();
+            return view('answers.index_users',compact('users'));
+        }
+        else
+        {
+            $clusters = Cluster::All();
+            return view('answers.index_posts', compact('clusters'));
+        }
     }
 
     /**

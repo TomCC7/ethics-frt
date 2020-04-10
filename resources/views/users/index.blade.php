@@ -47,5 +47,4 @@ Users
     </div>
   </div>
 </div>
-
 @endsection

@@ -84,7 +84,7 @@ class UsersController extends Controller
      */
     public function setAdmin(Request $request, User $user)
     {
-        //$this->authorize('setAdmin'); // check if the current user can do this
+        $this->authorize('setAdmin',User::class); // check if the current user can do this
         $user->update(['is_admin' => $request->is_admin]);
         return redirect()->route('users.index')->with('success', 'Permission set successfully.');
     }

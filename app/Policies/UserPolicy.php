@@ -31,4 +31,9 @@ class UserPolicy
         // admin cannot delete itself
         return ($currentUser->is_admin && $currentUser !== $user) || $currentUser === $user;
     }
+
+    public function setAdmin(User $currentUser)
+    {
+        return $currentUser->isSuperadmin();
+    }
 }
