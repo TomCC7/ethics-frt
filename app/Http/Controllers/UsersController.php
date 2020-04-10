@@ -69,19 +69,22 @@ class UsersController extends Controller
         }
     }
 
-<<<<<<< HEAD
+    /**
+     * set the admin
+     */
     public function setAdmin(Request $request, User $user) {
         //$this->authorize('setAdmin'); // check if the current user can do this
         $user->update(['is_admin' => $request->is_admin]);
         return redirect()->route('users.index')->with('success', 'Permission set successfully.');
     }
 
-=======
+    /**
+     * destroy the user
+     */
     public function destroy(User $user)
     {
         $this->authorize('destroy',$user);
         $user->delete();
         return redirect()->route('users.index')->with('success','You have deleted this user');
     }
->>>>>>> d8d330edb57ea143143804e17b149391fa6ee189
 }

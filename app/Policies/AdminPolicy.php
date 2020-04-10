@@ -21,6 +21,11 @@ class AdminPolicy
 
     public function admin(User $currentUser)
     {
-        return $currentUser->is_admin;
+        return $currentUser->is_admin==true;
+    }
+
+    public function superadmin(User $currentUser)
+    {
+        return $currentUser->is_admin===2;
     }
 }

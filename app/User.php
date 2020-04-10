@@ -67,14 +67,14 @@ class User extends Authenticatable
         return $this->answerRecords()->where('post_id', $post_id);
     }
 
-<<<<<<< HEAD
     public function isAdmin() {
         return $this->is_admin !== 0;
     }
 
     public function isSuperadmin() {
         return $this->is_admin === 2;
-=======
+    }
+
     /**
      * return if the user has completed registration
      * @return bool
@@ -91,6 +91,5 @@ class User extends Authenticatable
     public function scopeRegistered($query)
     {
         return $query->where('is_registered',true);
->>>>>>> d8d330edb57ea143143804e17b149391fa6ee189
     }
 }
