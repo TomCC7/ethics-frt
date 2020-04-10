@@ -18,21 +18,19 @@
           </div>
           {{-- Prerequisite --}}
           <div class="form-group">
-            <label for="prerequisite">Prerequisite(user have to complete the prerequisite before they do this
-              post,default
-              null)</label>
+            <label for="prerequisite">Prerequisite (A post ID, users will have to complete it before viewing this post)</label>
             <input class="form-control" type="number" id="prerequisite" name="prerequisite"
               value="{{old('prerequisite',$post->prerequisite)}}">
           </div>
           {{-- Redirect --}}
           <div class="form-group">
-            <label for="redirect">Redirect(The link users will go when they finish the post,default back)</label>
+            <label for="redirect">Redirect (A post ID, users will be redirected there after finishing the post)</label>
             <input class="form-control" type="text" id="redirect" name="redirect"
               value="{{old('redirect',$post->redirect)}}">
           </div>
           {{-- Message --}}
           <div class="form-group">
-            <label for="message">Message(customize the message flashes when the user finishes the post)</label>
+            <label for="message">Message (Users will see it after completing this post)</label>
             <input class="form-control" type="text" id="message" name="message"
               value="{{old('message',$post->message)}}">
           </div>

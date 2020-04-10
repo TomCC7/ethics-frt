@@ -5,7 +5,9 @@
 
 @section('pageHeader')
 Post: <small>{{$post->title}}</small>
-<span><button class="btn btn-success" data-toggle="modal" data-target="#edit-post">Edit</button></span>
+@can('admin')
+  <span><button class="btn btn-success" data-toggle="modal" data-target="#edit-post">Edit</button></span>
+@endcan
 @endsection
 
 @section('content')

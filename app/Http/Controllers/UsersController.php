@@ -82,10 +82,12 @@ class UsersController extends Controller
     /**
      * set the admin
      */
-    public function setAdmin(Request $request, User $user)
+    public function setAdmin(Request $request)
     {
-        $this->authorize('setAdmin',User::class); // check if the current user can do this
-        $user->update(['is_admin' => $request->is_admin]);
+        $this->authorize('setAdmin', User::class); // check if the current user can do this
+        $user = User::find($request->user);
+        $user->is_admin = $request->is_admin;
+        $user->save();
         return redirect()->route('users.index')->with('success', 'Permission set successfully.');
     }
 
@@ -94,7 +96,7 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
-        $this->authorize('destroy', $user);
+        //$this->authorize('destroy', $user);
         $user->delete();
         return redirect()->route('users.index')->with('success', 'You have deleted this user');
     }

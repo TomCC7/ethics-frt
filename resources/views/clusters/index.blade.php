@@ -16,21 +16,23 @@ Contents
 
     @can('admin')
     {{-- Only admins can edit clusters --}}
-    <div class="row" id="cluster-toolbar">
-      <a class="col" href="" data-toggle="modal" data-target="#CreateCluster">Create a new cluster</a>
-      <a class="col" href="#">Placeholder</a>
+    <div id="cluster-toolbar">
+      <a href="" type="button" class="btn btn-success" data-toggle="modal"
+        data-target="#CreateCluster">Create a new cluster</a>
     </div>
     @endcan
 
-    <div class="row">
-      <ul id="cluster-list">
-        @foreach($clusters as $cluster)
-        <li><a href="{{route('clusters.show',$cluster->slug)}}">
-            {{$cluster->name}}
-            </a>
-        </li>
-        @endforeach
-      </ul>
+    <div>
+      <table class="table table-hover" id="cluster-list">
+        <tbody>
+          @foreach($clusters as $cluster)
+            <tr><td><a href="{{route('clusters.show',$cluster->slug)}}">
+              {{$cluster->name}}
+              </a>
+            </td></tr>
+          @endforeach
+        </tbody>
+      </table>
     </div>
   </div>
 

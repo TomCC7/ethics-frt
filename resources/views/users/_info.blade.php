@@ -15,20 +15,20 @@
       </a></td>
   <td>
     <a href="{{ route('users.edit', ["user" => $user->id, "self_editing" => false])}}" class="btn btn-success" role="button">
-        {{-- "false" is $self_editing --}}
         Edit
 </a></td>
   @can('superadmin')
   <td>
-    <form method="POST" action={{ route('users.setAdmin', $user->id) }}>
+    <form method="POST" action={{ route('users.setAdmin', ["user" => $user->id]) }}>
       @csrf @method('PATCH')
       @if(!$user->is_admin)
       <input type="hidden" name="is_admin" value="1">
-      <button type="submit">Set as admin</button>
+      <button type="submit" class="btn btn-danger">Set as admin</button>
       @elseif($user->is_admin == 1)
       <input type="hidden" name="is_admin" value="0">
-      <button type="submit">Set as user</button>
+      <button type="submit" class="btn btn-warning">Set as user</button>
       @endif
+    </form>
   </td>
   @endcan
 </tr>
