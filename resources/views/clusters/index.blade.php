@@ -18,7 +18,7 @@ Contents
     {{-- Only admins can edit clusters --}}
     <div id="cluster-toolbar">
       <a href="" type="button" class="btn btn-success" data-toggle="modal"
-        data-target="#CreateCluster">Create a new cluster</a>
+        data-target="#CreateCluster">Create cluster</a>
     </div>
     @endcan
 

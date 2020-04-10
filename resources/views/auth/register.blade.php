@@ -81,6 +81,7 @@
               <div class="col-md-6">
                   <select id="semester" class="form-control" name="semester">
                       <option value="19FA">19FA</option>
+                      <option value="20SU">20SU</option>
                   </select>
               </div>
           </div>
