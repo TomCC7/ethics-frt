@@ -1,7 +1,7 @@
 @can('admin')
 <div id="post-toolbar">
-  <a href="#create-post" data-toggle="modal"> Create a new post here </a>
-  <a href="#delete-cluster" data-toggle="modal">Delete this cluster</a>
+  <a href="#create-post" type="button" class="btn btn-success" data-toggle="modal">Create post</a>
+  <a href="#delete-cluster" type="button" class="btn btn-danger" data-toggle="modal">Delete this cluster</a>
   </form>
 </div>
 @endcan
