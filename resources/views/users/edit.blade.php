@@ -4,6 +4,13 @@
 
 @section('pageHeader')
   Editing profile for <strong>{{ $user->name }}</strong>
+<form class="d-inline-block" action="{{route('users.destroy',$user->id)}}" method="POST" onsubmit="return confirm('You are deleting user {{$user->name}}, are you sure?');">
+  @csrf
+  @method('DELETE')
+  <button type="submit" class="btn btn-danger">
+    Delete this User
+  </button>
+</form>
 @endsection
 
 @section('content')

@@ -4,20 +4,10 @@
 
 @section('pageHeader')
 User Detail
-<form class="d-inline-block" action="{{route('users.destroy',$user->id)}}" method="POST" onsubmit="return confirm('You are deleting user {{$user->name}}, are you sure?');">
-  @csrf
-  @method('DELETE')
-  <button type="submit" class="btn btn-danger">
-    Delete this User
-  </button>
-</form>
 @endsection
 
 @section('content')
 {{-- detail --}}
-<caption>
-  <h1 class="text-center">User Detail</h1>
-</caption>
 <br>
 <table class="table table-hover">
   <tbody class="text-center">

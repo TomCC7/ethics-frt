@@ -15,11 +15,13 @@
             {{$post->title}}
           </a> </td>
         <td>
-          <form method="POST" action="{{route('posts.destroy',$post->slug)}}">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger">Delete</button>
-          </form>
+          @can('admin')
+            <form method="POST" action="{{route('posts.destroy',$post->slug)}}">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+          @endcan
         </td>
       </tr>
       @endforeach
