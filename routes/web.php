@@ -20,8 +20,8 @@ Route::get('/', 'PagesController@frontpage')->name('frontpage');
 Auth::routes();
 
 // UsersController
+Route::patch('/users/setAdmin', 'UsersController@setAdmin')->name('users.setAdmin');
 Route::resource('/users', 'UsersController', ['only' => ['show', 'edit', 'update', 'index', 'destroy']]);
-Route::patch('/users/{user}/setAdmin', 'UsersController@setAdmin')->name('users.setAdmin');
 
 // ClustersController
 Route::resource('/contents', 'ClustersController', ['only' => ['index', 'store', 'update', 'destroy']]);
