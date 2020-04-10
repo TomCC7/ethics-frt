@@ -4,11 +4,22 @@
 
 @section('pageHeader')
 Users
+{{-- search bar --}}
+<div id="search-bar" class="d-inline-block">
+  <form action="{{route('users.search')}}" method="GET">
+    <div class="form-inline">
+      <input type="text" class="form-control" name="index" placeholder="Search for users" required>
+      <button type="submit" class="btn btn-info">
+        Search
+      </button>
+    </div>
+  </form>
+</div>
 @endsection
 
 @section('content')
 <div name='content'>
-  <table>
+  <table class="table table-hover">
     <thead>
       <tr>
         <th>#</th>
@@ -31,19 +42,8 @@ Users
   </table>
   {{-- paginate --}}
   <div>
-    <div id='render_page' class="d-inline-block">
+    <div id='render_page' class="paginator">
       {!! $users->render() !!}
-    </div>
-    {{-- search bar --}}
-    <div id="search-bar" class="d-inline-block">
-      <form action="{{route('users.search')}}" method="GET">
-        <div class="form-inline">
-          <input type="text" class="form-control" name="index" placeholder="Search for users" required>
-          <button type="submit" class="btn btn-info">
-            Search
-          </button>
-        </div>
-      </form>
     </div>
   </div>
 </div>

@@ -10,10 +10,15 @@
   <td>{{$user->last_name}}</td>
   <td>{{$user->student_id}}</td>
 
-  <td><a href="{{ route('users.show', $user->id) }}"><button>
-  Detail
-  </button></a></td>
-  <td><a href="{{ route('users.edit', ["user" => $user->id, "self_editing" => false] ) }}"><button> {{-- "false" is $self_editing --}}
-  Edit
-  </button></a></td>
+  <td>
+    <a href="{{ route('users.show', $user->id) }}" class="btn btn-info" role="button">
+      Detail
+    </a>
+  </td>
+  <td>
+    <a href="{{ route('users.edit', ["user" => $user->id, "self_editing" => false] ) }}" class="btn btn-success" role="button">
+      {{-- "false" is $self_editing --}}
+      Edit
+    </a>
+  </td>
 </tr>

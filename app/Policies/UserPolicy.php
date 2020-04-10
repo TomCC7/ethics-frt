@@ -21,8 +21,14 @@ class UserPolicy
         //
     }
 
-    public function update(User $currentUser,User $user)
+    public function update(User $currentUser, User $user)
     {
         return $currentUser->id === $user->id;
+    }
+
+    public function destroy(User $currentUser, User $user)
+    {
+        // admin cannot delete itself
+        return ($currentUser->is_admin && $currentUser !== $user) || $currentUser === $user;
     }
 }

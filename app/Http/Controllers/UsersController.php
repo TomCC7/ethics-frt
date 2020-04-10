@@ -17,13 +17,18 @@ class UsersController extends Controller
     public function show(User $user)
     {
         Gate::authorize('admin');
-        return view('users.show', compact('user'));
+        $related_infos=$user->answerRecords()->where('post_id','<','6')->orderby('post_id')->get();
+        $basic_info=$related_infos[1]->answers;
+        $language_info=$related_infos[2]->answers;
+        $education_info=$related_infos[3]->answers;
+        $belief_info=$related_infos[4]->answers;
+        return view('users.show', compact('user','basic_info','language_info','education_info','belief_info'));
     }
 
     public function index()
     {
         Gate::authorize('admin');
-        $users = User::paginate(20); // paginate
+        $users = User::Registered()->paginate(20); // paginate
         return view('users.index', compact('users'));
     }
 
@@ -62,5 +67,12 @@ class UsersController extends Controller
         } else {
             return redirect()->route('users.index')->with('success', 'Profile saved successfully!');
         }
+    }
+
+    public function destroy(User $user)
+    {
+        $this->authorize('destroy',$user);
+        $user->delete();
+        return redirect()->route('users.index')->with('success','You have deleted this user');
     }
 }

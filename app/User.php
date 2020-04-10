@@ -12,16 +12,6 @@ class User extends Authenticatable
     use Notifiable, Searchable;
 
     /**
-     * 获取索引名称
-     *
-     * @return string
-     */
-    public function searchableAs()
-    {
-        return 'users';
-    }
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -83,6 +73,15 @@ class User extends Authenticatable
      */
     public function isRegistered()
     {
-        return null !== $this->postRecord(5)->first();
+        return $this->is_registered;
+    }
+
+    /**
+     * return the scope of registered user
+     * @return query
+     */
+    public function scopeRegistered($query)
+    {
+        return $query->where('is_registered',true);
     }
 }
