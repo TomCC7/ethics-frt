@@ -36,6 +36,7 @@ Route::get('/contents/{cluster}/{post}', 'PostsController@show')->name('posts.sh
 Route::resource('/answers', 'AnswersController', ['only' => ['index']]);
 Route::get('/answers/{cluster}/{post}', 'AnswersController@show')->name('answers.show');
 Route::put('/answers/{post}', 'AnswersController@storeOrUpdate')->name('answers.store');
+Route::get('/answers/{user}','AnswersController@UserAnswers')->name('answers.user');
 // AnswersDownloadController
 Route::post('/answers/download','AnswersDownloadController@download')->name('answers.download');
 // ModulesController

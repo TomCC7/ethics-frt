@@ -40,4 +40,9 @@ class UserPolicy
     public function setAdmin(User $currentUser) {
         return ($currentUser->isSuperadmin());
     }
+
+    public function setAdmin(User $currentUser)
+    {
+        return $currentUser->isSuperadmin();
+    }
 }
