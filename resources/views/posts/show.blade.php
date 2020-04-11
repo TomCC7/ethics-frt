@@ -6,7 +6,7 @@
 @section('pageHeader')
 Post: <small>{{$post->title}}</small>
 @can('admin')
-  <span><button class="btn btn-success" data-toggle="modal" data-target="#edit-post">Edit</button></span>
+<span><button class="btn btn-success" data-toggle="modal" data-target="#edit-post">Edit</button></span>
 @endcan
 @endsection
 
@@ -41,7 +41,6 @@ Post: <small>{{$post->title}}</small>
       Submit answer
     </button>
     @endif
-
     @endif
   </form>
   @endcannot
@@ -62,34 +61,11 @@ Post: <small>{{$post->title}}</small>
 @endsection
 
 {{-- Render the rich text editor --}}
-@section('styles')
-<link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
-@endsection
+@include('shared._editor')
 
 @section('scripts')
-<script type="text/javascript" src="{{ asset('js/module.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/hotkeys.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/uploader.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/simditor.js') }}"></script>
-
 <script>
-  $(document).ready(function(){// load when the whole document is loaded
-      var editor = new Simditor({
-        textarea: $('#editor'),
-        upload: {
-          url: '{{ route('posts.upload_image') }}',
-          params: {
-            _token: '{{ csrf_token() }}'
-          },
-          fileKey: 'upload_file',
-          connectionCount: 10,
-          leaveConfirm: 'Uploading pictures, please wait'
-        },
-        pasteImage: true,
-      });
-});
-
-function SelectForm()
+  function SelectForm()
   {
     // getting the variables
     var text_form=document.getElementById("form-create-text");

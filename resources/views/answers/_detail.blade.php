@@ -1,9 +1,12 @@
+{{-- show the detail of the answer --}}
+{{-- included by answers.show --}}
 <div class="modal" id="modal-{{$loop->index}}">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <div class="float-left">
           <h3 class="d-inline-block">Detail</h3>
+          {{-- download button --}}
           <form action="{{route('answers.download')}}" method="POST" class="d-inline-block">
             @csrf
             <input type="hidden" name="type" value="detail">
@@ -11,6 +14,7 @@
             <button class="btn btn-outline-info" type="submit">Download CSV</button>
           </form>
         </div>
+        {{-- close button --}}
         <button type="button" class="close float-right" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

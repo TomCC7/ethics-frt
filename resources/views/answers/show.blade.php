@@ -8,6 +8,7 @@ Result-{{$post->title}}
   Result of <b><i>{{$post->title}}</i></b>
 </div>
 <div class="float-right">
+  <a href="{{route('answers.show.records',[$post->cluster->slug,$post->slug])}}" class="btn btn-info">Answer Records</a>
   <form action="{{route('answers.download')}}" method="POST" class="d-inline-block">
     @csrf
     <input type="hidden" name="type" value="post">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Content\Cluster;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Gate;
 
 class ClustersController extends Controller
 {
@@ -43,7 +44,7 @@ class ClustersController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('admin');
+        Gate::authorize('admin',Auth::user());
         $request->validate(['name' => 'required|max:100']);
         Cluster::Create(['name' => $request->name]);
         return back()->with('success', 'Cluster created successfully!');
@@ -54,7 +55,7 @@ class ClustersController extends Controller
      */
     public function update(Request $request, Cluster $cluster)
     {
-        Gate::authorize('admin');
+        Gate::authorize('admin',Auth::user());
         $request->validate(['name' => 'required|max:100|unique:clusters']);
         $cluster->update(['name' => $request->name]);
         return back()->with('success', 'Cluster updated successfully!');
@@ -65,7 +66,7 @@ class ClustersController extends Controller
      */
     public function destroy(Request $request, Cluster $content)
     {
-        Gate::authorize('admin');
+        Gate::authorize('superadmin');
         // validate the confirmation
         $request->validate(
             ['confirmation' => ['required', Rule::in($content->name)]],

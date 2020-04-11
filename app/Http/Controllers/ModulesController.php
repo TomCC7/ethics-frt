@@ -9,13 +9,13 @@ use Illuminate\Http\Request;
 use App\Handlers\ImageUploadHandler;
 use Illuminate\Support\Facades\Auth;
 use League\Csv\Reader;
+use Illuminate\Support\Facades\Gate;
 
 class ModulesController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
-        Gate::authorize('admin');
     }
 
     /**
@@ -23,6 +23,7 @@ class ModulesController extends Controller
      */
     public function store(ModuleRequest $request)
     {
+        Gate::authorize('admin');
         $post = Post::Find($request->post_id);
         // return the content from the request
         $content = Module::handleContent($request);
@@ -47,6 +48,7 @@ class ModulesController extends Controller
      */
     public function update(ModuleRequest $request, Module $module)
     {
+        Gate::authorize('admin');
         $post = $module->post;
         $content = Module::handleContent($request);
         $module->update($request->toArray());
@@ -64,6 +66,7 @@ class ModulesController extends Controller
      */
     public function edit(Module $module)
     {
+        Gate::authorize('admin');
         $post = $module->post;
         return view('modules._edit._edit', compact('module', 'post'));
     }
@@ -74,6 +77,7 @@ class ModulesController extends Controller
      */
     public function destroy(Module $module)
     {
+        Gate::authorize('admin');
         // delete the module itself
         $module->delete();
         return back()->with('success', 'You have deleted this module!');
@@ -82,6 +86,7 @@ class ModulesController extends Controller
     /** handle the image upload in the text module */
     public function uploadImage(Request $request, ImageUploadHandler $uploader)
     {
+        Gate::authorize('admin');
         // initialize the data with false value
         $data = [
             'success'   => false,

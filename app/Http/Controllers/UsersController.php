@@ -16,7 +16,7 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
-        Gate::authorize('admin');
+        Gate::authorize('admin',Auth::user());
         $related_infos = $user->answerRecords()->where('post_id', '<', '6')->orderby('post_id')->get();
         if (count($related_infos) === 5) {
             $basic_info = $related_infos[1]->answers;
@@ -37,7 +37,7 @@ class UsersController extends Controller
 
     public function index()
     {
-        Gate::authorize('admin');
+        Gate::authorize('admin',Auth::user());
         $users = User::Paginate(20); // paginate
         return view('users.index', compact('users'));
     }
@@ -96,7 +96,7 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
-        //$this->authorize('destroy', $user);
+        $this->authorize('destroy', $user);
         $user->delete();
         return redirect()->route('users.index')->with('success', 'You have deleted this user');
     }

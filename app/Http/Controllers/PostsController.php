@@ -9,6 +9,7 @@ use App\Content\Post;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Gate;
 
 class PostsController extends Controller
 {
@@ -51,23 +52,9 @@ class PostsController extends Controller
         }
     }
 
-    public function create(Post $post)
-    {
-        Gate::authorize('admin');
-        $clusters = Cluster::all();
-        return view('posts.create_edit', compact('post', 'clusters')); //share one view
-    }
-
-    public function edit(Post $post)
-    {
-        Gate::authorize('admin');
-        $clusters = Cluster::all();
-        return view('posts.create_edit', compact('post', 'clusters')); //share one view
-    }
-
     public function store(PostRequest $request)
     {
-        Gate::authorize('admin');
+        Gate::authorize('admin',Auth::user());
         $post = Post::make([
             'title' => $request->title,
         ]);
@@ -82,7 +69,7 @@ class PostsController extends Controller
 
     public function update(PostRequest $request, Post $post)
     {
-        Gate::authorize('admin');
+        Gate::authorize('admin',Auth::user());
         $post->update($request->toArray());
         return redirect()->route('posts.show', [
             'cluster' => $post->cluster->slug,
@@ -93,7 +80,7 @@ class PostsController extends Controller
 
     public function destroy(Post $post)
     {
-        Gate::authorize('admin');
+        Gate::authorize('admin',Auth::user());
         // delete the post itself
         $post->delete();
 

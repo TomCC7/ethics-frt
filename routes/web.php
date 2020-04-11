@@ -28,18 +28,21 @@ Route::resource('/contents', 'ClustersController', ['only' => ['index', 'store',
 Route::get('/contents/{cluster}', 'ClustersController@show')->name('clusters.show');
 
 // PostsController
-Route::resource('/posts', 'PostsController', ['only' => ['index', 'edit', 'update', 'create', 'destroy', 'store']]);
+Route::resource('/posts', 'PostsController', ['only' => ['index', 'update', 'destroy', 'store']]);
 Route::post('/posts/upload_image', 'PostsController@uploadImage')->name('posts.upload_image');
 Route::get('/contents/{cluster}/{post}', 'PostsController@show')->name('posts.show');
 
 // AnswersController
 Route::resource('/answers', 'AnswersController', ['only' => ['index']]);
 Route::get('/answers/{cluster}/{post}', 'AnswersController@show')->name('answers.show');
+Route::get('/answers/{cluster}/{post}/answerrecords', 'AnswersController@showRecords')->name('answers.show.records');
 Route::put('/answers/{post}', 'AnswersController@storeOrUpdate')->name('answers.store');
-Route::get('/answers/{user}','AnswersController@UserAnswers')->name('answers.user');
+Route::get('/answers/{user}', 'AnswersController@UserAnswers')->name('answers.user');
+// AnswersRecordController
+Route::resource('/answerrecords', 'AnswerRecordsController', ['only' => ['destroy']]);
 // AnswersDownloadController
-Route::post('/answers/download','AnswersDownloadController@download')->name('answers.download');
+Route::post('/answers/download', 'AnswersDownloadController@download')->name('answers.download');
 // ModulesController
 Route::resource('/modules', 'ModulesController', ['only' => ['store', 'edit', 'update', 'destroy']]);
 // SearchController
-Route::get('/searches/user','SearchesController@user')->name('users.search');
+Route::get('/searches/user', 'SearchesController@user')->name('users.search');
