@@ -16,7 +16,7 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
-        Gate::authorize('admin',Auth::user());
+        Gate::authorize('admin');
         $related_infos = $user->answerRecords()->where('post_id', '<', '6')->orderby('post_id')->get();
         if (count($related_infos) === 5) {
             $basic_info = $related_infos[1]->answers;
@@ -37,7 +37,7 @@ class UsersController extends Controller
 
     public function index()
     {
-        Gate::authorize('admin',Auth::user());
+        Gate::authorize('admin');
         $users = User::Paginate(20); // paginate
         return view('users.index', compact('users'));
     }

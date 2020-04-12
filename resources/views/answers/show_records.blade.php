@@ -42,6 +42,9 @@ AnswerRecords-{{$post->title}}
       </tbody>
     </table>
   </div>
+  <div class="card-footer">
+    {{ $records->links() }}
+  </div>
 </div>
 @endsection
 

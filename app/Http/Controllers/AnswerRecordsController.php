@@ -11,7 +11,7 @@ class AnswerRecordsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        // Gate::authorize('admin',Auth::user());
+        // Gate::authorize('admin');
     }
     public function destroy(AnswerRecord $answerrecord)
     {

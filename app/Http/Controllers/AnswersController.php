@@ -87,7 +87,7 @@ class AnswersController extends Controller
      */
     public function index(Request $request)
     {
-        Gate::authorize('admin',Auth::user());
+        Gate::authorize('admin');
         if ($request->by==='users')
         {
             $users=User::All();
@@ -114,7 +114,7 @@ class AnswersController extends Controller
      */
     public function showRecords(Cluster $cluster,Post $post)
     {
-        $records=$post->answerRecords()->with('user','answers')->get();
+        $records=$post->answerRecords()->with('user','answers')->paginate(10);
         $modules=$post->modules;
         return view('answers.show_records',compact('post','records','modules'));
     }

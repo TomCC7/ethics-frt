@@ -54,7 +54,7 @@ class PostsController extends Controller
 
     public function store(PostRequest $request)
     {
-        Gate::authorize('admin',Auth::user());
+        Gate::authorize('admin');
         $post = Post::make([
             'title' => $request->title,
         ]);
@@ -69,7 +69,7 @@ class PostsController extends Controller
 
     public function update(PostRequest $request, Post $post)
     {
-        Gate::authorize('admin',Auth::user());
+        Gate::authorize('admin');
         $post->update($request->toArray());
         return redirect()->route('posts.show', [
             'cluster' => $post->cluster->slug,
@@ -80,7 +80,7 @@ class PostsController extends Controller
 
     public function destroy(Post $post)
     {
-        Gate::authorize('admin',Auth::user());
+        Gate::authorize('admin');
         // delete the post itself
         $post->delete();
 

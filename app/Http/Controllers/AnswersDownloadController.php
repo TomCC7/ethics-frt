@@ -25,7 +25,7 @@ class AnswersDownloadController extends Controller
      */
     public function download(Request $request)
     {
-        Gate::authorize('admin',Auth::user());
+        Gate::authorize('admin');
         $csv = '';
         $file_name = '';
         switch ($request->type) {

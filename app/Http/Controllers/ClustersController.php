@@ -44,7 +44,7 @@ class ClustersController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('admin',Auth::user());
+        Gate::authorize('admin');
         $request->validate(['name' => 'required|max:100']);
         Cluster::Create(['name' => $request->name]);
         return back()->with('success', 'Cluster created successfully!');
@@ -55,7 +55,7 @@ class ClustersController extends Controller
      */
     public function update(Request $request, Cluster $cluster)
     {
-        Gate::authorize('admin',Auth::user());
+        Gate::authorize('admin');
         $request->validate(['name' => 'required|max:100|unique:clusters']);
         $cluster->update(['name' => $request->name]);
         return back()->with('success', 'Cluster updated successfully!');
