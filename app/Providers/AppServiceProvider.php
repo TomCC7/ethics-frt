@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Observers\AnswerObserver;
+use App\Observers\AnswerRecordObserver;
 use App\Observers\ClusterObserver;
 use App\Observers\ModuleObserver;
 use App\Observers\PostObserver;
@@ -32,5 +33,6 @@ class AppServiceProvider extends ServiceProvider
         \App\Content\Cluster::observe(ClusterObserver::class);
         \App\Content\Module::observe(ModuleObserver::class);
         \App\Collected\Answer::observe(AnswerObserver::class);
+        \App\Collected\AnswerRecord::observe(AnswerRecordObserver::class);
     }
 }

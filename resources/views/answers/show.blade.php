@@ -9,12 +9,6 @@ Result-{{$post->title}}
 </div>
 <div class="float-right">
   <a href="{{route('answers.show.records',[$post->cluster->slug,$post->slug])}}" class="btn btn-info">Answer Records</a>
-  <form action="{{route('answers.download')}}" method="POST" class="d-inline-block">
-    @csrf
-    <input type="hidden" name="type" value="post">
-    <input type="hidden" name="post_id" value="{{$post->id}}">
-    <button class="btn btn-success" type="submit">Download CSV</button>
-  </form>
 </div>
 @endsection
 

@@ -11,6 +11,10 @@ AnswerRecords-{{$post->title}}
 @section('content')
 <div class="card col-8">
   <div class="card-header">
+    <a href="{{route('answers.show',[$post->cluster->slug,$post->slug])}}" class="btn btn-info" role="button">
+      Back
+    </a>
+    {{-- download csv form --}}
     <form action="{{route('answers.download')}}" method="POST" class="float-right">
       @csrf
       <input type="hidden" name="type" value="post">
@@ -41,43 +45,19 @@ AnswerRecords-{{$post->title}}
 </div>
 @endsection
 
+@section('modals')
+@include('answers._user_answer_modals')
+@endsection
+
 @section('scripts')
 <script>
+  // make the answers disabled
+let inputs=$('.answer-disabled');
+inputs.attr('disabled','true');
   function submitDeleteForm(id)
 {
   event.preventDefault();
   document.getElementById(`delete-form-${id}`).submit();
 }
 </script>
-@endsection
-
-@section('modals')
-@foreach ($records as $record)
-{{-- get the answers of the user --}}
-@php
-$answers=[];
-foreach ($record->answers as $answer) {
-$answers[$answer->module_id]=$answer->getContent();
-}
-@endphp
-<div class="modal fade" id="detail-{{$record->id}}">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="float-left">Answer of {{$record->user->first_name}}</h3>
-        {{-- dismiss button --}}
-        <button type="button" class="close float-right" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        {{-- include modules --}}
-        @foreach ($modules as $module)
-        @include('modules._show._show')
-        @endforeach
-      </div>
-    </div>
-  </div>
-</div>
-@endforeach
 @endsection
