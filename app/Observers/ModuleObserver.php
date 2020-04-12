@@ -17,6 +17,6 @@ class ModuleObserver
         // delete also the answer record
         $module->answers()->first()->answerRecord()->delete();
         // delete all the modules of the cluster
-        $module->answers()->forceDelete();
+        $module->answers()->delete();
     }
 }

@@ -1,3 +1,4 @@
+{{-- show errors that occurs --}}
 @if (count($errors) > 0)
 <div class="alert alert-danger">
   <div class="mt-2"><b>An error occurs:</b></div>

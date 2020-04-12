@@ -19,7 +19,7 @@ class ClusterObserver
     /**
      * Actions when the cluster is being deleted
      */
-    public function deleting (Cluster $cluster)
+    public function deleted (Cluster $cluster)
     {
         // delete all the posts of the cluster
         $cluster->posts()->forceDelete();

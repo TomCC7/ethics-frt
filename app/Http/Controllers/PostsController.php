@@ -9,6 +9,7 @@ use App\Content\Post;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Gate;
 
 class PostsController extends Controller
 {
@@ -49,20 +50,6 @@ class PostsController extends Controller
         } else {
             App::abort(404);
         }
-    }
-
-    public function create(Post $post)
-    {
-        Gate::authorize('admin');
-        $clusters = Cluster::all();
-        return view('posts.create_edit', compact('post', 'clusters')); //share one view
-    }
-
-    public function edit(Post $post)
-    {
-        Gate::authorize('admin');
-        $clusters = Cluster::all();
-        return view('posts.create_edit', compact('post', 'clusters')); //share one view
     }
 
     public function store(PostRequest $request)

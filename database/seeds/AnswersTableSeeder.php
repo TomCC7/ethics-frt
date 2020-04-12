@@ -17,23 +17,22 @@ class AnswersTableSeeder extends Seeder
         $faker = app(Faker\Generator::class);
         $post = Post::Find(1);
         // create answer record
-        for ($i=0;$i<10;$i++)
-        {
-            $record=AnswerRecord::make();
-            $record->post_id=1;
-            $record->user_id=$i+1;
-            $record->batch=1;
+        for ($i = 0; $i < 50; $i++) {
+            $record = AnswerRecord::make();
+            $record->post_id = 1;
+            $record->user_id = $i + 1;
+            $record->batch = 1;
             $record->save();
         }
         foreach ($post->modules as $module) {
-            $answers = factory(App\Collected\Answer::class)->times(100)
+            $answers = factory(App\Collected\Answer::class)->times(1000)
                 ->make([
                     'module_id' => $module->id,
                 ]);
             $answers->each(function ($answer)
             use ($faker, $module) {
                 // give user_id
-                $answer->answer_record_id = $faker->numberBetween(1, 10);
+                $answer->answer_record_id = $faker->numberBetween(1, 50);
                 // give content based on the type
                 switch ($module->type) {
                     case 'text':

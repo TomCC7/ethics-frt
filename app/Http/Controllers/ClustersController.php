@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Content\Cluster;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Gate;
 
 class ClustersController extends Controller
 {
@@ -65,7 +66,7 @@ class ClustersController extends Controller
      */
     public function destroy(Request $request, Cluster $content)
     {
-        Gate::authorize('admin');
+        Gate::authorize('superadmin');
         // validate the confirmation
         $request->validate(
             ['confirmation' => ['required', Rule::in($content->name)]],

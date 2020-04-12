@@ -37,10 +37,6 @@ class UserPolicy
         return (($currentUser->is_admin > $user->is_admin) or $currentUser === $user) and !$user->isSuperadmin();
     }
 
-    public function setAdmin(User $currentUser) {
-        return ($currentUser->isSuperadmin());
-    }
-
     public function setAdmin(User $currentUser)
     {
         return $currentUser->isSuperadmin();

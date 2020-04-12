@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Schema;
 use SplTempFileObject;
 use App\Content\Module;
 use App\Content\Post;
+use Illuminate\Support\Facades\Gate;
 
 class AnswersDownloadController extends Controller
 {
@@ -24,6 +25,7 @@ class AnswersDownloadController extends Controller
      */
     public function download(Request $request)
     {
+        Gate::authorize('admin');
         $csv = '';
         $file_name = '';
         switch ($request->type) {

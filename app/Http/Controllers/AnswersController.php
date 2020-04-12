@@ -11,7 +11,7 @@ use App\Collected\AnswerRecord;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AnswerRequest;
 use App\User;
-use Illuminate\Auth\Access\Gate;
+use Illuminate\Support\Facades\Gate;
 
 class AnswersController extends Controller
 {
@@ -87,6 +87,7 @@ class AnswersController extends Controller
      */
     public function index(Request $request)
     {
+        Gate::authorize('admin');
         if ($request->by==='users')
         {
             $users=User::All();
@@ -106,6 +107,16 @@ class AnswersController extends Controller
     {
         $modules = $post->modules()->question()->with('answers.answerRecord.user')->get();
         return view('answers.show', compact('post', 'modules'));
+    }
+
+    /**
+     * show the answers of the post record by record
+     */
+    public function showRecords(Cluster $cluster,Post $post)
+    {
+        $records=$post->answerRecords()->with('user','answers')->paginate(10);
+        $modules=$post->modules;
+        return view('answers.show_records',compact('post','records','modules'));
     }
 
     /**
