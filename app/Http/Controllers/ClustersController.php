@@ -69,6 +69,7 @@ class ClustersController extends Controller
         Gate::authorize('superadmin');
         // validate the confirmation
         $request->validate(
+            $request,
             ['confirmation' => ['required', Rule::in($content->name)]],
             ['confirmation.in' => 'Please fill in the right name!']
         );

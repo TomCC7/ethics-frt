@@ -40,6 +40,7 @@ Route::put('/answers/{post}', 'AnswersController@storeOrUpdate')->name('answers.
 Route::get('/answers/{user}', 'AnswersController@UserAnswers')->name('answers.user');
 // AnswersRecordController
 Route::resource('/answerrecords', 'AnswerRecordsController', ['only' => ['destroy']]);
+Route::delete('/answerrecords/destoryAll/{post}','AnswerRecordsController@destroyAll')->name('answerrecords.destroyall');
 // AnswersDownloadController
 Route::post('/answers/download', 'AnswersDownloadController@download')->name('answers.download');
 // ModulesController

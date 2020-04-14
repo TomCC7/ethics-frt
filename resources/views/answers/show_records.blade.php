@@ -11,16 +11,27 @@ AnswerRecords-{{$post->title}}
 @section('content')
 <div class="card col-8">
   <div class="card-header">
-    <a href="{{route('answers.show',[$post->cluster->slug,$post->slug])}}" class="btn btn-info" role="button">
-      Back
-    </a>
-    {{-- download csv form --}}
-    <form action="{{route('answers.download')}}" method="POST" class="float-right">
-      @csrf
-      <input type="hidden" name="type" value="post">
-      <input type="hidden" name="post_id" value="{{$post->id}}">
-      <button class="btn btn-success" type="submit">Download CSV</button>
-    </form>
+    <div class="float-left">
+      {{-- back button --}}
+      <a href="{{route('answers.show',[$post->cluster->slug,$post->slug])}}" class="btn btn-info d-inline-block"
+        role="button">
+        Back
+      </a>
+    </div>
+    <div class="float-right">
+      {{-- clear all answers button --}}
+      <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#delete-records"
+        @cannot('superadmin')disabled title="Need more privelege to do this" @endcannot>
+        Clear all answers
+      </button>
+      {{-- download csv form --}}
+      <form action="{{route('answers.download')}}" method="POST" class="d-inline-block">
+        @csrf
+        <input type="hidden" name="type" value="post">
+        <input type="hidden" name="post_id" value="{{$post->id}}">
+        <button class="btn btn-success" type="submit">Download CSV</button>
+      </form>
+    </div>
   </div>
   <div class="card-body">
     <table class="table table-hover">
@@ -49,7 +60,11 @@ AnswerRecords-{{$post->title}}
 @endsection
 
 @section('modals')
+@can('superadmin')
+@include('answers._destroy_all_confirm')
+@endcan
 @include('answers._user_answer_modals')
+
 @endsection
 
 @section('scripts')

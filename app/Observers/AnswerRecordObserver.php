@@ -6,7 +6,7 @@ use App\Collected\AnswerRecord;
 
 class AnswerRecordObserver
 {
-    public function deleted(AnswerRecord $answerRecord)
+    public function deleting(AnswerRecord $answerRecord)
     {
         $answerRecord->answers()->delete();
     }

@@ -21,7 +21,11 @@ $answers[$answer->module_id]=$answer->getContent();
       <div class="modal-body">
         {{-- include modules --}}
         @foreach ($modules as $module)
-        @include('modules._show._show')
+        <div class="card">
+          <div class="card-body">
+            @include('modules._show._show_content')
+          </div>
+        </div>
         @endforeach
       </div>
     </div>

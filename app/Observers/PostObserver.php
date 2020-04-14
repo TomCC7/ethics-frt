@@ -20,14 +20,17 @@ class PostObserver
     }
 
     /**
-     * Handle the post "force deleted" event.
+     * Handle the post "force deleting" event.
      *
      * @param  \App\Content\Post  $post
      * @return void
      */
-    public function forceDeleted(Post $post)
+    public function forceDeleting(Post $post)
     {
         // delete all the modules of the cluster
-        $post->modules()->forceDelete();
+        foreach ($post->modules as $module)
+        {
+            $module->forceDelete();
+        }
     }
 }
