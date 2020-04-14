@@ -1,7 +1,7 @@
 {{-- Create a text module in the current post --}}
 {{-- Included by "posts.show" --}}
 
-<div id="form-create-text" class="card d-none">
+<div id="form-create-text" class="d-none">
 
   <form method="POST" action={{route('modules.store')}}>
     @csrf

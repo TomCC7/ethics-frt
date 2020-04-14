@@ -1,7 +1,7 @@
 {{-- Create a choice module in the current post --}}
 {{-- Included by "posts.show" --}}
 
-<div class="card d-none" id="form-create-choice">
+<div class="d-none" id="form-create-choice">
   <form method="POST" action="{{route('modules.store')}}" enctype="multipart/form-data">
     @csrf
     {{-- Post id and type --}}

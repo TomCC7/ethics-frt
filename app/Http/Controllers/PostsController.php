@@ -20,14 +20,23 @@ class PostsController extends Controller
 
     public function show(Request $request, Cluster $cluster, Post $post)
     {
+        // take option based on the status of the post
+        if (!Auth::user()->isAdmin()) {
+            switch ($post->status) {
+                case 'unreleased':
+                    return view('posts.show_unreleased');
+                    break;
+                default:
+                    break;
+            }
+        }
         // get the record of the user of this post
         $answer_record = $post->userRecord(Auth::id())->first();
         // get the answers of the user
-        $answers=[];
-        if ($answer_record)
-        {
+        $answers = [];
+        if ($answer_record) {
             foreach ($answer_record->answers as $answer) {
-                $answers[$answer->module_id]=$answer->getContent();
+                $answers[$answer->module_id] = $answer->getContent();
             }
         }
         // avoid cluster/post mismatch
@@ -46,7 +55,7 @@ class PostsController extends Controller
         }
         // check if the post exists
         if ($post) {
-            return view('posts.show', compact('post', 'answer_record','answers'));
+            return view('posts.show', compact('post', 'answer_record', 'answers'));
         } else {
             App::abort(404);
         }
@@ -64,7 +73,7 @@ class PostsController extends Controller
             'cluster' => $post->cluster->slug,
             'post' => $post->slug,
         ])
-            ->with('success', 'Post'.$post->name.' created successfully!');
+            ->with('success', 'Post' . $post->name . ' created successfully!');
     }
 
     public function update(PostRequest $request, Post $post)
@@ -75,7 +84,7 @@ class PostsController extends Controller
             'cluster' => $post->cluster->slug,
             'post' => $post->slug,
         ])
-            ->with('success', 'Post '.$post->name.' is updated successfully!');
+            ->with('success', 'Post ' . $post->name . ' is updated successfully!');
     }
 
     public function destroy(Post $post)
@@ -87,6 +96,6 @@ class PostsController extends Controller
         return redirect()->route('clusters.show', [
             'cluster' => $post->cluster->slug,
         ])
-            ->with('success', 'Post '.$post->name.' is deleted!');
+            ->with('success', 'Post ' . $post->name . ' is deleted!');
     }
 }

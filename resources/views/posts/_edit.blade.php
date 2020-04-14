@@ -1,4 +1,4 @@
-<div class="modal" id="edit-post">
+<div class="modal fade" id="edit-post">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -13,26 +13,36 @@
         <div class="modal-body">
           {{-- title --}}
           <div class="form-group">
-            <label for="title">Title</label>
+            <label for="title" title="title of the post">Title</label>
             <input class="form-control" type="text" id="title" name="title" value="{{old('title',$post->title)}}">
           </div>
           {{-- Prerequisite --}}
           <div class="form-group">
-            <label for="prerequisite">Prerequisite (A post ID, users will have to complete it before viewing this post)</label>
+            <label for="prerequisite" title="A post ID, users will have to complete it before viewing this
+            post">Prerequisite</label>
             <input class="form-control" type="number" id="prerequisite" name="prerequisite"
               value="{{old('prerequisite',$post->prerequisite)}}">
           </div>
           {{-- Redirect --}}
           <div class="form-group">
-            <label for="redirect">Redirect (A post ID, users will be redirected there after finishing the post)</label>
+            <label for="redirect" title="A post ID, users will be redirected there after finishing the post">Redirect</label>
             <input class="form-control" type="text" id="redirect" name="redirect"
               value="{{old('redirect',$post->redirect)}}">
           </div>
           {{-- Message --}}
           <div class="form-group">
-            <label for="message">Message (Users will see it after completing this post)</label>
+            <label for="message" title="Users will see it after completing this post">Message</label>
             <input class="form-control" type="text" id="message" name="message"
               value="{{old('message',$post->message)}}">
+          </div>
+          {{-- status --}}
+          <div class="form-group">
+            <label for="status" title="the status of the post">Status</label>
+            <select name="status" id="status" class="form-control">
+              @foreach ($post->Statuses() as $status)
+              <option value="{{$status}}" {{is_selected($post->status,$status)}}>{{$status}}</option>
+              @endforeach
+            </select>
           </div>
         </div>
         <div class="modal-footer">

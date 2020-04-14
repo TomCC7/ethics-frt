@@ -6,7 +6,11 @@
 @section('pageHeader')
 Post: <small>{{$post->title}}</small>
 @can('admin')
-<span><button class="btn btn-success" data-toggle="modal" data-target="#edit-post">Edit</button></span>
+<a href="" class="far fa-edit text-decoration-none d-inline-block" data-toggle="modal" data-target="#edit-post"
+  title="edit"></a>
+{{-- Creating --}}
+<a href="" class="far fa-plus-square d-inline-block text-decoration-none" data-toggle="modal" title="add new module"
+  data-target="#modal-form-select"></a>
 @endcan
 @endsection
 
@@ -44,20 +48,15 @@ Post: <small>{{$post->title}}</small>
     @endif
   </form>
   @endcannot
-
-  {{-- Creating --}}
-  @can('admin')
-  <span><button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-form-select">
-      Create a new module
-    </button></span>
-  @endcan
 </div>
 </div>
 @endsection
 
 @section('modals')
+@can('admin')
 @include('modules._create._create')
 @include('posts._edit')
+@endcan
 @endsection
 
 {{-- Render the rich text editor --}}
@@ -73,19 +72,19 @@ Post: <small>{{$post->title}}</small>
     var filling_form=document.getElementById("form-create-filling");
     var select=$('#select-form-select');
     // make all forms hidden
-    text_form.className="card d-none";
+    text_form.className="d-none";
     choice_form.className="d-none table-responsive";
-    filling_form.className="card d-none";
+    filling_form.className="d-none";
     switch (select.val())
     {
       case "text":
-        text_form.className="card";
+        text_form.className="";
         break;
       case "choice":
         choice_form.className="table-responsive";
         break;
       case "filling":
-        filling_form.className="card";
+        filling_form.className="";
         break;
       default:
         break;

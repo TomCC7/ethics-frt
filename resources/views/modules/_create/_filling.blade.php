@@ -1,7 +1,7 @@
 {{-- Create a filling module in the current post --}}
 {{-- Included by "posts.show" --}}
 
-<div class="card d-none" id="form-create-filling">
+<div class="d-none" id="form-create-filling">
   <form method="POST" action="{{route('modules.store')}}">
     @csrf
     {{-- Post id and type --}}

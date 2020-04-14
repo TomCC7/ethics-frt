@@ -8,8 +8,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Post extends Model
 {
     use SoftDeletes;
-    protected $fillable = ['prerequisite', 'title', 'slug', 'redirect', 'message'];
-
+    protected $fillable = ['prerequisite', 'title', 'slug', 'redirect', 'message','status'];
+    /**
+     * specify all statuses that is allowed
+     * @var array
+     */
+    protected static $statuses=['unreleased','released','archived'];
+    /** get statuses */
+    public static function Statuses()
+    {
+        return self::$statuses;
+    }
     /**
      * The relationship with modules
      * @return Illuminate\Database\Eloquent\Relations\hasMany
