@@ -41,7 +41,8 @@ class SeedRegistrationPosts extends Migration
     {
         $agreement = $cluster->posts()->create([
             'title' => 'Agreement',
-            'redirect' => 2
+            'redirect' => 2,
+            'status' => 'released',
         ]);
         // title part
         $title = $agreement->modules()->create([
@@ -69,6 +70,7 @@ class SeedRegistrationPosts extends Migration
     {
         $demo = $cluster->posts()->create([
             'title' => 'Demographic Information',
+            'status' => 'released',
             'redirect' => 3,
         ]);
         $demo->prerequisite = $demo->id - 1; // depends on agreement
@@ -117,6 +119,7 @@ class SeedRegistrationPosts extends Migration
         $english = $cluster->posts()->create([
             'title' => 'English Level Information',
             'redirect' => 4,
+            'status' => 'released',
         ]);
         $english->prerequisite = $english->id - 1;
         $english->save();
@@ -152,6 +155,7 @@ class SeedRegistrationPosts extends Migration
         $education = $cluster->posts()->create([
             'title' => 'Educational Information',
             'redirect' => 5,
+            'status' => 'released',
         ]);
         $education->prerequisite = $education->id - 1;
         $education->save();
@@ -209,6 +213,7 @@ class SeedRegistrationPosts extends Migration
         $belief = $cluster->posts()->create([
             'title' => 'Belief Information',
             'message' => "You've completed registration, welcome!",
+            'status' => 'released',
         ]);
         $belief->prerequisite = $belief->id - 1;
         $belief->save();

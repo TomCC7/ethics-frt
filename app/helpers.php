@@ -27,11 +27,13 @@ function array_intval($array)
 
 /**
  * determine if the option is selected
+ * @param mixed $var1,$var2
+ * @param string $type
  * @return string
  */
-function is_selected($var1, $var2)
+function is_selected($var1, $var2, $type = 'selected')
 {
-    return $var1 === $var2 ? 'selected' : '';
+    return $var1 === $var2 ? $type : '';
 }
 
 /**
@@ -72,4 +74,14 @@ function get_db_config()
             'password'  => env('DB_PASSWORD', ''),
         ];
     }
+}
+
+/**
+ * convert the array to object
+ * @param array $array
+ * @return object
+ */
+function array_to_object($array)
+{
+    return json_decode(json_encode($array));
 }

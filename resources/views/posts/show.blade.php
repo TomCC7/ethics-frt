@@ -5,6 +5,9 @@
 
 @section('pageHeader')
 Post: <small>{{$post->title}}</small>
+{{-- status badge --}}
+@include('posts._status_badge')
+
 @can('admin')
 <a href="" class="far fa-edit text-decoration-none d-inline-block" data-toggle="modal" data-target="#edit-post"
   title="edit"></a>

@@ -80,3 +80,4 @@ Now you can visit `127.0.0.1:8000` to look at the website, homestead has mapped 
 - `laravel/scout` - a search engine
 - `predis/predis` - phpredis
 - `algolia/algoliasearch-client-php` - a search engine
+- `summerblue/laravel-active` - determine whether the element is active

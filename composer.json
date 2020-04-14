@@ -18,7 +18,8 @@
         "league/csv": "^9.6",
         "league/html-to-markdown": "^4.9",
         "mews/captcha": "~3.0",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "summerblue/laravel-active": "6.*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "~3.2",

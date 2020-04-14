@@ -33,9 +33,14 @@ class ClustersController extends Controller
      */
     public function show(Request $request, Cluster $cluster)
     {
+        if (!isset($request->status)) {
+            return redirect()->route('clusters.show', ['cluster' => $cluster->slug, 'status' => 'released']);
+        }
         $clusters = Cluster::all();
         $selectedCluster = $cluster;
-        return view('clusters.index', compact('clusters', 'selectedCluster'));
+        // group posts by their statuses
+        $posts = $cluster->posts->groupby('status');
+        return view('clusters.index', compact('clusters', 'selectedCluster', 'posts'));
         //Browse posts in a subview of the cluster list
     }
 

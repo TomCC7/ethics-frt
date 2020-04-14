@@ -47,16 +47,15 @@
     {{-- file upload --}}
     <div class="form-group">
       <label for="file-upload">Load options from a file</label>
-      <input type="file" name="options" id="file-upload" class="form-control-file" title="only the first column will be detected">
+      <input type="file" name="options" id="file-upload" class="form-control-file"
+        title="only the first column will be detected">
     </div>
 
     {{-- submit button --}}
-    <div class="form-group row mb-0">
-      <div class="col-md-6 offset-md-4">
-        <button type="submit" class="btn btn-primary">
-          Create
-        </button>
-      </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary btn-block">
+        Create
+      </button>
     </div>
   </form>
 </div>
