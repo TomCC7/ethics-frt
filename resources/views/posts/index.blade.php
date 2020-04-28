@@ -29,17 +29,18 @@
     <ul class="list-group list-group-flush">
       @if(isset($posts[$_GET['status']]))
       @foreach ($posts[$_GET['status']] as $post)
-      <li class="list-group-item">
-        <a class="float-left text-decoration-none"
-          href="{{route('posts.show',[$post->cluster->slug,$post->slug])}}">{{$post->title}}</a>
-        @can('admin')
-        <form method="POST" action="{{route('posts.destroy',$post->slug)}}" class="float-right"
-          onsubmit="return confirm('Delete post {{$post->title}}?');">
-          @csrf
-          @method('DELETE')
-          <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
-        @endcan
+        <li class="list-group-item">
+          #{{ $post->id }}
+          <a class="text-decoration-none"
+            href="{{ route('posts.show',[$post->cluster->slug,$post->slug]) }}">{{$post->title}}</a>
+          @can('admin')
+          <form method="POST" action="{{route('posts.destroy',$post->slug)}}" class="float-right"
+            onsubmit="return confirm('Delete post {{$post->title}}?');">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+          @endcan
       </li>
       @endforeach
       @else

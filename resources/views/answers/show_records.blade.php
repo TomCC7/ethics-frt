@@ -47,14 +47,14 @@ AnswerRecords-{{$post->title}}
         </tr>
       </thead>
       <tbody>
-        @foreach ($records as $record)
+        @foreach ($answer_records as $record)
         @include('answers._record_row')
         @endforeach
       </tbody>
     </table>
   </div>
   <div class="card-footer">
-    {{ $records->links() }}
+    {{ $answer_records->links() }}
   </div>
 </div>
 @endsection

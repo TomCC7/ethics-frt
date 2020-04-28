@@ -132,9 +132,9 @@ class AnswersController extends Controller
     public function show_records(Cluster $cluster,Post $post)
     {
         Gate::authorize('admin');
-        $records=$post->answerRecords()->with('user','answers')->paginate(10);
+        $answer_records=$post->answerRecords()->with('user','answers')->paginate(10);
         $modules=$post->modules;
-        return view('answers.show_records',compact('post','records','modules'));
+        return view('answers.show_records',compact('post','answer_records','modules'));
     }
 
     /**

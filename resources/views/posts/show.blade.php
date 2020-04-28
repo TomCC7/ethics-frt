@@ -4,7 +4,7 @@
 @section('title',$post->title . '-Post')
 
 @section('pageHeader')
-Post: <small>{{$post->title}}</small>
+  Post #{{ $post->id }}: <small>{{$post->title}}</small>
 {{-- status badge --}}
 @include('posts._status_badge')
 
