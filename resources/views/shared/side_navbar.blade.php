@@ -24,10 +24,10 @@
       <li class="side-navbar-item dropdown-toggle">Answers</li>
     </a>
     <ul class="collapse side-navbar-menu side-navbar-submenu" id="answer-sorting">
-      <a class="side-navbar-link" href="{{route('answers.index')}}">
+      <a class="side-navbar-link" href="{{ route('answers.index', ["by" => "post"]) }}">
         <li class="side-navbar-item">By Post</li>
       </a>
-      <a class="side-navbar-link" href="{{route('answers.index')}}">
+      <a class="side-navbar-link" href="{{ route('answers.index', ["by" => "user"]) }}">
         <li class="side-navbar-item">By User</li>
       </a>
     </ul>

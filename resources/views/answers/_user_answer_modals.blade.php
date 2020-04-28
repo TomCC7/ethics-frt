@@ -1,11 +1,12 @@
 {{-- load each answer modals of the user --}}
 {{-- Included by answers.show_records.blade.php --}}
-@foreach ($records as $record)
+@foreach ($answer_records as $record)
 {{-- get the answers of the user --}}
 @php
 $answers=[];
 foreach ($record->answers as $answer) {
 $answers[$answer->module_id]=$answer->getContent();
+$modules = $record->post->modules;
 }
 @endphp
 <div class="modal fade" id="detail-{{$record->id}}">

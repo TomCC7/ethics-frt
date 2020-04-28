@@ -88,7 +88,7 @@ class AnswersController extends Controller
     public function index(Request $request)
     {
         Gate::authorize('admin');
-        if ($request->by==='users')
+        if ($request->by === 'user')
         {
             $users=User::All();
             return view('answers.index_users',compact('users'));
@@ -103,17 +103,33 @@ class AnswersController extends Controller
     /**
      * Show the answers of a given post
      */
-    public function show(Cluster $cluster, Post $post)
+    public function show_by_post(Cluster $cluster, Post $post)
     {
         Gate::authorize('admin');
-        $modules = $post->modules()->question()->with('answers.answerRecord.user')->get();
-        return view('answers.show', compact('post', 'modules'));
+        $post->modules = $post->modules()->question()->with('answers.answerRecord.user')->get();
+        return view('answers.show_by_post', compact('post'));
+    }
+
+    /**
+     * Show the answers by a given user
+     */
+    public function show_by_user(User $user) {
+        Gate::authorize('admin');
+        $answer_records = $user->answerRecords()->get();
+        foreach($answer_records as $answer_record) {
+            $answer_record->post = $answer_record->post()->first();
+            $answer_record->post->modules = $answer_record->post
+                                                        ->modules()
+                                                        ->question()
+                                                        ->with('answers.answerRecord.user')->get();
+        }
+        return view('answers.show_by_user', compact('answer_records','user'));
     }
 
     /**
      * show the answers of the post record by record
      */
-    public function showRecords(Cluster $cluster,Post $post)
+    public function show_records(Cluster $cluster,Post $post)
     {
         Gate::authorize('admin');
         $records=$post->answerRecords()->with('user','answers')->paginate(10);

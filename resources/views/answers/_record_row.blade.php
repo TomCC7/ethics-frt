@@ -14,7 +14,7 @@
       onsubmit="return confirm('Do you want to delete this answer?');">
       @csrf
       @method('DELETE')
-      @can('superadmin')
+      @can('admin')
       <a href="" onclick="submitDeleteForm({{$record->id}})">
         <i class="far fa-trash-alt"></i>
       </a>

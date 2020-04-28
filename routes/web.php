@@ -34,16 +34,21 @@ Route::get('/contents/{cluster}/{post}', 'PostsController@show')->name('posts.sh
 
 // AnswersController
 Route::resource('/answers', 'AnswersController', ['only' => ['index']]);
-Route::get('/answers/{cluster}/{post}', 'AnswersController@show')->name('answers.show');
-Route::get('/answers/{cluster}/{post}/answerrecords', 'AnswersController@showRecords')->name('answers.show.records');
+Route::get('/answers/by-post/{cluster}/{post}', 'AnswersController@show_by_post')->name('answers.show_by_post');
+Route::get('/answers/by-user/{user}', 'AnswersController@show_by_user')->name('answers.show_by_user');
+Route::get('/answers/by-post/{cluster}/{post}/answerrecords', 'AnswersController@show_records')->name('answers.show_by_post.records');
 Route::put('/answers/{post}', 'AnswersController@storeOrUpdate')->name('answers.store');
-Route::get('/answers/{user}', 'AnswersController@UserAnswers')->name('answers.user');
+
 // AnswersRecordController
 Route::resource('/answerrecords', 'AnswerRecordsController', ['only' => ['destroy']]);
 Route::delete('/answerrecords/destoryAll/{post}','AnswerRecordsController@destroyAll')->name('answerrecords.destroyall');
+
 // AnswersDownloadController
 Route::post('/answers/download', 'AnswersDownloadController@download')->name('answers.download');
+Route::put('/answers/{post}', 'AnswersController@storeOrUpdate')->name('answers.store');
+
 // ModulesController
 Route::resource('/modules', 'ModulesController', ['only' => ['store', 'edit', 'update', 'destroy']]);
+
 // SearchController
 Route::get('/searches/user', 'SearchesController@user')->name('users.search');

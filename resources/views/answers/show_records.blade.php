@@ -5,7 +5,7 @@ AnswerRecords-{{$post->title}}
 @endsection
 
 @section('pageHeader')
-AnswerRecords-{{$post->title}}
+  Answer records for <strong>{{$post->title}}</strong>
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@ AnswerRecords-{{$post->title}}
   <div class="card-header">
     <div class="float-left">
       {{-- back button --}}
-      <a href="{{route('answers.show',[$post->cluster->slug,$post->slug])}}" class="btn btn-info d-inline-block"
+      <a href="{{ route('answers.show_by_post',[$post->cluster->slug,$post->slug]) }}" class="btn btn-info d-inline-block"
         role="button">
         Back
       </a>

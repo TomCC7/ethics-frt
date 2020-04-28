@@ -1,5 +1,5 @@
 {{-- show the detail of the answer --}}
-{{-- included by answers.show --}}
+{{-- included by answers.show_by_post and show_by_user --}}
 <div class="modal" id="modal-{{$loop->index}}">
   <div class="modal-dialog">
     <div class="modal-content">

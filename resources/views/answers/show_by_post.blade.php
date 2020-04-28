@@ -1,20 +1,20 @@
 @extends('layouts.app')
 @section('title')
-Result-{{$post->title}}
+  Answers for {{$post->title}}
 @endsection
 
 @section('pageHeader')
 <div class="float-left">
-  Result of <b><i>{{$post->title}}</i></b>
+  Answers for <b><i>{{$post->title}}</i></b>
 </div>
 <div class="float-right">
-  <a href="{{route('answers.show.records',[$post->cluster->slug,$post->slug])}}" class="btn btn-info">Answer Records</a>
+  <a href="{{route('answers.show_by_post.records',[$post->cluster->slug,$post->slug])}}" class="btn btn-info">Answer Records</a>
 </div>
 @endsection
 
 @section('content')
 <div name='content'>
-  @foreach ($modules as $module)
+  @foreach ($post->modules as $module)
   <div class="card">
     <div class="card-header">
       <div class="row">

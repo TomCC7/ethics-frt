@@ -9,7 +9,7 @@ use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
-    use Notifiable, Searchable;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.

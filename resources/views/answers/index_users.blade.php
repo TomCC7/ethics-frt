@@ -15,13 +15,13 @@
   </thead>
   <tbody>
     @foreach ($users as $user)
-    <a href="{{route('answers.user',$user->id)}}">
       <tr>
-        <td>{{$user->student_id}}</td>
-        <td>{{$user->first_name}}</td>
-        <td>{{$user->last_name}}</td>
+          <td>
+            <a href="{{route('answers.show_by_user',$user->id)}}">{{$user->student_id}}</a>
+          </td>
+          <td>{{$user->first_name}}</td>
+          <td>{{$user->last_name}}</td>
       </tr>
-    </a>
     @endforeach
   </tbody>
 </table>
