@@ -32,6 +32,10 @@ Route::resource('/posts', 'PostsController', ['only' => ['index', 'update', 'des
 Route::post('/posts/upload_image', 'PostsController@uploadImage')->name('posts.upload_image');
 Route::get('/contents/{cluster}/{post}', 'PostsController@show')->name('posts.show');
 
+// AnswersDownloadController
+Route::get('/answers/download', 'AnswersDownloadController@download')->name('answers.download');
+Route::get('/answers/downloadAll','AnswersDownloadController@downloadAll')->name('answers.downloadAll');
+
 // AnswersController
 Route::resource('/answers', 'AnswersController', ['only' => ['index']]);
 Route::get('/answers/by-post/{cluster}/{post}', 'AnswersController@show_by_post')->name('answers.show_by_post');
@@ -42,10 +46,6 @@ Route::put('/answers/{post}', 'AnswersController@storeOrUpdate')->name('answers.
 // AnswersRecordController
 Route::resource('/answerrecords', 'AnswerRecordsController', ['only' => ['destroy']]);
 Route::delete('/answerrecords/destoryAll/{post}','AnswerRecordsController@destroyAll')->name('answerrecords.destroyall');
-
-// AnswersDownloadController
-Route::post('/answers/download', 'AnswersDownloadController@download')->name('answers.download');
-Route::put('/answers/{post}', 'AnswersController@storeOrUpdate')->name('answers.store');
 
 // ModulesController
 Route::resource('/modules', 'ModulesController', ['only' => ['store', 'edit', 'update', 'destroy']]);

@@ -2,7 +2,16 @@
 
 @section('title', 'Answers')
 
-@section('pageHeader', 'Answers by Post')
+@section('pageHeader')
+<div class="float-left">
+  Answers by Post
+</div>
+<div class="float-right">
+  <a href="{{route('answers.downloadAll')}}" class="btn btn-success" role="button">
+    Download All
+  </a>
+</div>
+@endsection
 
 @section('content')
 

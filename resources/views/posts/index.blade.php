@@ -18,29 +18,33 @@
         @endcan
       </ul>
     </div>
+    @can('admin')
     <div class="float-right">
-      <a role="button" type="button" class="btn btn-success" data-toggle="modal" data-target="#create-post">Create
+      <a role="button" type="button" class="btn btn-success" data-toggle="modal" href="#create-post">Create
         post</a>
-      <a role="button" type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-cluster">Delete
+      @can('superadmin')
+      <a role="button" type="button" class="btn btn-danger" data-toggle="modal" href="#delete-cluster">Delete
         this cluster</a>
+      @endcan
     </div>
+    @endcan
   </div>
   <div class="card-body">
     <ul class="list-group list-group-flush">
       @if(isset($posts[$_GET['status']]))
       @foreach ($posts[$_GET['status']] as $post)
-        <li class="list-group-item">
-          #{{ $post->id }}
-          <a class="text-decoration-none"
-            href="{{ route('posts.show',[$post->cluster->slug,$post->slug]) }}">{{$post->title}}</a>
-          @can('admin')
-          <form method="POST" action="{{route('posts.destroy',$post->slug)}}" class="float-right"
-            onsubmit="return confirm('Delete post {{$post->title}}?');">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger">Delete</button>
-          </form>
-          @endcan
+      <li class="list-group-item">
+        #{{ $post->id }}
+        <a class="text-decoration-none"
+          href="{{ route('posts.show',[$post->cluster->slug,$post->slug]) }}">{{$post->title}}</a>
+        @can('admin')
+        <form method="POST" action="{{route('posts.destroy',$post->slug)}}" class="float-right"
+          onsubmit="return confirm('Delete post {{$post->title}}?');">
+          @csrf
+          @method('DELETE')
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        @endcan
       </li>
       @endforeach
       @else

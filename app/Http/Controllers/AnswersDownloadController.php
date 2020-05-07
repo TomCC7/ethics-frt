@@ -49,6 +49,13 @@ class AnswersDownloadController extends Controller
         ]);
     }
 
+    public function downloadAll()
+    {
+        Gate::authorize('admin');
+        $post_ids = Post::All()->pluck('id');
+        return view('answers.downloadAll',compact('post_ids'));
+    }
+
     protected function DetailHandler($module_id)
     {
         $module = Module::Where('id', $module_id)->with('answers.answerRecord.user')->first();

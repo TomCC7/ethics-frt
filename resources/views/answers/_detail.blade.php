@@ -7,7 +7,7 @@
         <div class="float-left">
           <h3 class="d-inline-block">Detail</h3>
           {{-- download button --}}
-          <form action="{{route('answers.download')}}" method="POST" class="d-inline-block">
+          <form action="{{route('answers.download')}}" method="GET" class="d-inline-block">
             @csrf
             <input type="hidden" name="type" value="detail">
             <input type="hidden" name="module_id" value="{{$module->id}}">

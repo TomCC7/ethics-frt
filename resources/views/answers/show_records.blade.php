@@ -25,7 +25,7 @@ AnswerRecords-{{$post->title}}
         Clear all answers
       </button>
       {{-- download csv form --}}
-      <form action="{{route('answers.download')}}" method="POST" class="d-inline-block">
+      <form action="{{route('answers.download')}}" method="GET" class="d-inline-block">
         @csrf
         <input type="hidden" name="type" value="post">
         <input type="hidden" name="post_id" value="{{$post->id}}">
